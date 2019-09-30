@@ -1,0 +1,52 @@
+.signin {
+    &__form {
+        width: 100%;
+    }
+    &__remember {
+        display: table;
+        margin: auto;
+        font-size: 1.2rem;
+        padding-bottom: 0.1rem;
+        border-bottom: 1px solid $color-grey3;
+        margin-bottom: 1rem;
+        text-decoration: none;
+        color: $color-grey1;
+        &:hover {
+            color: $color-error2;
+        }
+    }
+    &__description {
+        font-size: 1.3rem;
+        color: $color-grey1;
+        font-weight: 600;
+    }
+    &__icon {
+        &--close {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            &:hover {
+                transform: rotate(90deg) rotateX(180deg);
+            }
+        }
+        &--user {
+            width: 3rem;
+            display: table;
+            margin: 6rem auto 0 auto;
+        }
+        &--text {
+            color: $color-grey1;
+            font-size: 1.7rem;
+            display: table;
+            margin: 1rem auto 2rem auto;
+        }
+    }
+    &__link {
+        color:white;
+        text-decoration: none;
+        display: block;
+    }
+}

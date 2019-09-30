@@ -1,0 +1,15 @@
+.cart {
+    &__icon {
+        &--close {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: 3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            &:hover {
+                transform: rotate(90deg) rotateX(180deg);
+            }
+        }
+    }
+}

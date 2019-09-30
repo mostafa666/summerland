@@ -1,0 +1,64 @@
+.cartBox {
+    @include accountContainer;
+    position: relative;
+    display: table;
+    padding: 1.5rem;
+    border: none;
+    margin:.5rem 0;
+    &__left {
+        display: table-cell;
+        height: 100%;
+        padding-right: 1rem;
+    }
+    &__right {
+        display: table-cell;
+        width: 6rem;
+        vertical-align: middle;
+        text-align: center;
+    }
+    &__size {
+        font-size: 1.3rem;
+        color: $color-grey2;
+        & + span {
+            padding: 0.5rem;
+            font-size: 1.4rem;
+            color: $color-grey1;
+            font-family: roboto;
+            margin-left: 3rem;
+        }
+    }
+    &__image {
+        width: 100%;
+    }
+    & h3 {
+        font-size: 1.3rem;
+        color: $color-grey1;
+    }
+    & .card--price {
+        color: $color-error2;
+        font-size: 1.4rem;
+        padding-top: 2rem;
+        display: inline-block;
+    }
+    &__cancel {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        width: 1.5rem;
+        cursor: pointer;
+    }
+    &__numbers {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background-color: $color-error2;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

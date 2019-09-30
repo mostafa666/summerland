@@ -1,0 +1,26 @@
+.accountPageContainer {
+    display: flex;
+    @include respond(phone) {
+        display: block;
+    }
+}
+
+.accountMenu__section {
+    padding: 2rem 1rem 2rem 2rem;
+    margin-left: 0;
+    flex: 0 1 30rem;
+}
+
+.contentAccount__section {
+    padding: 2rem 0 2rem 1rem;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    @include respond(phone) {
+        padding: 0 2rem;
+    }
+}
+.wishListContainer {
+    flex: 0 1 50%;
+    padding: 0 1rem 1rem 0;
+}

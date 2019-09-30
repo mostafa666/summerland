@@ -1,0 +1,69 @@
+.wishList {
+    @include accountContainer;
+    position: relative;
+    display: table;
+    padding: 1.5rem;
+    border: none;
+    &__left {
+        display: table-cell;
+        height: 100%;
+        padding-right: 3rem;
+    }
+    &__right {
+        display: table-cell;
+        width: 10rem;
+        vertical-align: middle;
+        text-align: center;
+    }
+    &__size {
+        font-size: 1.4rem;
+        color: $color-grey2;
+        top: 1.5rem;
+        position: relative;
+        & + span {
+            padding: 0.5rem;
+            font-size: 1.6rem;
+            color: $color-grey1;
+            font-family: roboto;
+            position: relative;
+            top: 1.5rem;
+        }
+    }
+    &__image {
+        width: 100%;
+    }
+    & h3 {
+        font-size: 1.4rem;
+        color: $color-grey1;
+        padding-bottom: 5rem;
+    }
+    & .card--price {
+        color: $color-error2;
+        font-size: 1.6rem;
+        padding-top: 2rem;
+        display: block;
+    }
+    &__addButton {
+        background: $color-success;
+        color: white;
+        padding: 1rem 1.5rem;
+        font-size: 1.4rem;
+        position: absolute;
+        left: 1.5rem;
+        bottom: 1.5rem;
+        border-radius: 5px;
+    }
+    &__cancel {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        width: 1.5rem;
+        cursor: pointer;
+    }
+    &__notResult {
+        position: absolute;
+        bottom: 3rem;
+        font-size: 3rem;
+        color: #ccc;
+    }
+}

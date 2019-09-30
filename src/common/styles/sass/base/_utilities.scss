@@ -1,0 +1,77 @@
+// margin-bottom
+.u-margin-bottom-small {
+    margin-bottom: 2rem;
+}
+.u-margin-bottom-medium {
+    margin-bottom: 4rem;
+}
+.u-margin-bottom-big {
+    margin-bottom: 6rem;
+}
+
+// padding
+.u-padding-small {
+    padding: 2rem;
+}
+.u-padding-medium {
+    padding: 4rem;
+}
+.u-padding-big {
+    padding: 6rem;
+}
+// padding aside
+.u-padding-small-around {
+    padding: 0 2rem;
+}
+
+// margin: 0 ;
+.margin-zero {
+    margin: 0 !important;
+}
+
+// centered horizontal
+.centeredHorizontal {
+    display: block;
+    text-align: center;
+}
+.centeredInline {
+    display: table;
+    margin: auto;
+}
+
+.noResult {
+    min-height: 50rem;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 30rem;
+    }
+}
+
+.loader {
+    @include accountContainer;
+    border: none;
+    width: 100%;
+    min-height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    img {
+        width: 8rem;
+        animation: rotate 1.3s cubic-bezier(0.78, 0.79, 0.2, 0.19) backwards
+            infinite;
+    }
+}
+.loaderForButton {
+    width: 1.6rem;
+    margin-right: 1rem;
+    position: relative;
+    top: 0.4rem;
+    img {
+        width: 100%;
+        animation: rotate .7s cubic-bezier(0.78, 0.79, 0.6, 0.49) backwards
+            infinite;
+    }
+}

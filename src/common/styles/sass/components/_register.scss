@@ -1,0 +1,52 @@
+.register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    &__form {
+        &--container {
+            @include accountContainer;
+            width: 40rem;
+            padding-bottom: 1rem;
+        }
+    }
+    &__header {
+        border-bottom: 1px solid #eee;
+        &--heading {
+            padding: 2.5rem;
+            padding-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: $color-grey1;
+            font-weight: 900;
+        }
+    }
+    &__body {
+        padding: 2.5rem;
+        padding-top: 1rem;
+        input:checked + .checkbox__container .checkbox__label {
+            background: $color-success !important;
+        }
+        .checkbox__text {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+        .checkbox__label {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: 1.3rem;
+        }
+    }
+    &__registered {
+        color: $color-grey2;
+        font-size: 1.3rem;
+        display: inline-block;
+        margin-top: 2rem;
+        a {
+            color: $color-blue;
+            text-decoration: none;
+            display: inline-block;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px dashed $color-blue;
+        }
+    }
+}

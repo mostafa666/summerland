@@ -1,0 +1,33 @@
+.primary-heading {
+    color: $color-grey-dark;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.secondary-heading {
+    color: $color-grey1;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+.tetiary-heading {
+    color: $color-grey1;
+    font-size: 1.4rem;
+}
+
+.danger_heading {
+    font-size: 1.7rem;
+    color: $color-error2;
+    font-weight: 300;
+}
+
+.secondary-heading--bold {
+    color: $color-grey2;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+.account-heading {
+    color: $color-grey2;
+    font-weight: 100;
+    font-size: 1.9rem;
+    margin-bottom: 1.3rem;
+}

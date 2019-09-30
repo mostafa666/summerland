@@ -1,0 +1,102 @@
+.menu {
+    
+    padding: 0 1.5rem;
+    font-size: 1.3rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100000;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0 2px 4px 0 hsla(0, 0%, 44.3%, 0.05);
+    &__container {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        // visibility: hidden;
+        background-color: rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 10000;
+        transition: all 0.3s;
+    }
+    &:hover + &__container {
+        transform: scale(120);
+    }
+    &__list {
+        & > li {
+            display: inline-block;
+            padding: 1.5rem 1.8rem;
+            color: $color-grey1;
+            cursor: pointer;
+            position: relative;
+            & > ul {
+                width: 900px;
+                height: 400px;
+                background-color: white;
+                position: absolute;
+                top: 100px;
+                right: 0;
+                transition: all 0.3s;
+                visibility: hidden;
+                opacity: 0;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+                border-radius: 30px 0 30px 30px;
+                & > li {
+                    display: flex;
+                    flex-direction: column;
+                    a {
+                        color: $color-grey1;
+                        text-decoration: none;
+                        padding: 0.6rem 1.2rem;
+                    }
+                }
+            }
+            &:hover {
+                border-bottom: 2px solid $color-error2;
+            }
+            // &:hover:after {
+            //     content: '';
+
+            //     width: 0;
+            //     height: 0;
+            //     border-left: 7px solid transparent;
+            //     border-right: 7px solid transparent;
+            //     border-bottom: 7px solid rgb(238, 238, 238);
+
+            //     position: absolute;
+            //     bottom: 0;
+            //     right: 50%;
+            //     transform: translateX(50%);
+            // }
+            &:hover > ul {
+                visibility: visible;
+                top: 54px;
+                opacity: 1;
+            }
+            & > ul {
+                padding: 2rem;
+                padding-left: 550px;
+                cursor: default;
+                img {
+                    position: absolute;
+                    left: 2rem;
+                    bottom: 2rem;
+                    width: 260px;
+                }
+            }
+        }
+    }
+    &__arrow--bottom {
+        width: .8rem;
+        position: absolute;
+        transform: rotate(90deg) translate(.9rem, .9rem);
+        fill: $color-grey1;
+
+    }
+    &__list li:hover &__arrow--bottom {
+        fill:black;
+        transform: rotate(90deg) translate(.9rem, .9rem) scale(1.1);
+    }
+}

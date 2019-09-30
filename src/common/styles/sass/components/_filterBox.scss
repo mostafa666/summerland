@@ -1,0 +1,6 @@
+.filterBox {
+    @include accountContainer;
+    width: 20rem; // fake width
+    margin: 2rem;
+    padding: 1rem;
+}
