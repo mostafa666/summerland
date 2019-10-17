@@ -1,0 +1,55 @@
+.comments {
+    &__comment {
+        margin-top: 2rem;
+        position: relative;
+        &--image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            img {
+                width: 100%;
+            }
+        }
+        &--body {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        blockquote {
+            margin-right: 11rem;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 12px 12px 0 hsla(0, 0%, 71%, 0.1);
+            border-radius: 0.5rem;
+            position: relative;
+            h5 {
+                color: $color-grey1;
+                font-size: 1.5rem;
+            }
+            time {
+                color: $color-grey3;
+                font-size: 1.3rem;
+            }
+            p {
+                color: $color-grey3;
+                font-size: 1.4rem;
+            }
+        }
+        blockquote:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid white;
+            position: absolute;
+            top: 30px;
+            right: -10px;
+        }
+        
+    }
+}

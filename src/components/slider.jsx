@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import image1 from './../common/images/home3.jfif';
-import image2 from './../common/images/home2.jfif';
+import image1 from './../common/images/110646356.jpg';
+import image2 from './../common/images/3982665.jpg';
 import './../../node_modules/slick-carousel/slick/slick.scss';
 import './../../node_modules/slick-carousel/slick/slick-theme.scss';
 
 export default class SliderFade extends Component {
+    slider = React.createRef();
     render() {
         const settings = {
             dots: true,
@@ -27,8 +28,7 @@ export default class SliderFade extends Component {
             // rtl: true
         };
         return (
-            <div>
-                <h2>Fade</h2>
+            <div className="slider_ltr" ref={this.slider} >
                 <Slider {...settings}>
                     <div>
                         <img src={image1} />

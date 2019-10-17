@@ -1,0 +1,47 @@
+.sorter_box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &__title {
+    display: flex;
+
+    & h4 {
+      font-size: 1.7rem;
+      padding: 6px;
+      padding-bottom: 12px;
+      color: $color-text-1;
+    }
+
+    &__background {
+      background-image: url(../images/sort.svg);
+      width: 3.4rem;
+      height: 3.4rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 4px 10px;
+    }
+  }
+
+  &__button {
+    background: white;
+    border: 1px solid $color-blue-bright;
+    margin: 0 6px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: $color-text-1;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+
+    &.active {
+      background: $color-blue-bright;
+      color: white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

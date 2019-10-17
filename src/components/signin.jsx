@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import SigninForm from "./signinForm";
 import { toggleSignin } from "../actions/globalAction";
-import { SubmitButton } from "./signup";
+// import { SubmitButton } from "./signup";
 // user icon
 import usericon from './../common/images/user.svg';
 import closeIcon from './../common/images/cancel.svg';

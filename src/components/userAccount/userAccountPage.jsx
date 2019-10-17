@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AccountMenu from './AccountMenu';
 import NewPassword from './newPassword';
 import WishList from './wishList';
+import MainCart from './mainCart';
 import Signup from './../signup';
 import WishLists from './wishLists';
 import { Route, Switch } from 'react-router-dom';
@@ -32,7 +33,10 @@ class UserAccountPage extends Component {
                                 path="/account/changepassword"
                                 component={NewPassword}
                             />
-                            
+                            <Route
+                                path="/account/orders"
+                                component={MainCart}
+                            />
                             <Route path="/account/logout" component={Logout} />
                         </Switch>
                     </section>

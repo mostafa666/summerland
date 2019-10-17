@@ -1,0 +1,80 @@
+.mainCart {
+    @include accountContainer;
+    border: none;
+    overflow: hidden;
+    &__table {
+        width: 100%;
+        thead {
+            background-color: white;
+            font-size: 1.5rem;
+            color: $color-grey-dark;
+            box-shadow: 0 0.3rem 0.9rem rgba(0, 0, 0, 0.1);
+            th {
+                padding: 1rem 0;
+            }
+        }
+        tbody {
+            td.details:hover .showMore {
+                transform: scale(1) translateX(0);
+                visibility: visible;
+            }
+            tr {
+                border-bottom: 1px solid #000;
+                td.details {
+                    cursor: pointer;
+                    color: $color-blue;
+                    h4 {
+                        color: $color-grey1;
+                    }
+                }
+                td {
+                    text-align: center;
+                    color: $color-grey1;
+                    font-size: 1.3rem;
+                    position: relative;
+                    .showMore {
+                        text-align: right;
+                        padding: 1rem 2rem;
+                        position: absolute;
+                        top: 0;
+                        right: -70px;
+                        min-width: 200px;
+                        min-height: 130px;
+                        background-color: white;
+                        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+                        border-radius: 0.6rem;
+                        transition: all 0.5s;
+                        transform: scale(0) translateX(-20rem);
+                        visibility: hidden;
+                        div {
+                            padding-top: 1rem;
+                            span:first-child {
+                                color:$color-grey2;
+                            }
+                        }
+                        &::before {
+                            content: '';
+                            border-right: 10px solid white;
+                            border-left: 10px solid transparent;
+                            border-top: 10px solid transparent;
+                            border-bottom: 10px solid transparent;
+                            position: absolute;
+                            top: 50%;
+                            left: -20px;
+                            transform: translateY(-50%);
+                            filter: drop-shadow(-4px 0 4px rgba(0, 0, 0, 0.1));
+                        }
+                    }
+
+                    img.goodImage {
+                        width: 5rem;
+                        padding: 1rem 0;
+                    }
+                    img.closeImage {
+                        width: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+}

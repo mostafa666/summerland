@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Account from './account';
 import Signin from './signin'
+import { toggleSignin } from "../actions/globalAction";
 class UserMenu extends Component {
-    
     render() {
         return (
             <MenuContainer toggle={this.props.state.global.signinToggle} >

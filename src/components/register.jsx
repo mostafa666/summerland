@@ -8,7 +8,8 @@ import lockIcon from './../common/images/lock.svg';
 import emailIcon from './../common/images/mail.svg';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { CheckBox } from "./filterBox";
-import { validationEmailRegister, validationPassRegister, validationConfirmRegister, saveProfileInfo } from "../actions/accountPageAction";
+import { validationEmailRegister, validationPassRegister, validationConfirmRegister, saveProfileInfo, logedinMenu } from "../actions/accountPageAction";
+import { sendRegisterDatas } from "../actions/registerAction";
 
 
 class Register extends Component {
@@ -79,22 +80,11 @@ class Register extends Component {
             e.target.innerHTML = `${e.target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
             e.target.disabled = false;
             let target = e.target
-            // set infos with axios
-            try {
-                const {data: token} = await axios.post('http://melkon.ir/panel/api/v1/register',{
-                    email,password,confirm
-                })
-                this.props.dispatch(saveProfileInfo(token,email,''));
-            } catch(err) {
-                console.log(err)
-            }
-            // save the data in redux (user info)
+            const {history} = this.props;
+            // set infos with axios & save it in store
+            await this.props.dispatch(sendRegisterDatas(email,password,confirm,target,history));            
             
-            // change the text in the button
-            target.innerHTML = 'اطلاعات با موفقیت ثبت شد'
-            target.disabled = true;
-            // rediret to main page or specief page in local storage
-            // this.props.location.replace('/');
+            
         }
     }
     addError = (text,fielsValidation,id) => {

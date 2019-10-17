@@ -36,3 +36,19 @@ html {
         font-size: 12px;
     }
 }
+
+.rc-pagination-item-link {
+    direction: ltr;
+  }
+  .rc-pagination-jump-next {
+    direction: ltr;
+  }
+  .rc-pagination-jump-prev {
+    direction: ltr;
+  }
+  .slider_ltr {
+    direction: ltr;
+    & * {
+      direction: ltr;
+    }
+  }

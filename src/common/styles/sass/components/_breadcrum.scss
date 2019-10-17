@@ -1,0 +1,33 @@
+.breadcrum {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 1 1 0;
+  direction: rtl;
+
+  &__link {
+    padding: 0px 8px;
+    margin: 8px 8px;
+    position: relative;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: $color-text-1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 14px;
+      border-radius: 2px;
+      background: rgba(190, 190, 190, 0.7);
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:last-child::before {
+      display: none;
+    }
+  }
+}

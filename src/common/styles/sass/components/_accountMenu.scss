@@ -1,8 +1,12 @@
 .accountMenu {
     @include accountContainer;
+    position: sticky;
+    top: 80px;
     @include respond(phone) {
         border: none;
         border-radius: 0;
+        // position: absolute;
+        // bottom: 0;
     }
     & h3 {
         color: $color-grey1;

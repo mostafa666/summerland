@@ -75,3 +75,28 @@
             infinite;
     }
 }
+
+.flex__j-end_to_end {
+    @include flex_j_endtoend;
+  }
+  
+  .stroke__anim-v1 {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 200;
+    // animation: stroke_anim 1.5s infinite;
+  }
+  
+  .stroke__anim-v2 {
+    stroke-dasharray: 10;
+    stroke-dashoffset: 200;
+    // animation: stroke_anim 2s alternate infinite;
+  }
+  
+  .stroke__anim-v3 {
+    // stroke-dasharray: 1200 150;
+    // stroke-dashoffset: 2700;
+    // animation: stroke_anim 4s linear infinite;
+    stroke-dasharray: 300 150;
+    stroke-dashoffset: 1800;
+  }
+  

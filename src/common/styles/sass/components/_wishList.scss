@@ -1,32 +1,134 @@
+// .wishList {
+//     @include accountContainer;
+//     position: relative;
+//     display: flex;
+//     padding: 1.5rem;
+//     padding-right: 0;
+//     border: none;
+//     flex: 0 1 50%;
+//     &__container {
+//         display: flex;
+//         flex-direction: column;
+//         padding-right: 0;
+//         width: 50%;
+//     }
+//     &__left {
+//         height: 100%;
+//         padding-right: 3rem;
+//     }
+//     &__right {
+//         flex: 0 1 10rem;
+//         text-align: center;
+//     }
+//     &__size {
+//         font-size: 1.4rem;
+//         color: $color-grey2;
+//         top: 1.5rem;
+//         position: relative;
+//         & + span {
+//             padding: 0.5rem;
+//             font-size: 1.6rem;
+//             color: $color-grey1;
+//             font-family: roboto;
+//             position: relative;
+//             top: 1.5rem;
+//         }
+//     }
+//     &__image {
+//         width: 100%;
+//     }
+//     & h3 {
+//         font-size: 1.4rem;
+//         color: $color-grey1;
+//         padding-bottom: 5rem;
+//     }
+//     & .card--price {
+//         color: $color-error2;
+//         font-size: 1.6rem;
+//         padding-top: 2rem;
+//         display: block;
+//     }
+//     &__addButton {
+//         background: $color-success;
+//         color: white;
+//         padding: 1rem 1.5rem;
+//         font-size: 1.4rem;
+//         position: absolute;
+//         left: 1.5rem;
+//         bottom: 1.5rem;
+//         border-radius: 5px;
+//     }
+//     &__cancel {
+//         position: absolute;
+//         top: 1.5rem;
+//         left: 1.5rem;
+//         width: 1.5rem;
+//         cursor: pointer;
+//     }
+//     &__notResult {
+//         position: absolute;
+//         bottom: 3rem;
+//         font-size: 3rem;
+//         color: #ccc;
+//     }
+// }
+
 .wishList {
     @include accountContainer;
     position: relative;
-    display: table;
+    display: flex;
     padding: 1.5rem;
+    padding-right: 0;
     border: none;
+    flex: 0 1 50%;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        padding-right: 0;
+        width: 100%;
+        // loader
+        & .mainLoader__container {
+            max-height: 200px;
+            position: absolute;
+            background-color: white;
+            border-radius: .8rem;
+            min-height: 300px;
+        }
+        &--wishlist {
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+        }
+    }
     &__left {
-        display: table-cell;
         height: 100%;
         padding-right: 3rem;
     }
     &__right {
-        display: table-cell;
-        width: 10rem;
-        vertical-align: middle;
+        flex: 0 1 10rem;
         text-align: center;
+        align-self: center;
     }
     &__size {
         font-size: 1.4rem;
         color: $color-grey2;
-        top: 1.5rem;
         position: relative;
-        & + span {
+        margin-left: .5rem;
+        &--container {
+            display: flex;
+            margin-top: 1.5rem;
+        }
+        & + select {
             padding: 0.5rem;
-            font-size: 1.6rem;
+            padding-left: 2rem;
+            font-size: 1.2rem;
             color: $color-grey1;
             font-family: roboto;
-            position: relative;
-            top: 1.5rem;
+            border-radius: .5rem;
+            cursor: pointer;
+            &:focus {
+                outline: none;
+            }
         }
     }
     &__image {
@@ -35,7 +137,7 @@
     & h3 {
         font-size: 1.4rem;
         color: $color-grey1;
-        padding-bottom: 5rem;
+        padding-bottom: 3rem;
     }
     & .card--price {
         color: $color-error2;
@@ -66,4 +168,14 @@
         font-size: 3rem;
         color: #ccc;
     }
+    &__colors {
+        background-size: 100%;
+        background-position: center;
+        border-radius: 50%;
+        width: 2.5rem;
+        height:2.5rem;
+        display: inline-block;
+        margin-left: .7rem;
+    }
+    
 }

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { TextInput, SubmitButton } from "./signup";
-import { validationEmailSignIn, validationPassSignIn, saveProfileInfo } from "../actions/accountPageAction";
+import { validationEmailSignIn, validationPassSignIn, saveProfileInfo, logedinMenu } from "../actions/accountPageAction";
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import axios from 'axios';
 // icon 
 import spinner from './../common/images/loading.svg'
 import lockIcon from './../common/images/lock.svg';
 import emailIcon from './../common/images/mail.svg';
+import { sendLogins } from "../actions/registerAction";
 
 class SigninForm extends Component {
     validation = (validation,target) => {
@@ -82,22 +83,13 @@ class SigninForm extends Component {
             e.target.disabled = false;
             let target = e.target
             // set infos with axios
-            try {
-                const {data: token} = await axios.post('http://melkon.ir/panel/api/v1/login',{
-                    email,password
-                })
-                // save the data in redux (user info)
-                this.props.dispatch(saveProfileInfo(token,email,''));
-            } catch(err) {
-                console.log(err)
-            }
+            const {history} = this.props;
+            await this.props.dispatch(sendLogins(email,password,target,history));
             
-            // change the text in the button
-            // target.innerHTML = 'اطلاعات با موفقیت ثبت شد'
-            // target.disabled = true;
+            
+            
 
-            // rediret to main page or specief page in local storage
-            // this.props.location.replace('/');
+            
         }
     }
     render() {

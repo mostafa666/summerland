@@ -1,0 +1,49 @@
+.detailsPage {
+    &__top {
+        display: flex;
+        padding: 8rem 2rem;
+        position: relative;
+        padding-bottom: 2rem;
+    }
+    &__specification {
+        margin-right: 1.5rem;
+        width: 60%;
+    }
+    &__slider {
+        width: 40%;
+        padding-bottom: 1.9rem;
+        &--container {
+            position: sticky;
+            top: 80px;
+            border-radius: 0.8rem;
+            overflow: hidden;
+            background-color: white;
+            border-radius: 0.8rem;
+        }
+        .slick-list {
+            // padding: 0 !important;
+        }
+    }
+    &__comments {
+        margin: 2rem;
+        margin-top: 0;
+        position: relative;
+        button.btn--blue {
+            width: 190px;
+            position: absolute;
+            z-index: 100;
+            left: 70px;
+            top: 5px;
+        }
+    }
+    .detailsPage__comments {
+        .accordeon__content {
+            background: transparent;
+            box-shadow: none;
+        }
+        .accordeon__content {
+            padding: 0;
+            margin: 2rem 0;
+        }
+    }
+}

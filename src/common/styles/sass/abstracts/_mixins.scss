@@ -1,39 +1,54 @@
 @mixin clearfix {
-    &::after {
-        content: '';
-        display: table;
-        clear: both;
-    }
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 }
 
 @mixin accountContainer {
-    background-color: white;
-    display: inline-block;
-    width: 100%;
-    border: 1px solid #dedede;
-    box-shadow: 0 12px 12px 0 hsla(0, 0%, 71%, 0.1);
-    border-radius: 1rem;
+  background-color: white;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid #dedede;
+  background-color: white;
+  box-shadow: 0 12px 12px 0 hsla(0, 0%, 71%, 0.1);
+  border-radius: 1rem;
+}
+
+@mixin contentBox_s1 {
+  background-color: white;
+  box-shadow: 0 12px 12px 0 hsla(0, 0%, 71%, 0.1);
+  border: 1px solid #dedede;
+  border-radius: 15px;
+}
+
+@mixin flex_j_endtoend {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
 }
 
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media (max-width: 600px) {
-            @content;
-        }
+  @if $breakpoint == phone {
+    @media (max-width: 600px) {
+      @content;
     }
-    @if $breakpoint == tab-port {
-        @media (max-width: 900px) {
-            @content;
-        }
+  }
+  @if $breakpoint == tab-port {
+    @media (max-width: 900px) {
+      @content;
     }
-    @if $breakpoint == tab-land {
-        @media (max-width: 1200px) {
-            @content;
-        }
+  }
+  @if $breakpoint == tab-land {
+    @media (max-width: 1200px) {
+      @content;
     }
-    @if $breakpoint == big-desktop {
-        @media (min-width: 1800px) {
-            @content;
-        }
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 1800px) {
+      @content;
     }
+  }
 }

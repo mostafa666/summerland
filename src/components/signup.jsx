@@ -1,12 +1,21 @@
 import React, { Component } from "react";
-import emailIcon from './../common/images/mail.svg'
-import { setNameRegister, setLastnameRegister, setEmailRegister, setPhoneRegister, setPasswordRegister, setConfrimasswordRegister, setAddress, setPostCode } from './../actions/registerAction';
+import { setNameRegister, setLastnameRegister, setEmailRegister, setPhoneRegister, setPasswordRegister, setConfrimasswordRegister, setAddress, setPostCode, sendUserProfiles, getUserProfiles } from './../actions/registerAction';
 import { connect } from "react-redux";
 import {inputs} from './../staticData/input';
-import spinner from './../common/images/loading.svg'
 import lockIcon from './../common/images/lock.svg';
+import { getUserProfile } from "../actions/registerAction";
+import spinner from './../common/images/loading.svg';
+import emailIcon from './../common/images/mail.svg';
+import Loader from './loader';
+import { signupLoader } from './../actions/accountPageAction';
 class Signup extends Component {
-    componentDidMount() {}
+    async componentDidMount() {
+        const nickname = localStorage.getItem('nickname');
+        const token = localStorage.getItem('token');
+        this.props.dispatch(signupLoader(true));
+        await this.props.dispatch(getUserProfiles(nickname,token));
+        this.props.dispatch(signupLoader(false));
+    }
 
     validation = (validation,target) => {
         if(validation) {
@@ -23,11 +32,12 @@ class Signup extends Component {
     validationEmail = (event) => {
         let {dispatch} = this.props;
         let target = event.target;
+        event.target.disabled = true;
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let test = re.test(String(target.value).toLowerCase());
         this.validation(test && target.value.length > 0,target)
         // set value in store
-        dispatch(setEmailRegister(target.value,test && target.value.length > 0));
+        // dispatch(setEmailRegister(target.value,test && target.value.length > 0));
     }
     validationName = (event) => {
         let {dispatch} = this.props;
@@ -60,16 +70,18 @@ class Signup extends Component {
         let target = event.target;
         let validation = target.value.length >= 8;
         this.validation(validation,target)
+        event.target.disabled = true;
         // set value in store
-        dispatch(setPasswordRegister(target.value,validation));
+        // dispatch(setPasswordRegister(target.value,validation));
     }
     validationConfirmpassword = (event) => {
         let {dispatch,state} = this.props;
         let target = event.target;
         let validation = target.value.length >= 8 && target.value === state.register.registerInfo.password;
         this.validation(validation,target)
+        event.target.disabled = true;
         // set value in store
-        dispatch(setConfrimasswordRegister(target.value,validation));
+        // dispatch(setConfrimasswordRegister(target.value,validation));
     }
     validationAddress = (event) => {
         let {dispatch} = this.props;
@@ -102,13 +114,13 @@ class Signup extends Component {
         return true;
     }
     
-    animationClick = (e) => {
+    animationClick = async (e) => {
         const {
             name,
             lastname,
             address,
             postCode,
-            phoneNumber,
+            phone,
             email,
             password,
             confirmPassword
@@ -130,28 +142,30 @@ class Signup extends Component {
         let b = this.addError('حداقل 3 کاراکتر باید باشد',lastname,'inputLastname');
         let c = this.addError('آدرستان را دقیق وارد کنید',address,'inputAddress');
         let d = this.addError('کد پستی صحیح نیست',postCode,'inputPostcode');
-        let ee = this.addError('شماره موبایل معتبر وارد نمایید',phoneNumber,'inputNumber');
+        let ee = this.addError('شماره موبایل معتبر وارد نمایید',phone,'inputNumber');
         let f = this.addError('ایمیلتان معتبر نیست',email,'inputEmail');
         let g = this.addError('رمز عبور باید حداقل 8 کاراکتر باشد',password,'inputPassword');
         let h = this.addError('با رمز ورودتان سازگاری ندارد',confirmPassword,'inputConfrinPassword');
         if(a && b && c && d && ee && f && g && h) {
             // change the text in the button
-            // e.target.innerHTML = `${e.target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
-            // e.target.disabled = true;
-            // change the text in the button
+            e.target.innerHTML = `${e.target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
+            e.target.disabled = true;
+            const nickname = localStorage.getItem('nickname');
+            const token = localStorage.getItem('token');
             // set infos with axios
-            // e.target.innerHTML = 'اطلاعات با موفقیت تغییر یافت'
-            // e.target.disabled = false;
+            let target = e.target;
+            await this.props.dispatch(sendUserProfiles(this.props.state.register.registerInfo,nickname,target,token))
         }
 
         
     }
     render() {
-        
+        const {name,lastname,address,postCode,phone,email} = this.props.state.register.registerInfo;
         return (
                 <React.Fragment>
                     <h2 className="account-heading">تغییر اطلاعات کاربری</h2>
                     <div className="signup">
+                        <Loader toggle={this.props.state.account.signupLoader} />
                         <div className="row u-padding-small">
                             <form>
                                 <h2 className="secondary-heading--bold centeredHorizontal u-margin-bottom-small ">اگر تازه به سامرلند آمده‌اید و اطلاعات خود را تکمیل نکرده اید اطلاعات مورد نیاز را وارد کنید</h2>
@@ -159,19 +173,19 @@ class Signup extends Component {
                                     <h2 className="secondary-heading">اطلاعات شخصی</h2>
                                     <div className="row margin-zero">
                                         <div className="col-1-of-2">
-                                            <TextInput icon={lockIcon} placeholder={inputs[0].placeholder} id={inputs[0].id} labelText={inputs[0].labelText} onchange={() => this.validationName} type={inputs[0].type} />
+                                            <TextInput value={name} icon={lockIcon} placeholder={inputs[0].placeholder} id={inputs[0].id} labelText={inputs[0].labelText} onchange={() => this.validationName} type={inputs[0].type} />
                                         </div>
                                         <div className="col-1-of-2">
-                                            <TextInput icon={lockIcon} placeholder={inputs[1].placeholder} id={inputs[1].id} labelText={inputs[1].labelText} onchange={() => this.validationLastname} type={inputs[1].type} />
+                                            <TextInput value={lastname} icon={lockIcon} placeholder={inputs[1].placeholder} id={inputs[1].id} labelText={inputs[1].labelText} onchange={() => this.validationLastname} type={inputs[1].type} />
                                         </div>
                                     </div>
-                                    <TextInput icon={lockIcon} placeholder={inputs[2].placeholder} id={inputs[2].id} labelText={inputs[2].labelText} onchange={() => this.validationAddress} type={inputs[2].type} className={inputs[2].className} />
-                                    <TextInput icon={lockIcon} placeholder={inputs[3].placeholder} id={inputs[3].id} labelText={inputs[3].labelText} onchange={() => this.validationPostCode} type={inputs[3].type} className={inputs[3].className}  />
-                                    <TextInput icon={lockIcon} placeholder={inputs[4].placeholder} id={inputs[4].id} labelText={inputs[4].labelText} onchange={() => this.validationNumber} type={inputs[4].type} className={inputs[4].className} />
+                                    <TextInput value={address} icon={lockIcon} placeholder={inputs[2].placeholder} id={inputs[2].id} labelText={inputs[2].labelText} onchange={() => this.validationAddress} type={inputs[2].type} className={inputs[2].className} />
+                                    <TextInput value={postCode} icon={lockIcon} placeholder={inputs[3].placeholder} id={inputs[3].id} labelText={inputs[3].labelText} onchange={() => this.validationPostCode} type={inputs[3].type} className={inputs[3].className}  />
+                                    <TextInput value={phone} icon={lockIcon} placeholder={inputs[4].placeholder} id={inputs[4].id} labelText={inputs[4].labelText} onchange={() => this.validationNumber} type={inputs[4].type} className={inputs[4].className} />
                                 </div>
                                 <div className="col-1-of-2 u-padding-small">
                                     <h2 className="secondary-heading">اطلاعات ورود به حساب کاربری</h2>
-                                    <TextInput icon={lockIcon} placeholder={inputs[5].placeholder} id={inputs[5].id} labelText={inputs[5].labelText} onchange={() => this.validationEmail} type={inputs[5].type} className={inputs[5].className} />
+                                    <TextInput value={email} icon={lockIcon} placeholder={inputs[5].placeholder} id={inputs[5].id} labelText={inputs[5].labelText} onchange={() => this.validationEmail} type={inputs[5].type} className={inputs[5].className} />
                                     <TextInput icon={lockIcon} placeholder={inputs[6].placeholder} id={inputs[6].id} labelText={inputs[6].labelText} onchange={() => this.validationPassword} type={inputs[6].type} className={inputs[6].className} />
                                     <TextInput icon={lockIcon} placeholder={inputs[7].placeholder} id={inputs[7].id} labelText={inputs[7].labelText} onchange={() => this.validationConfirmpassword} type={inputs[7].type} className={inputs[7].className} />
                                     <SubmitButton text="تکمیل اطلاعات" type="submit" className="btn--green" onClick={this.animationClick} />
@@ -184,11 +198,11 @@ class Signup extends Component {
     }
 }
 
-export const TextInput = ({placeholder,id,labelText,onchange,type,className,icon}) => {
+export const TextInput = ({placeholder,id,labelText,onchange,type,className,icon,value}) => {
     let inputElement = React.createRef;
     return (
         <div className={`input__container ${className}`}>
-            <input className="input__text" type={type} ref={inputElement} placeholder={placeholder} id={id} onChange={onchange(inputElement)} />
+            <input value={value} className="input__text" type={type} ref={inputElement} placeholder={placeholder} id={id} onChange={onchange(inputElement)} />
             <label htmlFor={id}>{labelText}</label>
             <img src={icon} alt="email icon" className="input__text--icon" />  
         </div>

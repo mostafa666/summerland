@@ -1,7 +1,8 @@
-import { TOGGLESIGNIN } from "../actions/types";
+import { TOGGLESIGNIN, SHOWLOADERINDETAILS } from "../actions/types";
 
 const initialState = {
-    signinToggle: true
+    signinToggle: false,
+    toggleLoaderDetails: false
 }
 
 export default (state=initialState, action) => {
@@ -12,7 +13,11 @@ export default (state=initialState, action) => {
                 ...state,
                 signinToggle:toggle
             }
-            
+        case SHOWLOADERINDETAILS:
+            return {
+                ...state,
+                toggleLoaderDetails:action.toggle
+            }
         default: 
             return state;
     }

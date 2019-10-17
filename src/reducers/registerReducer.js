@@ -1,4 +1,5 @@
-import { SETNAMEREGISTER, SETLASTNAMEREGISTER, SETEMAILREGISTER, SETPHONEREGISTER, SETPASSWORDREGISTER, SETCONFRIMPASSWORDREGISTER, SETADDRESS, SETPOSTCODE } from "../actions/types";
+import { SETNAMEREGISTER, SETLASTNAMEREGISTER, SETEMAILREGISTER, SETPHONEREGISTER, SETPASSWORDREGISTER, SETCONFRIMPASSWORDREGISTER, SETADDRESS, SETPOSTCODE, GETUSERPROFILE } from "../actions/types";
+import { SENDUSERPROFILE } from './../actions/types';
 
 const initialState = {
     registerInfo : {
@@ -6,20 +7,18 @@ const initialState = {
         lastname: '',
         address:'',
         postCode: '',
-        phoneNumber: '',
-        email:'',
-        password:'',
-        confirmPassword:''
+        phone: '',
+        email:''
     },
     registerValidation: {
         name: false,
         lastname: false,
         address: false,
         postCode: false,
-        phoneNumber: false,
-        email: false,
-        password: false,
-        confirmPassword: false
+        phone: false,
+        email: true,
+        password: true,
+        confirmPassword: true
     }
 }
 
@@ -121,7 +120,20 @@ export default (state=initialState, action) => {
                     postCode:action.validation
                 }
             }
-            
+        case GETUSERPROFILE:
+        return {
+            ...state,
+            registerInfo: {
+                ...state.registerInfo,
+                name:action.data.firstname,
+                lastname:action.data.lastname,
+                address:action.data.address,
+                postCode:action.data.postCode,
+                phone:action.data.phone,
+                email:action.data.email
+            }
+        }
+
         default: 
             return state;
     }

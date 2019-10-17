@@ -9,15 +9,22 @@ import Signin from './components/signin';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Register from './components/register';
 import Header from './components/Header';
+import DetailPage from './components/detailPage/detalPage';
+import {connect} from 'react-redux';
+import AddComment from './components/detailPage/addCommnent';
+import ProductsPage from './components/pages/ProductsPage';
 
 const DemoMenu = () => (
     <React.Fragment>
         <Header />
-        <UserMenu />
+        <UserMenu isLogedin={true} />
     </React.Fragment>
 )
 
-export default class App extends Component {
+
+
+class App extends Component {
+    
     render() {
         return (
             <BrowserRouter>
@@ -25,9 +32,13 @@ export default class App extends Component {
                     <Route path="/account" component={UserAccountPage} />
                     <Route path="/register" component={Register} />
                     <Route path="/cart" component={Cart} />
-                    <Route path="/" component={DemoMenu} />  {/* set islogedin inredux */}
+                    <Route path="/details" component={DetailPage} />
+                    <Route path="/addComment" component={AddComment} />
+                    <Route path="/products" component={ProductsPage} />
+                    <Route path="/" render={() => <UserMenu isLogedin={this.props.state.account.profile.isLogedIn} /> }  />  {/* set islogedin inredux */}
                 </Switch>
             </BrowserRouter>
         );
     }
 }
+export default connect(state => ({state}))(App);

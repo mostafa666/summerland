@@ -6,10 +6,15 @@ import Menu from './menu';
 import profileIcon from './../common/images/profile.svg';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 
-const Header = () => {
-    return (
-        <Menu />
-    )
+class Header extends Component {
+    header = React.createRef();
+    render () {
+        return (
+            <header>
+                <Menu />
+            </header>
+        )
+    }
 }
 
 
