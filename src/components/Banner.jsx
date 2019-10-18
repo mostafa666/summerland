@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Banner({ banner }) {
-  console.log(banner);
   return (
-    <Link
-      to={banner.link}
+    <div
       className="banner"
       style={{ backgroundImage: `url('${banner.srcImg}')` }}
-    />
+    >
+      <Link className="banner__link" to={banner.link} />
+    </div>
   );
 }
