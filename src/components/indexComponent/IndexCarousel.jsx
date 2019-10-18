@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
 export default function IndexCarousel({ data }) {
-  console.log(data);
+  //Todo change dots and nextbtn and prevBtn style
   const settings = {
     dots: true,
     infinite: true,
