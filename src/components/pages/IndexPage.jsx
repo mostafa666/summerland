@@ -14,18 +14,24 @@ import IndexCategories from "../indexComponent/IndexCategories";
 import Banner from "../Banner";
 import ProductSlider from "../ProductSlider";
 
+// static data
+import products from "../../staticData/products";
+import carouselData from "../../staticData/carouselData";
+import categoriesData from "../../staticData/categoriesData";
+import { indexBanner_1, indexBanner_2 } from "../../staticData/banner";
+
 export default function IndexPage() {
   return (
     <IndexLayout>
-      <IndexCarousel />
-      <IndexCard />
+      <IndexCarousel data={carouselData} />
+      <IndexCard discount={45} />
       <IndexInfoIconText />
-      <IndexCard />
-      <IndexDiscountSlider />
-      <IndexCategories />
-      <ProductSlider />
-      <Banner />
-      <ProductSlider />
+      <IndexCard discount={30} />
+      <IndexDiscountSlider products={products} />
+      <IndexCategories data={categoriesData} />
+      <ProductSlider products={products} />
+      <Banner banner={indexBanner_1} />
+      <ProductSlider products={products} />>
     </IndexLayout>
   );
 }
