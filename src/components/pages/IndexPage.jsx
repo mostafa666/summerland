@@ -28,7 +28,7 @@ export default function IndexPage() {
       <IndexCard discount={45} />
       <IndexInfoIconText />
       <IndexCard discount={30} />
-      <IndexDiscountSlider products={products} />
+      <IndexDiscountSlider data={products} />
       <IndexCategories data={categoriesData} />
       <ProductSlider products={products} />
       <Banner banner={indexBanner_1} />
