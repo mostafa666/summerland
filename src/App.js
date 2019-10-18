@@ -27,7 +27,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Header />
-
         <Switch>
           <Route path="/index" component={IndexPage} />
           <Route path="/account" component={UserAccountPage} />
