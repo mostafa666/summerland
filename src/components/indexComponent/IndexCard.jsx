@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function IndexCard({ discount }) {
+export default function IndexCard({ discount, rightSide }) {
   const styleClasses = {};
 
   return (

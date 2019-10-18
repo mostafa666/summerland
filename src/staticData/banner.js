@@ -10,4 +10,4 @@ const indexBanner_2 = {
   srcImg: banner2
 };
 
-export default { indexBanner_1, indexBanner_2 };
+export { indexBanner_1, indexBanner_2 };
