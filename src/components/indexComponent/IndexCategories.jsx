@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 
 export default function IndexCategories({ data }) {
   return (
-    <div className="index_categories">
-      {data.map((item, i) => {
-        // TODO ----- should change the div to Link and change some css use --item.link-- for the -to- prop of Link
-        return (
-          <div
-            className="index_categories__card"
-            style={{
-              backgroundImage: `url('${item.imgSrc}')`
-            }}
-            key={i}
-          />
-        );
-      })}
+    <div className="index__categories">
+      <div className="index__categories__title__box">
+        <h2>دسته بندی ها</h2>
+      </div>
+      <div className="index__categories__grid">
+        {data.map((item, i) => {
+          return (
+            <Link className="index__categories__grid__card" key={i}>
+              <img src={item.imgSrc} alt="img" />
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
