@@ -5,6 +5,11 @@
   padding: 8px;
   margin-top: 60px;
   overflow: hidden;
+  width: 100%;
+  min-width: 1009px;
+  max-width: 1676px;
+  margin-right: auto;
+  margin-left: auto;
 
   &__landing {
     display: flex;
@@ -15,11 +20,11 @@
     &-s1 {
       display: flex;
       flex-direction: column;
-      width: 79%;
+      width: 82%;
     }
 
     &-s2 {
-      width: 19%;
+      width: 16%;
       @include flex_c_c;
       align-items: flex-start;
     }

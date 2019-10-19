@@ -7,15 +7,14 @@ export default function IndexCarousel({ data }) {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
-    centerMode: true
+    autoplay: false,
+    centerMode: false
   };
   return (
-    <div className="slider_ltr">
+    <div className="index__slider slider_ltr">
       <Slider {...settings}>
         {data.map((item, i) => {
           return (

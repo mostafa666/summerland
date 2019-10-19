@@ -1,0 +1,5 @@
+.index__slider {
+  @include contentBox_s1;
+  overflow: hidden;
+  max-height: 330px;
+}

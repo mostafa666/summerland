@@ -1,0 +1,12 @@
+.index_info_icon_text {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &__item {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}
