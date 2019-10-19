@@ -4,4 +4,41 @@
   justify-content: center;
   padding: 8px;
   margin-top: 60px;
+  overflow: hidden;
+
+  &__landing {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    &-s2 {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+    }
+  }
+
+  &__offers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: -8px;
+  }
+
+  &__categories {
+    @include flex_c_c;
+    width: 100%;
+  }
+
+  &__banner {
+    @include flex_c_c;
+    width: 100%;
+  }
+
+  &__product_slider {
+    margin-right: -8px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
 }

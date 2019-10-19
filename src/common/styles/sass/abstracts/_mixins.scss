@@ -30,6 +30,12 @@
   justify-content: space-around;
 }
 
+@mixin flex_c_c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @mixin respond($breakpoint) {
   @if $breakpoint == phone {
     @media (max-width: 600px) {

@@ -23,15 +23,34 @@ import { indexBanner_1, indexBanner_2 } from "../../staticData/banner";
 export default function IndexPage() {
   return (
     <IndexLayout>
-      <IndexCarousel data={carouselData} />
-      <IndexCard discount={45} />
-      <IndexInfoIconText />
-      <IndexCard discount={30} />
-      <IndexDiscountSlider data={products} />
-      <IndexCategories data={categoriesData} />
-      <ProductSlider products={products} />
-      <Banner banner={indexBanner_1} />
-      <ProductSlider products={products} />>
+      <div className="index__layout__landing">
+        <div className="index__layout__landing-s2">
+          <IndexCarousel data={carouselData} />
+          <IndexInfoIconText />
+        </div>
+        <IndexCard discount={45} />
+      </div>
+
+      <div className="index__layout__offers">
+        <IndexCard discount={30} />
+        <IndexDiscountSlider data={products} />
+      </div>
+
+      <div className="index__layout__categories">
+        <IndexCategories data={categoriesData} />
+      </div>
+
+      <div className="index__layout__product_slider">
+        <ProductSlider products={products} />
+      </div>
+
+      <div className="index__layout__banner">
+        <Banner banner={indexBanner_1} />
+      </div>
+
+      <div className="index__layout__product_slider">
+        <ProductSlider products={products} />>
+      </div>
     </IndexLayout>
   );
 }
