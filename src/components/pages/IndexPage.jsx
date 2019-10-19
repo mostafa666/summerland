@@ -24,11 +24,13 @@ export default function IndexPage() {
   return (
     <IndexLayout>
       <div className="index__layout__landing">
-        <div className="index__layout__landing-s2">
+        <div className="index__layout__landing-s1">
           <IndexCarousel data={carouselData} />
           <IndexInfoIconText />
         </div>
-        <IndexCard discount={45} />
+        <div className="index__layout__landing-s2">
+          <IndexCard discount={45} />
+        </div>
       </div>
 
       <div className="index__layout__offers">

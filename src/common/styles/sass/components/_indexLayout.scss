@@ -9,12 +9,19 @@
   &__landing {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     width: 100%;
 
-    &-s2 {
+    &-s1 {
       display: flex;
       flex-direction: column;
-      width: 80%;
+      width: 79%;
+    }
+
+    &-s2 {
+      width: 19%;
+      @include flex_c_c;
+      align-items: flex-start;
     }
   }
 
