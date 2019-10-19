@@ -21,7 +21,6 @@ import categoriesData from "../../staticData/categoriesData";
 import { indexBanner_1, indexBanner_2 } from "../../staticData/banner";
 
 export default function IndexPage() {
-  console.log(carouselData);
   return (
     <IndexLayout>
       <IndexCarousel data={carouselData} />
