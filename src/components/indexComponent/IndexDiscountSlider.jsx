@@ -4,19 +4,23 @@ import Card from "../Card";
 
 export default function IndexDiscountSlider({ data }) {
   const settings = {
-    dots: true,
-    infinite: false,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 2,
     arrows: false
   };
   return (
-    <div className="index_discount_slider slider_ltr">
-      <Slider {...settings}>
-        {data.map((product, i) => {
-          return <Card props={{ product }} key={i} />;
-        })}
-      </Slider>
+    <div className="index__discount">
+      <div className="index__discount__title__box">
+        <h2>تخفیف هفتگی</h2>
+      </div>
+      <div className="index__discount_slider slider_ltr">
+        <Slider {...settings}>
+          {data.map((product, i) => {
+            return <Card props={{ product }} key={i} />;
+          })}
+        </Slider>
+      </div>
     </div>
   );
 }

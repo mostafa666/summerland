@@ -37,8 +37,12 @@ export default function IndexPage() {
       </div>
 
       <div className="index__layout__offers">
-        <IndexCard discount={30} />
-        <IndexDiscountSlider data={products} />
+        <div className="index__layout__offers-s1">
+          <IndexCard discount={30} img={cardImg_1} />
+        </div>
+        <div className="index__layout__offers-s2">
+          <IndexDiscountSlider data={products} />
+        </div>
       </div>
 
       <div className="index__layout__categories">

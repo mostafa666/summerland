@@ -34,7 +34,23 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin-left: -8px;
+    height: 520px;
+    align-items: center;
+    justify-content: space-around;
+
+    &-s1 {
+      width: 16%;
+      @include flex_c_c;
+      height: 100%;
+    }
+
+    &-s2 {
+      width: 83%;
+      margin-left: -10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
   }
 
   &__categories {

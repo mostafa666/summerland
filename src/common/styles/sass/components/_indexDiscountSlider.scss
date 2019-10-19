@@ -1,0 +1,63 @@
+.index__discount {
+  @include contentBox_s1;
+  border-radius: 0 15px 15px 0;
+  width: 100%;
+  position: relative;
+  left: -8px;
+  height: 100%;
+
+  &__title__box {
+    display: flex;
+    padding: 8px;
+    margin-right: 2.5rem;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    & h2 {
+      padding: 8px;
+      font-size: 2rem;
+      background: white;
+      color: $color-text-1;
+      z-index: 1;
+      margin-right: 3rem;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      height: 10px;
+      width: 100%;
+      top: 65%;
+      transform: translateY(-50%);
+      border-radius: 0 16px 0 0;
+      border-top: 2px solid rgba(173, 173, 173, 0.4);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      height: 10px;
+      width: 50px;
+      top: 65%;
+      transform: translateY(-50%);
+      border-radius: 0 16px 0 0;
+      border-top: 2px solid $color-blue-bright;
+      border-right: 2px solid $color-blue-bright;
+      z-index: 1;
+    }
+  }
+
+  &_slider {
+    height: 100%;
+
+    & .slick-slider {
+      height: 100%;
+
+      & .slick-list {
+        height: 100%;
+      }
+    }
+    & .card__product {
+      max-width: unset;
+    }
+  }
+}
