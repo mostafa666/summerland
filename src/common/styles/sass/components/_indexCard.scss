@@ -5,6 +5,9 @@
   overflow: hidden;
   @include flex_c_c;
   @include contentBox_s1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   &__content_holder {
     background: rgba(0, 0, 0, 0.8);

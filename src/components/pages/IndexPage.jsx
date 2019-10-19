@@ -20,6 +20,9 @@ import carouselData from "../../staticData/carouselData";
 import categoriesData from "../../staticData/categoriesData";
 import { indexBanner_1, indexBanner_2 } from "../../staticData/banner";
 
+// import img for cards
+import cardImg_1 from "../../common/images/discount.png";
+
 export default function IndexPage() {
   return (
     <IndexLayout>
@@ -29,7 +32,7 @@ export default function IndexPage() {
           <IndexInfoIconText />
         </div>
         <div className="index__layout__landing-s2">
-          <IndexCard discount={45} />
+          <IndexCard discount={45} img={cardImg_1} />
         </div>
       </div>
 
