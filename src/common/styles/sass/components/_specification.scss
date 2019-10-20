@@ -29,6 +29,11 @@
             font-size: 1.5rem;
             margin-bottom: 2rem;
         }
+        
+        &--serial {
+            font-size: 1.2rem;
+            color: $color-grey3;
+        }
         &--price {
             &--box {
                 display: flex;
@@ -47,6 +52,27 @@
             font-size: 2.9rem;
             & span {
                 font-size: 1.2rem;
+            }
+        }
+        &--services {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            &--item {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                img {
+                    width: 2.7rem;
+                    margin-left: .8rem;
+                }
+                span {
+                    color: $color-grey3;
+                    font-size: 1.3rem;
+                }
             }
         }
     }
@@ -127,7 +153,11 @@
         align-items: center;
         color: #999;
         font-size: 1.3rem;
-        
+        &--header {
+            font-size: 1.5rem;
+            color: $color-grey1;
+            margin-bottom: 1rem;
+        }
 
         span {
             flex: 0 1 25%;

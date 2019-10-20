@@ -15,6 +15,7 @@ import {
 } from '../../actions/detailsPageActions';
 import { animateScroll as scroll } from 'react-scroll';
 import Loader from '../loader';
+import Footer from './../footer';
 import { toggleLoaderDetailspage } from '../../actions/globalAction';
 import { SubmitButton } from '../signup';
 import { toggleSignin } from './../../actions/globalAction';
@@ -27,17 +28,12 @@ class DetailPage extends Component {
         // reset store
         dispatch(resetDetailsPageReducer());
         // send request &&  save in store
-        await Promise.all([dispatch(getDetailsDatas(14)), dispatch(fetchComments(14))]);
+        await Promise.all([dispatch(getDetailsDatas(15)), dispatch(fetchComments(15))]);
         dispatch(toggleLoaderDetailspage(false));
-        console.log(this.props.state.detalPage.data);
         // increace prodcut view
-        // await dispatch(increaseView(14));
-        window.addEventListener('scroll', this.scrollSlider);
+        // await dispatch(increaseView(15));
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.scrollSlider);
-    }
     goAddComment = () => {
         const token = localStorage.getItem('token');
         if(token) {
@@ -49,33 +45,12 @@ class DetailPage extends Component {
             this.props.dispatch(toggleSignin());
         }    
     };
+    
 
-    scrollSlider = () => {
-        let specificationPosition = this.specification.current.getBoundingClientRect();
-        let sliderPosition = this.slider.current.getBoundingClientRect();
-        let headerPosition = document.querySelector('header').getBoundingClientRect();
-        let slider = this.slider.current;
-        let specification = this.specification.current;
-        // console.log(specificationPosition.bottom , sliderPosition.bottom, specificationPosition.bottom < sliderPosition.bottom)
-        if( window.scrollY > 20) {
-            slider.style.position = "fixed";
-            slider.style.width = "calc(40% - 2.1rem)";
-            specification.style.marginRight = "calc(40% + 1rem)";
-        }else if(specificationPosition.bottom < sliderPosition.bottom) {
-            alert()
-        }else {
-            slider.style.position = "relative";
-            specification.style.marginRight = "1.5rem";
-        }
-    };
     render() {
         const { data } = this.props.state.detalPage;
         return (
             <div className="detailsPage">
-                <Header />
-                <UserMenu
-                    isLogedin={this.props.state.account.profile.isLogedIn}
-                />
                 <Loader toggle={this.props.state.global.toggleLoaderDetails} />
                 <div className="detailsPage__top">
                     <div className="detailsPage__slider" ref={this.slider}>
@@ -90,7 +65,7 @@ class DetailPage extends Component {
                         <Accordeon
                             id="generalSpecification"
                             title={'مشخصات کلی'}
-                        >
+                        > 
                             <GeneralSpecification
                                 productType={data.productType}
                                 productId={data.id}
@@ -100,6 +75,7 @@ class DetailPage extends Component {
                                 title={data.title}
                                 starAverage={data.starAverage}
                                 starCount={data.starCount}
+                                serial={data.serial}
                             />
                         </Accordeon>
                         <Accordeon
@@ -109,7 +85,7 @@ class DetailPage extends Component {
                             <TecnicalSpecification details={data.details} />
                         </Accordeon>
                         <Accordeon id="orderingSteps" title="مراحل سفارش">
-                            <OrderSpecification />
+                            <OrderSpecification id={data.id} />
                         </Accordeon>
                     </div>
                 </div>
@@ -124,11 +100,6 @@ class DetailPage extends Component {
                         <Comments id={data.id} />
                     </Accordeon>
                 </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
             </div>
         );
     }

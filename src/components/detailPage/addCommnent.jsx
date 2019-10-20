@@ -22,7 +22,7 @@ class AddComment extends Component {
             axios.post(config.api_send_comment, {
                 token: token,
                 nickname: nickname,
-                productId: 5,
+                productId: 15,
                 title: title,
                 content: comment
             });

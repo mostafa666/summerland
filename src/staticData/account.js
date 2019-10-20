@@ -24,10 +24,12 @@ export const tableBody = () => (
         img:img1,
         title:"پیراهن مردانه یقه گرد آستین کوتاه",
         price:"1000",
-        isExists:false,
+        isExists:true,
         closeIcon:close,
-        color:"آبی",
+        color:"#7d1",
         size:"XL",
-        count:2
+        count:2,
+        id:5,
+        productId:14
     }
 )

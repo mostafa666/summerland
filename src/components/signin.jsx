@@ -24,6 +24,7 @@ class Signin extends Component {
         div.style.top = `${y}px`;
         div.style.left = `${x}px`;
         e.target.append(div);
+        localStorage.setItem('userCurrentUrl','thisurl')
     }
     toggle = () => {
         this.props.dispatch(toggleSignin())

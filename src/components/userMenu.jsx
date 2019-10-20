@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Account from './account';
-import Signin from './signin'
-import { toggleSignin } from "../actions/globalAction";
+import Signin from './signin';
 class UserMenu extends Component {
     render() {
         return (

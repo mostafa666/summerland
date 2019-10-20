@@ -34,10 +34,9 @@
 }
 @keyframes stroke_anim {
     to {
-      stroke-dashoffset: 0;
+        stroke-dashoffset: 0;
     }
-  }
-  
+}
 
 @keyframes load {
     0% {
@@ -54,5 +53,16 @@
         background: #ccc;
         height: 10%;
         margin-top: 25%;
+    }
+}
+@keyframes show {
+    0% {
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
     }
 }

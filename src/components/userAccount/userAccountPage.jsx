@@ -13,10 +13,6 @@ class UserAccountPage extends Component {
     render() {
         return (
             <main className="userAccountPage">
-                <Header />
-                <br />
-                <br />
-                <br />
                 <div className="accountPageContainer">
                     <section className="accountMenu__section">
                         <AccountMenu />

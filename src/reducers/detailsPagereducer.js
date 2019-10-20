@@ -1,4 +1,4 @@
-import { SETACTIVEACCORDEON, INCREASECOUNT, DECREASECOUNT, SELECTSIZE, RESETDETAILSPAGESTORE, GETDETAILSDATA, FETCHCOMMENT, SELECTCOLOR, ADDERRORINCART } from "../actions/types";
+import { SETACTIVEACCORDEON, INCREASECOUNT, DECREASECOUNT, SELECTSIZE, RESETDETAILSPAGESTORE, GETDETAILSDATA, FETCHCOMMENT, SELECTCOLOR, ADDERRORINCART, ADDTOCART, FETCHCARTS, REMOVECARTS } from "../actions/types";
 
 const initialState = {
     data:{},
@@ -31,14 +31,16 @@ const initialState = {
         nickname:''
     },
     cart: {
-        size:'',
+        size:'', 
         color:'',
         count:1
     },
     errorInAddCart: {
         text:'',
         toggleShow:false
-    }
+    },
+    carts:[]
+
     
 }
 
@@ -46,7 +48,7 @@ export default (state=initialState, action) => {
     switch (action.type) {
         case SETACTIVEACCORDEON:
             let target = state[action.id];
-            let height = target.setHeightAccordeon === '0px'? action.ref.current.scrollHeight : '0px';
+            let height = target.setHeightAccordeon === '0px'? action.ref.current.scrollHeight + 3000 : '0px';
             let active = target.setActiveAccordeon === '' ? 'accordeon__active': '';
             return {
                 ...state,
@@ -55,14 +57,36 @@ export default (state=initialState, action) => {
                     setHeightAccordeon: height
                 }
             }
+        case FETCHCARTS: 
+            return {
+                ...state,
+                carts:action.carts
+            }
+        case REMOVECARTS:
+            const copyCart = state.carts;
+            const newCarts = copyCart.filter(cart => cart.id !== action.id);
+            return {
+                ...state,
+                carts: newCarts
+            }
         case INCREASECOUNT:
+            let newCart = state.cart.count;
+            Number(++newCart);
             return {
                 ...state,
                 cart: {
                     ...state.cart,
-                    count: ++state.cart.count
+                    count: newCart
                 }
                 
+            }
+        case ADDTOCART: 
+            return {
+                ...state,
+                carts: {
+                    ...state.cart,
+                    carts: action.cart
+                }
             }
         case ADDERRORINCART:
             return {
@@ -81,7 +105,7 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 cart: {
-                    ...state,
+                    ...state.cart,
                     count: orderCount
                 }
             }
@@ -146,6 +170,7 @@ export default (state=initialState, action) => {
                 data:action.data
             }
         case FETCHCOMMENT:
+            console.log(action.comments)
             return {
                 ...state,
                 commentsData: action.comments

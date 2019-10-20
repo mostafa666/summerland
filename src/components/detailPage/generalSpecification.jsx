@@ -5,8 +5,13 @@ import Stars from './stars';
 import { toggleSignin } from '../../actions/globalAction';
 import axios from 'axios';
 import config from './../../config.json';
+// icons
+import original from './../../common/images/original.svg'
+import off from './../../common/images/off.svg'
+import freeDelivery from './../../common/images/freeDelivery.svg'
+import express from './../../common/images/express.svg'
 
-function GeneralSpecification({title,price, offer, starAverage,starCount,views,dispatch,productId,productType}) {
+function GeneralSpecification({title,price, offer, starAverage,starCount,views,dispatch,productId,productType,serial}) {
     return (
         <div className="specification">
             <div className="specification__general">
@@ -14,6 +19,7 @@ function GeneralSpecification({title,price, offer, starAverage,starCount,views,d
                     <h3 className="specification__general--title">
                         {title}
                     </h3>
+                    <span className="specification__general--serial">کدمحصول: {serial}</span>
                     <div className="specification__general--price--box">
                         <span className="specification__general--newPrice">
                             {offer} <span> تومان</span>
@@ -22,20 +28,20 @@ function GeneralSpecification({title,price, offer, starAverage,starCount,views,d
                             {price} <span> تومان</span>
                         </span>
                     </div>
-                    <Accordeon id="existGoods" title="کالاهای موجود">
-                        {
-                            Array.isArray(productType)? productType.map(data => (
-                                <ExistGoods
-                                    key={data.id}
-                                    color={data.colorParent}
-                                    hexColor={data.color}
-                                    size={data.size}
-                                    numbers={data.count}
-                                    pattern={data.pattern}
-                                />
-                            )): null
-                        }
-                    </Accordeon>
+                    <h3 className="specification__existGoods--header">کالاهای موجود</h3>
+                    {
+                        Array.isArray(productType)? productType.map(data => (
+                            <ExistGoods
+                                key={data.id}
+                                color={data.colorParent}
+                                hexColor={data.color}
+                                size={data.size}
+                                numbers={data.count}
+                                pattern={data.pattern}
+                            />
+                        )): null
+                    }
+                        
                 </div>
                 <div className="specification__left">
                     <div className="top">
@@ -92,6 +98,24 @@ function GeneralSpecification({title,price, offer, starAverage,starCount,views,d
                     </div>
                 </div>
             </div>
+            <div className="specification__general--services">
+                    <div className="specification__general--services--item">
+                        <img src={original} alt="ضمانت اصل بودن کالا"/>
+                        <span>ضمانت اصل بودن کالا</span>
+                    </div>
+                    <div className="specification__general--services--item">
+                        <img src={off} alt="ضمانت اصل بودن کالا"/>
+                        <span>ضمانت اصل بودن کالا</span>
+                    </div>
+                    <div className="specification__general--services--item">
+                        <img src={freeDelivery} alt="ارسال رایگان"/>
+                        <span>ارسال رایگان</span>
+                    </div>
+                    <div className="specification__general--services--item">
+                        <img src={express} alt="امکان ارسال اکسپرس"/>
+                        <span>امکان ارسال اکسپرس</span>
+                    </div>
+                </div>
         </div>
     );
 }
@@ -145,7 +169,7 @@ const ExistGoods = ({ color, hexColor, size, numbers,pattern }) => {
             </span>
             <span className="specification__existGoods--color2">{color}</span>
             <span className="specification__existGoods--size">
-                {size.toUpperCase()}
+                {size}
             </span>
             <span className={textClassName}>{text}</span>
         </div>

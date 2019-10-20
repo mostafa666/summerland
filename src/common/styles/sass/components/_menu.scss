@@ -1,12 +1,13 @@
 .menu {
-    padding: 0 1.5rem;
-    font-size: 1.3rem;
+    padding: 0 2rem;
+    font-size: 1.2rem;
     position: fixed;
-    top: 0;
+    top: 70px;
     right: 0;
-    z-index: 100000;
+    z-index: 10001;
     background-color: white;
     width: 100%;
+    height: 57px;
     box-shadow: 0 7px 8px 0 rgba(0, 0, 0, 0.04);
     &__container {
         width: 40px;
@@ -24,31 +25,126 @@
         transform: scale(120);
     }
     &__list {
+        & > li:first-child {
+            padding-right: 0;
+            
+            & > svg {
+                fill: $color-grey1;
+                width: 1.9rem;
+                margin-left: .5rem;
+                position: relative;
+                top: 6px;
+            }
+        }
         & > li {
             display: inline-block;
-            padding: 1.5rem 1.8rem;
+            padding: 1.5rem 1.5rem;
             color: $color-grey1;
             cursor: pointer;
             position: relative;
-            & > ul {
+            a {
+                color: $color-grey1;
+                text-decoration: none;
+            }
+            & > div {
                 width: 900px;
                 height: 400px;
                 background-color: white;
+                transition: all 0.3s;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+                border-radius: 30px 0 30px 30px;
                 position: absolute;
                 top: 100px;
                 right: 0;
-                transition: all 0.3s;
                 visibility: hidden;
                 opacity: 0;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-                border-radius: 30px 0 30px 30px;
+                padding: 2rem;
+                padding-left: 550px;
+                cursor: default;
+                img {
+                    position: absolute;
+                    left: 2rem;
+                    bottom: 2rem;
+                    width: 260px;
+                }
+            }
+            & div > ul {
+                position: relative;
+                width: 100px;
+                // border-left: 1px solid red;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                height: 100%;
+                & li:hover {
+                    background-color: #f5f5f5;
+                }
+                // & li:hover svg {}
+                & > li:hover .second {
+                    right: 100%;
+                    visibility: visible;
+                    opacity: 1;
+                }
                 & > li {
                     display: flex;
                     flex-direction: column;
+                    width: 100%;
                     a {
                         color: $color-grey1;
                         text-decoration: none;
                         padding: 0.6rem 1.2rem;
+                        position: relative;
+                    }
+                    .second {
+                        transition: all 0.5s;
+                        list-style: none;
+                        position: absolute;
+                        right: 200%;
+                        visibility: hidden;
+                        opacity: 0;
+                        top: 0;
+                        height: 100%;
+                        width: 150px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: stretch;
+                        height: 100%;
+                        & > li:hover .third {
+                            right: 100%;
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                        &  li {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            & a {
+                                color: $color-grey1;
+                                text-decoration: none;
+                                padding: 0.6rem 1.2rem;
+                                position: relative;
+                            }
+                            .third {
+                                transition: all 0.5s;
+                                list-style: none;
+                                position: absolute;
+                                right: 200%;
+                                visibility: hidden;
+                                opacity: 0;
+                                top: 0;
+                                height: 100%;
+                                width: 200px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: stretch;
+                            }
+                            & > li {
+                                display: flex;
+                                flex-direction: column;
+                                width: 100%;
+                                padding: 3px 0;
+                            }
+                        }
                     }
                 }
             }
@@ -69,21 +165,10 @@
             //     right: 50%;
             //     transform: translateX(50%);
             // }
-            &:hover > ul {
+            &:hover > div {
                 visibility: visible;
-                top: 54px;
+                top: 58px;
                 opacity: 1;
-            }
-            & > ul {
-                padding: 2rem;
-                padding-left: 550px;
-                cursor: default;
-                img {
-                    position: absolute;
-                    left: 2rem;
-                    bottom: 2rem;
-                    width: 260px;
-                }
             }
         }
     }
@@ -93,8 +178,11 @@
         transform: rotate(90deg) translate(0.9rem, 0.9rem);
         fill: $color-grey1;
     }
-    &__list li:hover &__arrow--bottom {
+    &__list li li:hover > a > &__arrow--bottom {
         fill: black;
-        transform: rotate(90deg) translate(0.9rem, 0.9rem) scale(1.1);
+        transform: rotate(180deg) translate(0.9rem, -.9rem);
+    }
+    &__arrow--bottom {
+        transition: all .2s;
     }
 }

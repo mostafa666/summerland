@@ -136,12 +136,13 @@ export const sendRegisterDatas = (email,
                 target.innerHTML = 'اطلاعات با موفقیت ثبت شد'
                 target.disabled = true;
                 // rediret to main page or specief page in local storage
-                let savedUrl = sessionStorage.getItem('userCurrentUrl');
+                let savedUrl = localStorage.getItem('userCurrentUrl');
+                console.log(savedUrl);
                 if(savedUrl) {
                     history.push({
                         pathname: `/${savedUrl}`
                     });
-                    sessionStorage.removeItem('userCurrentUrl');
+                    localStorage.removeItem('userCurrentUrl');
                     dispatch(logedinMenu(true));
                 }else {
                     history.push({

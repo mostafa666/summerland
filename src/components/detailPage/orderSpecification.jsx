@@ -10,6 +10,7 @@ import {
 } from '../../actions/detailsPageActions';
 //
 import image from './../../common/images/home1.jpg';
+import { addCart } from './../../actions/detailsPageActions';
 
 class OrderSpecification extends Component {
     componentDidMount() {
@@ -31,7 +32,7 @@ class OrderSpecification extends Component {
         this.props.dispatch(selectedSize(selectedvalue));
     };
     handleColor = e => {
-        const color = e.target.id;
+        const color = e.target.dataset.color;
         this.props.dispatch(selectedColor(color));
         
         e.target.parentNode.parentNode.childNodes.forEach((element,index) => {
@@ -47,7 +48,10 @@ class OrderSpecification extends Component {
     };
     handleAddCart = e => {
         e.preventDefault();
-        const {dispatch} = this.props;
+        let isColor = false;
+        const {id, dispatch} = this.props;
+        const token = localStorage.getItem('token');
+        const nickname = localStorage.getItem('nickname');
         const defaultsize = e.target.setSize.childNodes[0].value;
         // const defaultColor = e.target.colors;
         const {size} = this.props.state.detalPage.cart;
@@ -55,15 +59,17 @@ class OrderSpecification extends Component {
             dispatch(selectedSize(defaultsize));
         }
         const {size:newSize,color,count} = this.props.state.detalPage.cart;
-        console.log(newSize,color,count);
         if(!color) {
             dispatch(addErrorInCart(true,'لطفا سایز مورد نطر را انتخاب کنید'));
+            return;
         }
         if(color) {
             dispatch(addErrorInCart(false,'لطفا سایز مورد نطر را انتخاب کنید'));
         }
+        if(!color.includes('/')) isColor = true;
         // add in cart
         // send to backend
+        dispatch(addCart(token,nickname,id,count,newSize,color,isColor));
     };
     animationButton = e => {
         let circleElement = document.querySelector('.btn--clickMode');
@@ -128,6 +134,7 @@ class OrderSpecification extends Component {
                                                     source={color.pattern}
                                                     name="colors"
                                                     id={color.id}
+                                                    key={color.id}
                                                     chooseColor={() =>
                                                         this.handleColor
                                                     }
@@ -136,13 +143,6 @@ class OrderSpecification extends Component {
                                         }
                                     }):null
                                 }
-                                {/* set image */}
-                                {/* <ShowColors color="green" name="colors" id={'s'} />
-                                <ShowColors color="yellow" name="colors" id={'d'} />
-                                <ShowColors color="#46a" name="colors" id={'f'} />
-                                <ShowColorsByImage source={image} name="colors" id={'efwafd'} />
-                                <ShowColors color="#72c" name="colors" id={'c'} />
-                                <ShowColors color="#729" name="colors" id={'dddd'} /> */}
                             </div>
                         </div>
                         <div className="specification__orders--middle">
@@ -187,6 +187,7 @@ const ShowColors = ({ color, name, id, chooseColor }) => {
         <div className="showColors">
             <label htmlFor={id} style={{ backgroundColor: color }}></label>
             <input
+                data-color={color}
                 ref={input}
                 onChange={chooseColor(input)}
                 type="radio"
@@ -202,7 +203,13 @@ const ShowColorsByImage = ({ source, name, id, chooseColor }) => (
             htmlFor={id}
             style={{ backgroundImage: `url(${source})` }}
         ></label>
-        <input onChange={chooseColor()} type="radio" id={id} name={name} />
+        <input
+            data-color={source}
+            onChange={chooseColor()} 
+            type="radio" 
+            id={id} 
+            name={name} 
+            />
     </div>
 );
 

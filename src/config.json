@@ -11,5 +11,8 @@
     "api_remove_WishList": "http://melkon.ir/panel/api/v1/removeUserWishList",
     "api_get_comments": "http://melkon.ir/panel/api/v1/getCommentProduct",
     "api_send_star": "http://melkon.ir/panel/api/v1/sendProductStar",
-    "api_send_comment": "http://melkon.ir/panel/api/v1/sendCommentProduct"
+    "api_send_comment": "http://melkon.ir/panel/api/v1/sendCommentProduct",
+    "api_add__cart": "http://melkon.ir/panel/api/v1/sendUserCartShop",
+    "api_get_cart": "http://melkon.ir/panel/api/v1/getUserCartShop",
+    "api_remove_cart": "http://melkon.ir/panel/api/v1/removeUserCartShop"
 }

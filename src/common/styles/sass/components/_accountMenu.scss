@@ -1,7 +1,7 @@
 .accountMenu {
     @include accountContainer;
     position: sticky;
-    top: 80px;
+    top: 135px;
     @include respond(phone) {
         border: none;
         border-radius: 0;

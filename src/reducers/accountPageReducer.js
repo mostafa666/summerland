@@ -1,4 +1,4 @@
-import { FETCHWISHLIST, TOGGLESPPINER, SAVEPROFILE, VALIDATIONEMAILREGISTER, VALIDATIONPASSREGISTER, VALIDATIONEMAILSIGNIN, VALIDATIONPASSWORDSIGNIN, SIGNEDINMENU, GETOLDPASS, GETEMAIL, GETCONFIRMPASS, GETCONFIRMPASSWORD, REMOVEWISHLIST, SIGNUPLOADER } from "../actions/types";
+import { FETCHWISHLIST, TOGGLESPPINER, SAVEPROFILE, VALIDATIONEMAILREGISTER, VALIDATIONPASSREGISTER, VALIDATIONEMAILSIGNIN, VALIDATIONPASSWORDSIGNIN, SIGNEDINMENU, GETOLDPASS, GETEMAIL, GETCONFIRMPASS, GETCONFIRMPASSWORD, REMOVEWISHLIST, SIGNUPLOADER, CARTLOADER } from "../actions/types";
 import { VALIDATIONCONFIRMREGISTER } from './../actions/types';
 
 
@@ -48,7 +48,8 @@ const initialState = {
             },
         isLogedIn:false
         },
-    signupLoader: false
+        signupLoader: false,
+        cartLoader: false
 };
 
 export default (state = initialState, action) => {
@@ -85,6 +86,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loader: action.data
+            }
+        case CARTLOADER:
+            return {
+                ...state,
+                cartLoader: action.toggle
             }
         case SAVEPROFILE:
             return {
