@@ -38,7 +38,7 @@ export default function ProductSlider({ products, title }) {
         }
       },
       {
-        breakpoint: 425,
+        breakpoint: 325,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1

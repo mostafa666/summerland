@@ -58,3 +58,9 @@
     }
   }
 }
+
+@mixin rwd($screen) {
+  @media (max-width: $screen+"px") {
+    @content;
+  }
+}
