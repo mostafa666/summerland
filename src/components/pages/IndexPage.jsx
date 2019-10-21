@@ -47,7 +47,7 @@ export default function IndexPage() {
       </div>
 
       <div className="index__layout__product_slider">
-        <ProductSlider products={products} />
+        <ProductSlider products={products} title="آخرین محصولات" />
       </div>
 
       <div className="index__layout__banner">
@@ -55,7 +55,7 @@ export default function IndexPage() {
       </div>
 
       <div className="index__layout__product_slider">
-        <ProductSlider products={products} />>
+        <ProductSlider products={products} title="پربازدیدترین ها" />>
       </div>
     </div>
   );
