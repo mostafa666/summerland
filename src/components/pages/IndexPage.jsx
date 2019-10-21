@@ -1,8 +1,5 @@
 import React from "react";
 
-// import layout
-import IndexLayout from "../indexComponent/IndexLayout";
-
 //import Index components
 import IndexCard from "../indexComponent/IndexCard";
 import IndexCarousel from "../indexComponent/IndexCarousel";
@@ -25,7 +22,7 @@ import cardImg_1 from "../../common/images/discount.png";
 
 export default function IndexPage() {
   return (
-    <IndexLayout>
+    <div className="index__layout">
       <div className="index__layout__landing">
         <div className="index__layout__landing-s1">
           <IndexCarousel data={carouselData} />
@@ -60,6 +57,6 @@ export default function IndexPage() {
       <div className="index__layout__product_slider">
         <ProductSlider products={products} />>
       </div>
-    </IndexLayout>
+    </div>
   );
 }

@@ -4,19 +4,23 @@ import Card from "./Card";
 
 export default function ProductSlider({ products }) {
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1
+    slidesToShow: 6
   };
   return (
-    <div className="slider_ltr">
-      <Slider {...settings}>
-        {products.map((product, i) => {
-          return <Card props={{ product }} key={i} />;
-        })}
-      </Slider>
+    <div className="product__slider slider_ltr">
+      <div className="product__slider__title__box">
+        <h2>آخرین محصولات</h2>
+        <div className="product__slider__title__box__line"></div>
+      </div>
+      <div>
+        <Slider {...settings}>
+          {products.map((product, i) => {
+            return <Card props={{ product }} key={i} />;
+          })}
+        </Slider>
+      </div>
     </div>
   );
 }
