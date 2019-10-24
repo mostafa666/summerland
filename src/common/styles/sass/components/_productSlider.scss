@@ -9,14 +9,38 @@
   & .slick-slider {
     height: 100%;
     background: white;
-    border-radius: 15px;
+    border-radius: 0px 15px 15px 0;
+
+    & .slick-prev {
+      display: none !important;
+    }
+
+    & .slick-next {
+      height: 6rem;
+      width: 6rem;
+
+      &:before {
+        font-size: 7rem;
+        opacity: 1;
+        color: white;
+        background: linear-gradient(#22b6c5, #33ecff);
+        background-size: 50% 65%;
+        text-align: center;
+        background-position: 50% 35%;
+        background-repeat: no-repeat;
+      }
+
+      @include rwd(480) {
+        margin-right: 8px;
+      }
+    }
 
     & .slick-list {
       height: 100%;
       padding-bottom: 1rem;
       padding-top: 1rem;
       padding-left: 1rem;
-      margin-right: 3.5rem;
+      margin-right: 1rem;
     }
   }
   & .card__product {

@@ -60,3 +60,7 @@ export default function ProductSlider({ products, title }) {
     </div>
   );
 }
+
+const NextArrow = ({ className, style, onClick }) => {
+  return <div className={className} style={{ ...style }} onClick={onClick} />;
+};
