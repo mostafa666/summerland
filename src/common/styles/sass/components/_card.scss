@@ -4,24 +4,42 @@
   flex-direction: column;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 14px 28px rgba(122, 122, 122, 0.25),
-    0 10px 10px rgba(122, 122, 122, 0.22);
   position: relative;
-  margin: 0.9rem;
   height: 395px;
+  transition: all 0.2s linear;
+  margin-top: 1.8rem;
 
-  @include rwd(820) {
-    height: 385px;
+  &:hover {
+    box-shadow: 0 1px 6px rgba(207, 207, 207, 0.5);
+    z-index: 5;
+  }
+
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 25%;
+  flex: 1 0 25%;
+  max-width: 25%;
+
+  @include rwd(1280) {
+    -ms-flex: 1 0 33.333333%;
+    flex: 1 0 33.333333%;
+    max-width: 33.3333333%;
+  }
+
+  @include rwd(670) {
+    -ms-flex: 1 0 50%;
+    flex: 1 0 50%;
+    max-width: 50%;
+  }
+  @include rwd(460) {
+    -ms-flex: 1 0 100%;
+    flex: 1 0 100%;
+    max-width: 100%;
+    border: 1px solid rgba(211, 211, 211, 0.2);
   }
 
   @include rwd(480) {
     height: 380px;
   }
-
-  -webkit-box-flex: 1;
-  -ms-flex: 1 0 23%;
-  flex: 1 0 23%;
-  max-width: 23%;
 
   &.special_offer {
     border-top: 2px solid rgb(255, 40, 57);
@@ -216,12 +234,17 @@
 
     &__path {
       stroke: $color-blue-bright;
-      stroke-width: 0.3;
-      transition: stroke-width 0.4s ease;
+      stroke-width: 0;
+      transition: stroke-width 1s ease;
     }
   }
+
+  &:hover &__stroke_line {
+    display: initial;
+  }
+
   &:hover .stroke__anim-v3 {
-    animation: stroke_anim 4s 0.5s ease-in-out infinite;
+    animation: stroke_anim 4s 1s ease-in-out infinite;
   }
   &:hover &__stroke_line__path {
     stroke-width: 1;
@@ -229,4 +252,19 @@
   &:hover &__shipping_icon {
     opacity: 1;
   }
+}
+
+.rc-pagination-item {
+  @include rwd(480) {
+    min-width: 26px;
+    height: 26px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.rc-pagination > li:focus {
+  outline: none;
 }
