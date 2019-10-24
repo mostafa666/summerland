@@ -14,6 +14,17 @@
   padding-top: 8px;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.07);
 
+  &.tablet_mode {
+    display: none;
+  }
+
+  @include rwd(900) {
+    &.tablet_mode {
+      max-width: none;
+      display: flex;
+    }
+  }
+
   & h3 {
     padding: 6px;
     padding-bottom: 12px;
@@ -35,6 +46,16 @@
     border-top: 2px solid #23ccdf;
     width: 100%;
     padding-left: 22px;
+
+    @include rwd(900) {
+      display: flex;
+      padding-left: 8px;
+      padding-top: 8px;
+    }
+    @include rwd(555) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   & h4 {
@@ -49,6 +70,11 @@
     background: white;
     padding-left: 8px;
     padding-right: 8px;
+
+    @include rwd(900) {
+      height: fit-content;
+      background: transparent;
+    }
   }
 
   &__filter_container {
@@ -60,6 +86,19 @@
     border-top: 1px solid #80808040;
     border-left: 1px solid #80808040;
     border-radius: 15px 0 0 0;
+
+    @include rwd(900) {
+      margin: 8px 0px;
+      padding: 4px;
+      padding-top: 20px;
+      border: none;
+      border-left: 1px solid #80808040;
+      border-radius: 0;
+
+      &:last-of-type {
+        border-left: none;
+      }
+    }
   }
 
   //  -----------------------------------------------------------------------
@@ -266,6 +305,9 @@
     max-height: 160px;
     overflow-y: scroll;
     font-size: 1.3rem;
+    @include rwd(900) {
+      margin: 12px;
+    }
 
     &__price {
       padding: 2px;
@@ -274,14 +316,14 @@
       &-input {
         border: 0;
         cursor: pointer;
-        height: 2.2rem;
-        width: 2.2rem;
+        height: 2.4rem;
+        width: 100%;
         margin: 0;
         opacity: 0;
         overflow: hidden;
         padding: 0;
         position: absolute;
-        z-index: 1;
+        z-index: 2;
       }
 
       &-label {

@@ -58,3 +58,30 @@ html {
     padding-right: 3rem;
   }
 }
+
+.Modal {
+  width: fit-content;
+  height: 100%;
+  padding: 1.6rem;
+  display: block;
+  border: none;
+  margin-top: 65px;
+  overflow-y: scroll;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.Overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}

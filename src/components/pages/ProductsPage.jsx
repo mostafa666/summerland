@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Modal from "react-modal";
 
 import Breadcrum from "../Breadcrum";
 // import Filter from "../filter/Filter";
@@ -24,26 +25,56 @@ const sortOption = [
   { name: "lowestprice", text: " ارزانترین ", active: false }
 ];
 
+Modal.setAppElement("#root");
+
 // TODO should get the sortBy from url
 
-export default function ProductsPage() {
-  return (
-    <div className="products_page">
-      <div className="products_page__title_box">
-        <h1>{links[links.length - 1].text}</h1>
-        <Breadcrum links={links} />
-      </div>
-      <div className="products_page__content">
-        <div className="products_page__filter">
-          <Filter />
-        </div>
+export default class ProductsPage extends Component {
+  state = {
+    showModal: false
+  };
 
-        <div className="products_page__products">
-          <Sorter options={sortOption} />
-          {/* // TODO dont need to pass the products here */}
-          <ProductList products={products} />
+  handleOpenModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
+  };
+
+  render() {
+    return (
+      <div className="products_page">
+        <div className="products_page__title_box">
+          <h1>{links[links.length - 1].text}</h1>
+          <Breadcrum links={links} />
         </div>
+        <div className="products_page__content">
+          <div className="products_page__filter">
+            <Filter />
+          </div>
+
+          <div className="products_page__products">
+            <div className="products_page__products__setting">
+              <div className="sorter_box__title__background"></div>
+              <Sorter options={sortOption} />
+              <button onClick={this.handleOpenModal}>فیلترها</button>
+            </div>
+            {/* // TODO dont need to pass the products here */}
+            <ProductList products={products} />
+          </div>
+        </div>
+        <Modal
+          isOpen={this.state.showModal}
+          contentLabel="onRequestClose Example"
+          onRequestClose={this.handleCloseModal}
+          className="Modal"
+          overlayClassName="Overlay"
+        >
+          <Sorter options={sortOption} className="mobile_mode" />
+          <Filter className="tablet_mode" />
+        </Modal>
       </div>
-    </div>
-  );
+    );
+  }
 }

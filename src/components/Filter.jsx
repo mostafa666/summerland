@@ -49,7 +49,7 @@ export default class Filter extends Component {
       this.setState({ [filter]: currentState });
     };
     return (
-      <div className="filter_box">
+      <div className={`filter_box ${this.props.className}`}>
         <div className="flex__j-end_to_end">
           <h3>خرید بر اساس:</h3>
           <div className="filter_box__checkbox_svg"></div>

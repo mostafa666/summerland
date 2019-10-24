@@ -28,12 +28,11 @@ export default class Sorter extends Component {
       return !!(path === location.pathname + location.search);
     };
     return (
-      <div className="sorter_box">
+      <div className={`sorter_box ${this.props.className}`}>
         <div className="sorter_box__title">
-          <div className="sorter_box__title__background"></div>
           <h4> مرتب سازی بر اساس:</h4>
         </div>
-        <div>
+        <div className="sorter_box__sort_options">
           {this.state.options.map((option, i) => {
             return (
               <NavLink
