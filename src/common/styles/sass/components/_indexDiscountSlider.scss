@@ -47,14 +47,39 @@
   }
 
   &_slider {
-    height: 100%;
+    height: auto;
 
     & .slick-slider {
-      height: 100%;
+      height: auto;
 
       & .slick-list {
-        height: 100%;
+        height: auto;
         margin-right: 3.5rem;
+      }
+
+      & .slick-prev {
+        display: none !important;
+      }
+
+      & .slick-next {
+        height: 5rem;
+        width: 5rem;
+        right: -10px;
+
+        &:before {
+          font-size: 6rem;
+          opacity: 1;
+          color: white;
+          background: linear-gradient(#22b6c5, #33ecff);
+          background-size: 50% 65%;
+          text-align: center;
+          background-position: 50% 35%;
+          background-repeat: no-repeat;
+        }
+
+        @include rwd(480) {
+          right: -8px;
+        }
       }
     }
     & .card__product {

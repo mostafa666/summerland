@@ -5,10 +5,10 @@ import Card from "./Card";
 export default function ProductSlider({ products, title }) {
   const settings = {
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 6,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
     swipeToSlide: true,
     responsive: [
@@ -50,7 +50,7 @@ export default function ProductSlider({ products, title }) {
         <h2>{title}</h2>
         <div className="product__slider__title__box__line"></div>
       </div>
-      <div>
+      <div className="pad_right_med">
         <Slider {...settings}>
           {products.map((product, i) => {
             return <Card props={{ product }} key={i} />;

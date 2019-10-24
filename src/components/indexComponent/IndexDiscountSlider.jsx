@@ -4,21 +4,22 @@ import Card from "../Card";
 
 export default function IndexDiscountSlider({ data }) {
   const settings = {
+    dots: true,
     infinite: true,
     slidesToShow: 5,
-    slidesToScroll: 2,
-    arrows: false,
+    slidesToScroll: 3,
     responsive: [
       {
         breakpoint: 1350,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 2
+          slidesToScroll: 3
         }
       },
       {
         breakpoint: 1290,
         settings: {
+          dots: false,
           slidesToShow: 4,
           slidesToScroll: 2
         }
@@ -26,6 +27,7 @@ export default function IndexDiscountSlider({ data }) {
       {
         breakpoint: 980,
         settings: {
+          dots: false,
           slidesToShow: 3,
           slidesToScroll: 1
         }
@@ -33,6 +35,7 @@ export default function IndexDiscountSlider({ data }) {
       {
         breakpoint: 740,
         settings: {
+          dots: false,
           slidesToShow: 2,
           slidesToScroll: 1
         }
@@ -40,6 +43,7 @@ export default function IndexDiscountSlider({ data }) {
       {
         breakpoint: 320,
         settings: {
+          dots: false,
           slidesToShow: 1,
           slidesToScroll: 1
         }

@@ -5,6 +5,10 @@
   min-height: 620px;
   margin-top: 2.5rem;
 
+  @include rwd(480) {
+    padding: 0 2px;
+  }
+
   &__title__box {
     display: flex;
     padding: 8px;
