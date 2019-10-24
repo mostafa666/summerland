@@ -29,13 +29,13 @@ export default function IndexPage() {
           <IndexInfoIconText />
         </div>
         <div className="index__layout__landing-s2">
-          <IndexCard discount={45} img={cardImg_1} />
+          <IndexCard discount={45} img={cardImg_1} link="/link" />
         </div>
       </div>
 
       <div className="index__layout__offers">
         <div className="index__layout__offers-s1">
-          <IndexCard discount={30} img={cardImg_1} />
+          <IndexCard discount={30} img={cardImg_1} link="/link" />
         </div>
         <div className="index__layout__offers-s2">
           <IndexDiscountSlider data={products} />

@@ -58,6 +58,14 @@
     align-items: center;
     justify-content: space-around;
 
+    @include rwd(1290) {
+      height: 470px;
+    }
+
+    @include rwd(900) {
+      height: 450px;
+    }
+
     &-s1 {
       width: 16%;
       @include flex_c_c;

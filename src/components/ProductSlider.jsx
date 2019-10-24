@@ -5,7 +5,7 @@ import Card from "./Card";
 export default function ProductSlider({ products, title }) {
   const settings = {
     infinite: true,
-    speed: 1000,
+    speed: 500,
     slidesToShow: 6,
     autoplay: true,
     autoplaySpeed: 5000,
