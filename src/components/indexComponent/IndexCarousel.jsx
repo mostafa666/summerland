@@ -8,10 +8,12 @@ export default function IndexCarousel({ data }) {
     dots: true,
     infinite: true,
     slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: false,
-    centerMode: false
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    swipeToSlide: true,
+    dotsClass: "slick-dots slick-thumb"
   };
   return (
     <div className="index__slider slider_ltr">

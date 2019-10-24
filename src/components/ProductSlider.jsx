@@ -7,41 +7,39 @@ export default function ProductSlider({ products, title }) {
     infinite: true,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    swipeToSlide: true,
     responsive: [
       {
         breakpoint: 1350,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 2
+          slidesToShow: 5
         }
       },
       {
         breakpoint: 1135,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2
+          slidesToShow: 4
         }
       },
       {
         breakpoint: 830,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1
+          slidesToShow: 3
         }
       },
       {
         breakpoint: 625,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
+          slidesToShow: 2
         }
       },
       {
         breakpoint: 325,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToShow: 1
         }
       }
     ]
