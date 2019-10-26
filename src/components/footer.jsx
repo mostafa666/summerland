@@ -55,6 +55,7 @@ function Footer(props) {
                     <div className="footer__body--item">
                         <h3>سامرلند</h3>
                         <ul>
+                            <li><Link to="/">صفحه ی اصلی</Link></li>
                             <li><Link to="/aboutus">درباره ما</Link></li>
                             <li><Link to="/contactus">تماس با ما ما</Link></li>
                         </ul>

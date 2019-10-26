@@ -1,4 +1,4 @@
-import { TOGGLESIGNIN, SHOWLOADERINDETAILS, TOGGLESHOWCART, TOGGLELOADERCARTMENU, USERTOGGLEBOX } from "./types"
+import { TOGGLESIGNIN, SHOWLOADERINDETAILS, TOGGLESHOWCART, TOGGLELOADERCARTMENU, USERTOGGLEBOX, TOGGLEMOBILEMENU, SETSCREENSIZE } from "./types"
 
 export const toggleSignin = () => {
     return {
@@ -27,5 +27,18 @@ export const toggleLoaderCartMenu = (toggle) => {
 export const toggleUserBox = () => {
     return {
         type:USERTOGGLEBOX
+    }
+}
+// togg;e mobile menu
+export const toggleMobileMenu = () => {
+    return {
+        type:TOGGLEMOBILEMENU
+    }
+}
+
+export const setScreenSize = (size) => {
+    return {
+        type:SETSCREENSIZE,
+        size
     }
 }

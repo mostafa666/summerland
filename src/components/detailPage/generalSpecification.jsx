@@ -10,6 +10,7 @@ import original from './../../common/images/original.svg'
 import off from './../../common/images/off.svg'
 import freeDelivery from './../../common/images/freeDelivery.svg'
 import express from './../../common/images/express.svg'
+import { toast } from 'react-toastify';
 
 function GeneralSpecification({title,price, offer, starAverage,starCount,views,dispatch,productId,productType,serial}) {
     return (
@@ -134,6 +135,9 @@ const addWish = (e,dispatch,productId) => {
                 "nickname":nickname, 
                 "productId": productId
             })
+            toast.success('با موفقیت به لیست علاقه مندیها اضافه شد', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
         }else { 
             // remove wishlist
             e.target.classList.remove('activeHeart');
@@ -143,6 +147,9 @@ const addWish = (e,dispatch,productId) => {
                 "nickname":nickname,
                 "productId" : productId
             })
+            toast.success('با موفقیت از لیست علاقه مندیها حدف شد', {
+                position: toast.POSITION.BOTTOM_LEFT
+              })
         }
     }
     

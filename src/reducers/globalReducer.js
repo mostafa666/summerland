@@ -1,12 +1,14 @@
-import { TOGGLESIGNIN, SHOWLOADERINDETAILS, TOGGLESHOWCART, USERTOGGLEBOX } from "../actions/types";
-import { TOGGLELOADERCARTMENU } from './../actions/types';
+import { TOGGLESIGNIN, SHOWLOADERINDETAILS, TOGGLESHOWCART, USERTOGGLEBOX, TOGGLEMOBILEMENU } from "../actions/types";
+import { TOGGLELOADERCARTMENU, SETSCREENSIZE } from './../actions/types';
 
 const initialState = {
     signinToggle: false,
     toggleLoaderDetails: false,
-    toggleShowCart: true,
+    toggleShowCart: false,
     toggleLoaderCartMenu: false,
-    userToggleBox:false
+    userToggleBox:false,
+    toggleMobileMenu:false,
+    screenSize: 0
 }
 
 export default (state=initialState, action) => {
@@ -39,6 +41,17 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 userToggleBox:!thisState
+            }
+        case TOGGLEMOBILEMENU: 
+            const copy = state.toggleMobileMenu
+            return {
+                ...state,
+                toggleMobileMenu: !copy
+            }
+        case SETSCREENSIZE:
+            return {
+                ...state,
+                screenSize:action.size
             }
 
         default: 

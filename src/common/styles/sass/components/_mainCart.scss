@@ -71,7 +71,7 @@
                     color: $color-grey-dark;
                     text-decoration: underline;
                     text-decoration-color: #aaa;
-                    
+
                     &__span {
                         position: relative;
                         display: inline-block;
@@ -89,7 +89,7 @@
                         display: flex;
                         align-items: center;
                     }
-                    .details__color { 
+                    .details__color {
                         border-radius: 50%;
                         width: 2rem;
                         height: 2rem;
@@ -143,9 +143,15 @@
                         width: 5rem;
                         padding: 1rem 0;
                     }
-                    img.closeImage {
-                        width: 1.2rem;
+                    button.closeImage {
+                        width: 1.6rem;
+                        height: 1.6rem;
+                        border: none;
                         cursor: pointer;
+                        background-color: transparent;
+                        background-image: url('./../../common/images/cancel.svg');
+                        background-position: center;
+                        background-size: 2rem;
                     }
                 }
             }
@@ -156,9 +162,9 @@
         margin-right: 2rem;
         margin-top: 3rem;
         font-size: 1.4rem;
-        background-color: rgba($color-error2,.1);
+        background-color: rgba($color-error2, 0.1);
         padding: 1rem 2rem;
-        border-radius: .8rem;
+        border-radius: 0.8rem;
         display: inline-block;
     }
     // loader
@@ -169,6 +175,12 @@
         width: 100%;
         height: 100%;
         background-color: white;
-        border-radius: .6rem;
+        border-radius: 0.6rem;
+    }
+    .notFounding {
+        text-align: center;
+        padding: 2rem;
+        color: $color-grey1;
+        font-size: 2rem;
     }
 }

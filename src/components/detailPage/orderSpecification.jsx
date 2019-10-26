@@ -8,8 +8,8 @@ import {
     selectedColor,
     addErrorInCart
 } from '../../actions/detailsPageActions';
-//
-import image from './../../common/images/home1.jpg';
+
+
 import { addCart } from './../../actions/detailsPageActions';
 
 class OrderSpecification extends Component {
@@ -46,8 +46,9 @@ class OrderSpecification extends Component {
         e.target.previousSibling.classList.add('colorActive')
         // console.log(e.target.previousSibling)
     };
-    handleAddCart = e => {
+    handleAddCart = async e => {
         e.preventDefault();
+        console.log(e.target);
         let isColor = false;
         const {id, dispatch} = this.props;
         const token = localStorage.getItem('token');
@@ -69,7 +70,7 @@ class OrderSpecification extends Component {
         if(!color.includes('/')) isColor = true;
         // add in cart
         // send to backend
-        dispatch(addCart(token,nickname,id,count,newSize,color,isColor));
+        await dispatch(addCart(token,nickname,id,count,newSize,color,isColor));
     };
     animationButton = e => {
         let circleElement = document.querySelector('.btn--clickMode');
@@ -171,11 +172,11 @@ class OrderSpecification extends Component {
 const SetNumbers = ({ numbers, handlePlus, handleMines }) => (
     <React.Fragment>
         <span className="title">تعداد: </span>
-        <button className="plus" onClick={() => handlePlus(numbers)}>
+        <button type="button" className="plus" onClick={() => handlePlus(numbers)}>
             +
         </button>
         <span className="numbers">{numbers}</span>
-        <button className="mines" onClick={() => handleMines(numbers)}>
+        <button type="button" className="mines" onClick={() => handleMines(numbers)}>
             -
         </button>
     </React.Fragment>

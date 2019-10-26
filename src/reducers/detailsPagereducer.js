@@ -72,6 +72,7 @@ export default (state=initialState, action) => {
         case INCREASECOUNT:
             let newCart = state.cart.count;
             Number(++newCart);
+            console.log(newCart);
             return {
                 ...state,
                 cart: {

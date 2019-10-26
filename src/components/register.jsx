@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SubmitButton, TextInput } from "./signup";
-import axios from 'axios';
+
 // user icon
+import logo from './../common/images/logo.jpeg'
 import spinner from './../common/images/loading.svg'
 import lockIcon from './../common/images/lock.svg';
 import emailIcon from './../common/images/mail.svg';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { CheckBox } from "./filterBox";
-import { validationEmailRegister, validationPassRegister, validationConfirmRegister, saveProfileInfo, logedinMenu } from "../actions/accountPageAction";
+import { validationEmailRegister, validationPassRegister, validationConfirmRegister } from "../actions/accountPageAction";
 import { sendRegisterDatas } from "../actions/registerAction";
-
-
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {useHistory} from 'react-router-dom';
 class Register extends Component {
     validation = (validation,target) => {
         if(validation) {
@@ -77,14 +79,14 @@ class Register extends Component {
         
         if(a && b && c) {
             // change the text in the button
-            e.target.innerHTML = `${e.target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
-            e.target.disabled = false;
             let target = e.target
+            target.innerHTML = `${target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
+            target.disabled = true;
             const {history} = this.props;
             // set infos with axios & save it in store
             await this.props.dispatch(sendRegisterDatas(email,password,confirm,target,history));            
-            
-            
+            target.disabled = false;
+            target.innerHTML = 'ثبت نام';
         }
     }
     addError = (text,fielsValidation,id) => {
@@ -112,6 +114,8 @@ class Register extends Component {
         ]
         return (
             <div className="register">
+                <ToastContainer />
+                <img src={logo} alt="سامرلند"/>
                 <div className="register__form--container">
                     <form className="register__form">
                         <div className="register__header">
@@ -145,12 +149,23 @@ class Register extends Component {
                             <CheckBox data={data} onchange={this.toggleRemember} />
                             <SubmitButton text="ثبت نام" type="submit" className="btn--blue" onClick={this.animationClick} />
                             <span className="register__registered">قبلاً ثبت نام کرده‌ام <Link to="/signin">ورود</Link></span>
+                            {
+                                this.props.state.register.goto? <GoTo />:null
+                            }
                         </div>
                     </form>
                 </div>
             </div>
         )
     }
+}
+
+export const GoTo = () => {
+    const url = localStorage.getItem('userCurrentUrl') || '/';
+    const history = useHistory();
+    history.push(url);
+    localStorage.removeItem('userCurrentUrl');
+    return null;
 }
 
 export default connect(state => ({ state }))(Register)

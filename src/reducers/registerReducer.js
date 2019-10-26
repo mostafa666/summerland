@@ -1,5 +1,5 @@
-import { SETNAMEREGISTER, SETLASTNAMEREGISTER, SETEMAILREGISTER, SETPHONEREGISTER, SETPASSWORDREGISTER, SETCONFRIMPASSWORDREGISTER, SETADDRESS, SETPOSTCODE, GETUSERPROFILE } from "../actions/types";
-import { SENDUSERPROFILE } from './../actions/types';
+import { SETNAMEREGISTER, SETLASTNAMEREGISTER, SETEMAILREGISTER, SETPHONEREGISTER, SETPASSWORDREGISTER, SETCONFRIMPASSWORDREGISTER, SETADDRESS, SETPOSTCODE, GETUSERPROFILE, GOTO } from "../actions/types";
+
 
 const initialState = {
     registerInfo : {
@@ -19,7 +19,8 @@ const initialState = {
         email: true,
         password: true,
         confirmPassword: true
-    }
+    },
+    goto:false
 }
 
 export default (state=initialState, action) => {
@@ -133,6 +134,11 @@ export default (state=initialState, action) => {
                 email:action.data.email
             }
         }
+        case GOTO:
+            return {
+                ...state,
+                goto:action.toggle
+            }
 
         default: 
             return state;

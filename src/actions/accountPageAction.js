@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FETCHWISHLIST, TOGGLESPPINER, VALIDATIONEMAILREGISTER, VALIDATIONPASSREGISTER, VALIDATIONCONFIRMREGISTER, SAVEPROFILE, VALIDATIONEMAILSIGNIN, VALIDATIONPASSWORDSIGNIN, SIGNEDINMENU, GETOLDPASS, GETEMAIL, GETCONFIRMPASS, GETCONFIRMPASSWORD, REMOVEWISHLIST, SIGNUPLOADER, CARTLOADER } from './types';
 import config from './../config.json';
+import { toast } from 'react-toastify';
 
 // load the wishList posts
 export const fetchWishList = data => {
@@ -20,7 +21,23 @@ export const fetchWishLists = (nickname,token) => {
                 dispatch(fetchWishList(res.data));
             })
             .catch(error => {
-                throw error;
+                if(error.response && error.response.status === 401) {
+                    toast.error('شمادسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('شمادسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 404) {
+                    toast.error('شمادسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
             });
     };
 };
@@ -41,7 +58,23 @@ export const removeThisWishLists = (id,nickname,token) => {
             .then(res => {
             })
             .catch(error => {
-                throw error;
+                if(error.response && error.response.status === 401) {
+                    toast.error('شمادسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('احتمالا موجودی این محصول تمام شده است!', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 404) {
+                    toast.error('شمادسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
             });
     };
 };

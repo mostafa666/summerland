@@ -13,7 +13,7 @@ import rootReducer from './reducers/index';
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 store.subscribe(() => {
-    console.log(store.getState().detalPage.cart);
+    // console.log(store.getState().detalPage.cart);
 });
 
 ReactDOM.render(

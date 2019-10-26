@@ -1,8 +1,9 @@
-import { SETNAMEREGISTER, SETLASTNAMEREGISTER, SETEMAILREGISTER, SETPHONEREGISTER, SETPASSWORDREGISTER, SETCONFRIMPASSWORDREGISTER, SETADDRESS, SETPOSTCODE, SENDREGISTERDATA, GETUSERPROFILE, SENDUSERPROFILE } from "./types"
+import { SETNAMEREGISTER, SETLASTNAMEREGISTER, SETEMAILREGISTER, SETPHONEREGISTER, SETPASSWORDREGISTER, SETCONFRIMPASSWORDREGISTER, SETADDRESS, SETPOSTCODE, SENDREGISTERDATA, GETUSERPROFILE, SENDUSERPROFILE, GOTO } from "./types"
 import axios from 'axios';
 import config from './../config.json';
 import { saveProfileInfo, logedinMenu } from "./accountPageAction";
-
+import {toast} from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 export const setNameRegister = (name,validation) => {
     return {
         type:SETNAMEREGISTER,
@@ -85,7 +86,24 @@ export const getUserProfiles = (nickname,token) => {
                 dispatch(getUserProfile(res.data));
             })
             .catch(error => {
-                throw error;
+                if(error.response && error.response.status === 401) {
+                    console.log('d')
+                    toast.error('شمادسترسی به این صفحه را ندارید.', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('شمادسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 404) {
+                    toast.error('شمادسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
             });
     };
 };
@@ -104,17 +122,45 @@ export const sendUserProfiles = (userInfo,nickname,target,token) => {
         })
             .then(res => {
                 console.log(res);
-                target.innerHTML = 'اطلاعات با موفقیت تغییر یافت'
+                toast.success('اطلاعات با موفقیت تغییر یافت',{
+                    position: toast.POSITION.BOTTOM_LEFT
+                })
                 target.disabled = false;
             })
             .catch(error => {
-                throw error;
+                if(error.response && error.response.status === 403) {
+                    toast.error('اطلاعات وارد شده ناصحیح است!', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('شما دسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 401) {
+                    toast.error('شما دسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 404) {
+                    toast.error('شما دسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
             });
     };
 };
 
 
 // قسمت ثبت نام اولیه
+export const goTo = toggle => {
+    return {
+        type: GOTO,
+        toggle
+    };
+};
 
 export const sendRegisterDatas = (email,
     password,confirm,target,history) => {
@@ -134,25 +180,23 @@ export const sendRegisterDatas = (email,
                 localStorage.setItem('nickname',newEmail);
                 // change the text in the button
                 target.innerHTML = 'اطلاعات با موفقیت ثبت شد'
-                target.disabled = true;
-                // rediret to main page or specief page in local storage
-                let savedUrl = localStorage.getItem('userCurrentUrl');
-                console.log(savedUrl);
-                if(savedUrl) {
-                    history.push({
-                        pathname: `/${savedUrl}`
-                    });
-                    localStorage.removeItem('userCurrentUrl');
-                    dispatch(logedinMenu(true));
-                }else {
-                    history.push({
-                        pathname: `/`
-                    });
-                    dispatch(logedinMenu(true));
-                }
+                target.disabled = false;
+                dispatch(goTo(true))
             })
             .catch(error => {
-                throw error;
+                if(error.response && error.response.status === 403) {
+                    toast.error('این ایمیل قبلا ثبت شده است.', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('نام کاربری یا رمز عبور مورد تایید نیست', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
             });
     };
 };
@@ -174,23 +218,31 @@ export const sendLogins = (email,password,target,history) => {
                 localStorage.setItem('token',token);
                 localStorage.setItem('nickname',newEmail);
                 // change the text in the button
-                target.innerHTML = 'اطلاعات با موفقیت ثبت شد'
-                target.disabled = true;
+                target.innerHTML = 'ورود'
+                target.disabled = false;
                 dispatch(logedinMenu(true));
-                // rediret to main page or specief page in local storage
-                let savedUrl = sessionStorage.getItem('userCurrentUrl');
-                if(savedUrl) {
-                    history.push({
-                        pathname: `/${savedUrl}`
-                    });
-                    sessionStorage.removeItem('userCurrentUrl');
-                    dispatch(logedinMenu(true));
-                }else {
-                    dispatch(logedinMenu(true));
-                }
+                toast.success('شما با موفقیت وارد شدید.', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  });
             })
             .catch(error => {
-                throw error;
+                if(error.response && error.response.status === 403) {
+                    toast.error('این ایمیل قبلا ثبت نشده است.', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('نام کاربری یا رمز عبور مورد تایید نیست', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 401) {
+                    toast.error('نام کاربری یا رمز عبور اشتباه است', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
             });
     };
 };

@@ -15,6 +15,7 @@ import {
 import axios from 'axios';
 import config from './../config.json';
 import { toggleLoaderDetailspage } from './globalAction';
+import { toast } from 'react-toastify';
 export const toggleSignin = (ref, id) => {
     return {
         type: SETACTIVEACCORDEON,
@@ -44,8 +45,8 @@ export const addCarts = cart => {
 };
 
 export const addCart = (token,nickname,productId,count,size,color,isColor) => {
+    console.log(count,size,color);
     return dispatch => {
-        console.log(productId,count,size,color,isColor)
         return isColor? axios
             .post(config.api_add__cart, { 
                 "token":token ,
@@ -55,11 +56,22 @@ export const addCart = (token,nickname,productId,count,size,color,isColor) => {
                 "size" : size ,
                 "color": color
             }).then(res => {
-                console.log('res',res)
-                dispatch(addCarts(res.data));
+                if(res.data) {
+                    toast.error(res.data[0], {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    console.log(res.data)
+                    dispatch(addCarts(res.data));
+                    toast.success(`این محصصول با سایز ${size} و رنگ ${color} و به تعداد ${count} به سبد خریدتان اضافه شد`,{
+                        position: toast.POSITION.BOTTOM_LEFT
+                    })
+                }
             })
             .catch(error => {
-                throw error;
+                toast.error('لطفا اینترنت خود را چک کنید', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
             }):axios
             .post(config.api_add__cart, { 
                 "token":token ,
@@ -70,11 +82,21 @@ export const addCart = (token,nickname,productId,count,size,color,isColor) => {
                 "pattern": color
             })
             .then(res => {
-                console.log('res',res)
-                dispatch(addCarts(res.data));
+                if(res.data) {
+                    toast.error(res.data[0], {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    dispatch(addCarts(res.data));
+                    toast.success(`این محصصول با سایز ${size} و رنگ ${color} و به تعداد ${count} به سبد خریدتان اضافه شد`,{
+                        position: toast.POSITION.BOTTOM_LEFT
+                    })
+                }
             })
             .catch(error => {
-                throw error;
+                toast.error('لطفا اینترنت خود را چک کنید', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
             });
     };
 };
@@ -124,6 +146,9 @@ export const removeCarts = (token,nickname,productId,id) => {
             })
             .then(res => {
                 dispatch(removeCart(id));
+                toast.success('محصول با موفقیت از سبد خریدتان حدف شد.', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
             })
             .catch(error => {
                 throw error;
@@ -187,14 +212,26 @@ export const increaseView = productId => {
     return dispatch => {
         return axios
             .post(config.api_increasw_product_view, {
-                productId: `${productId}`
+                "productId": `${productId}`
             })
             .then(res => {
-                
+                console.log(res);
             })
             .catch(error => {
-                console.log(error);
-                throw error;
+                throw(error)
+                // if(error.response && error.response.status === 403) {
+                //     toast.error('این محصول هنوز پابلیک نشده است!', {
+                //         position: toast.POSITION.BOTTOM_LEFT
+                //       })
+                // }else if(error.response && error.response.status === 400) {
+                //     toast.error('همچین محصولی وجود ندارد!', {
+                //         position: toast.POSITION.BOTTOM_LEFT
+                //       })
+                // }else {
+                //     toast.error('لطفا اینترنت خود را چک کنید', {
+                //         position: toast.POSITION.BOTTOM_LEFT
+                //       })
+                // }
             });
     };
 };

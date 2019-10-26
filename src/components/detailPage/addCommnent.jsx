@@ -5,6 +5,8 @@ import titleIcon from './../../common/images/chat.svg';
 import RegisterStar from './registerStar';
 import axios from 'axios';
 import config from './../../config.json';
+import { toast } from 'react-toastify';
+import { tsArrayType } from '@babel/types';
 class AddComment extends Component {
     componentDidMount() {
         // get product id
@@ -22,12 +24,27 @@ class AddComment extends Component {
             axios.post(config.api_send_comment, {
                 token: token,
                 nickname: nickname,
-                productId: 15,
+                productId: 18,
                 title: title,
                 content: comment
             });
+            toast.success('نظرتان برای این محصول با موفقیت ثبت شد',{
+                position: toast.POSITION.BOTTOM_LEFT
+            })
         } catch (error) {
-            console.log(error);
+            if(error.response && error.response.status === 401) {
+                toast.error('شما دسترسی به این صفحه را ندارید', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
+            }else if(error.response && error.response.status === 400) {
+                toast.error('شما دسترسی به این صفحه را ندارید', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
+            }else {
+                toast.error('لطفا اینترنت خود را چک کنید', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
+            }
         }
 
         // check count of characters

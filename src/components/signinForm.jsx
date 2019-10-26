@@ -79,17 +79,14 @@ class SigninForm extends Component {
         let password = e.target.previousSibling.previousSibling.children[0].value;
         if(a && b) {
             // change the text in the button
-            e.target.innerHTML = `${e.target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
-            e.target.disabled = false;
             let target = e.target
+            target.innerHTML = `${target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
+            target.disabled = true;
             // set infos with axios
             const {history} = this.props;
             await this.props.dispatch(sendLogins(email,password,target,history));
-            
-            
-            
-
-            
+            target.innerHTML = "ورود";
+            target.disabled = false;
         }
     }
     render() {
@@ -97,14 +94,14 @@ class SigninForm extends Component {
             <form className="signin__form">
                 <TextInput placeholder="ایمیل" 
                     id="emailSignin" 
-                    labelText="ایمیل" 
+                    labelText="ایمیل"
                     onchange={() => this.validationEmail}
                     type="email"
                     className=""
                     icon={emailIcon}
                 />
                 <TextInput placeholder="رمز عبور" 
-                    id="passSignin" 
+                    id="passSignin"
                     labelText="رمز عبور" 
                     onchange={() => this.validationPassword}
                     type="password"

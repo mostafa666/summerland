@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 import {
     resetDetailsPageReducer,
     getDetailsDatas,
-    fetchComments
+    fetchComments,
+    increaseView
 } from '../../actions/detailsPageActions';
 import { animateScroll as scroll } from 'react-scroll';
 import Loader from '../loader';
@@ -28,10 +29,10 @@ class DetailPage extends Component {
         // reset store
         dispatch(resetDetailsPageReducer());
         // send request &&  save in store
-        await Promise.all([dispatch(getDetailsDatas(15)), dispatch(fetchComments(15))]);
-        dispatch(toggleLoaderDetailspage(false));
         // increace prodcut view
-        // await dispatch(increaseView(15));
+        await Promise.all([dispatch(getDetailsDatas(18)), dispatch(fetchComments(18)),dispatch(increaseView(18))]);
+        dispatch(toggleLoaderDetailspage(false));
+        
     }
 
     goAddComment = () => {

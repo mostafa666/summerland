@@ -28,8 +28,9 @@ class Cart extends Component {
     render() {
         const { carts } = this.props.state.detalPage;
         const style = {
-            display: carts.length> 0?'block':'none'
+            display: carts.length> 1?'block':'none'
         }
+        console.log(carts);
         return (
             <MenuContainer toggle={this.props.state.global.toggleShowCart} >
                 <h2 className="cart__title">سبد خرید</h2>
@@ -40,8 +41,14 @@ class Cart extends Component {
                     </div>
                     <div className="row ">
                         {
-                            Array.isArray(carts)? carts.length > 0?
-                                carts.map(cart => (<CartBox key={cart.id} data={cart} />))
+                            Array.isArray(carts)? carts.length > 1?
+                                carts.map((cart, index) => {
+                                    if(carts.length-1 === index) {
+                                        return null;
+                                    }else {
+                                        return (<CartBox key={cart.id} data={cart} />)
+                                    }
+                                })
                                 :<p className="cart__empty">سبد خرید شما خالیست</p>
                                 :null
                         }

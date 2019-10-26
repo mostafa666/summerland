@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { tableBody, tabelHeader } from './../../staticData/account';
+import { tabelHeader } from './../../staticData/account';
 import { fetchCarts, removeCarts } from './../../actions/detailsPageActions';
 import Loader from './../loader'
 import { cartLoader } from '../../actions/accountPageAction';
@@ -22,11 +22,13 @@ class MainCart extends Component {
         // 
         const token = localStorage.getItem('token');
         const nickname = localStorage.getItem('nickname');
-
+        this.props.dispatch(cartLoader(true));
         await this.props.dispatch(removeCarts(token,nickname,productId,id));
+        this.props.dispatch(cartLoader(false));
     }
     render() {
-        console.log(this.props.state.detalPage.carts)
+        const {carts} = this.props.state.detalPage;
+        console.log(carts);
         return (
             <div className="mainCart__container">
                 <h2>تمامی سفارش ها</h2>
@@ -36,19 +38,29 @@ class MainCart extends Component {
                         <Tableheader values={tabelHeader()} />
                         <tbody>
                             {
-                                this.props.state.detalPage.carts.map(cart => (
-                                    <TableBody key={cart.id} values={cart} removeCart={this.removeCart} />
-                                ))
+                                carts.map((cart,index) => {
+                                    console.log(carts.length-1 , index)
+                                    if(carts.length-1 === index) {
+                                        return null;
+                                    }else {
+                                        return (
+                                            <TableBody key={cart.id} values={cart} removeCart={this.removeCart} />
+                                        )
+                                    }
+                                })
                             }
                         </tbody>
                     </table>
-                    <button className="btn buyButton">تکمیل سبد خرید</button>
-                    <button className="btn updateButton">بروز رسانی سبد خرید</button>
-                    <button className="btn offButton">اعمال کد تخفیف</button>
-                    <span className="btn totalButton">{`جمع کل مبلغ پرداختی 135000 تومان`}</span>
-                    <div className="error">
-                        {/* <p></p>     show error     */}
-                    </div>
+                    {
+                        carts.length === 1? <p className="notFounding">موردی یافت نشد!</p>:(
+                            <div>
+                                <button className="btn buyButton">تکمیل سبد خرید</button>
+                                <button className="btn updateButton">بروز رسانی سبد خرید</button>
+                                <button className="btn offButton">اعمال کد تخفیف</button>
+                                <span className="btn totalButton">{`جمع کل مبلغ پرداختی 135000 تومان`}</span>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         );
@@ -113,7 +125,7 @@ const TableBody = ({ values,removeCart }) => {
                 <button
                     onClick={(e) => removeCart(e,values.id,values.productId)}
                     className="closeImage"
-                >X</button>
+                ></button>
             </td>
         </tr>
     );

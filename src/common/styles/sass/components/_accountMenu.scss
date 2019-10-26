@@ -5,8 +5,11 @@
     @include respond(phone) {
         border: none;
         border-radius: 0;
-        // position: absolute;
-        // bottom: 0;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        box-shadow: -10px 0 10px rgba($color-grey1, 0.4);
+        z-index: 11111111111;
     }
     & h3 {
         color: $color-grey1;

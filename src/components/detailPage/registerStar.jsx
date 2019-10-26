@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios'
 import config from './../../config.json'
+import { toast } from 'react-toastify';
 
 function RegisterStar({voteNumber}) {
     voteNumber = 6 - Math.ceil(voteNumber);
@@ -35,7 +36,7 @@ function RegisterStar({voteNumber}) {
         <ul className="stars">
             {
                 voteStar.map(star => (
-                    <li onClick={(e) => addSelected(e,5)} className={`stars__star ${star.voteNumber}`} key={star.id}></li>
+                    <li onClick={(e) => addSelected(e,18)} className={`stars__star ${star.voteNumber}`} key={star.id}></li>
                 ))
             }
         </ul>
@@ -61,9 +62,25 @@ const addSelected = (e,id) => {
                     "star": 5 - index,
                     "token": token,
                     "nickname":nickname
+                });
+                toast.success(`امتیاز ${5 - index} برای این محصول ثبت شد`,{
+                        position: toast.POSITION.BOTTOM_LEFT
                 })
             }catch(error) {
-                console.log(error);
+                console.log(error)
+                if(error.response && error.response.status === 401) {
+                    toast.error('شما دسترسی به این قسمت را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('شما دسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
             }
         }
         

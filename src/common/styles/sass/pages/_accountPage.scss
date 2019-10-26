@@ -24,3 +24,21 @@
     flex: 0 1 50%;
     padding: 0 1rem 1rem 0;
 }
+@include respond(tab-port) {
+    .signup .col-1-of-2 {
+        width: 100% !important;
+    }
+}
+@include respond(tab-port) {
+    .wishListContainer {
+        flex:0 1 100%;
+    }
+}
+@include respond(phone) {
+    .header__margin {
+        margin-bottom: 55px !important;
+    }
+}
+
+
+

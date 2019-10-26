@@ -10,6 +10,7 @@ import Loader from './loader';
 import { signupLoader } from './../actions/accountPageAction';
 class Signup extends Component {
     async componentDidMount() {
+        
         const nickname = localStorage.getItem('nickname');
         const token = localStorage.getItem('token');
         this.props.dispatch(signupLoader(true));
@@ -148,13 +149,14 @@ class Signup extends Component {
         let h = this.addError('با رمز ورودتان سازگاری ندارد',confirmPassword,'inputConfrinPassword');
         if(a && b && c && d && ee && f && g && h) {
             // change the text in the button
-            e.target.innerHTML = `${e.target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
-            e.target.disabled = true;
+            let target = e.target;
+            target.innerHTML = `${target.innerHTML} <span class="loaderForButton"><img src=${spinner} alt="spinner" /></span>`;
+            target.disabled = true;
             const nickname = localStorage.getItem('nickname');
             const token = localStorage.getItem('token');
             // set infos with axios
-            let target = e.target;
             await this.props.dispatch(sendUserProfiles(this.props.state.register.registerInfo,nickname,target,token))
+            target.innerHTML = "تکمیل اطلاعات";
         }
 
         
@@ -172,10 +174,10 @@ class Signup extends Component {
                                 <div className="col-1-of-2 u-padding-small">
                                     <h2 className="secondary-heading">اطلاعات شخصی</h2>
                                     <div className="row margin-zero">
-                                        <div className="col-1-of-2">
+                                        <div className="col-1-of-2 name">
                                             <TextInput value={name} icon={lockIcon} placeholder={inputs[0].placeholder} id={inputs[0].id} labelText={inputs[0].labelText} onchange={() => this.validationName} type={inputs[0].type} />
                                         </div>
-                                        <div className="col-1-of-2">
+                                        <div className="col-1-of-2 name">
                                             <TextInput value={lastname} icon={lockIcon} placeholder={inputs[1].placeholder} id={inputs[1].id} labelText={inputs[1].labelText} onchange={() => this.validationLastname} type={inputs[1].type} />
                                         </div>
                                     </div>
@@ -186,8 +188,8 @@ class Signup extends Component {
                                 <div className="col-1-of-2 u-padding-small">
                                     <h2 className="secondary-heading">اطلاعات ورود به حساب کاربری</h2>
                                     <TextInput value={email} icon={lockIcon} placeholder={inputs[5].placeholder} id={inputs[5].id} labelText={inputs[5].labelText} onchange={() => this.validationEmail} type={inputs[5].type} className={inputs[5].className} />
-                                    <TextInput icon={lockIcon} placeholder={inputs[6].placeholder} id={inputs[6].id} labelText={inputs[6].labelText} onchange={() => this.validationPassword} type={inputs[6].type} className={inputs[6].className} />
-                                    <TextInput icon={lockIcon} placeholder={inputs[7].placeholder} id={inputs[7].id} labelText={inputs[7].labelText} onchange={() => this.validationConfirmpassword} type={inputs[7].type} className={inputs[7].className} />
+                                    <TextInput value="" icon={lockIcon} placeholder={inputs[6].placeholder} id={inputs[6].id} labelText={inputs[6].labelText} onchange={() => this.validationPassword} type={inputs[6].type} className={inputs[6].className} />
+                                    <TextInput value="" icon={lockIcon} placeholder={inputs[7].placeholder} id={inputs[7].id} labelText={inputs[7].labelText} onchange={() => this.validationConfirmpassword} type={inputs[7].type} className={inputs[7].className} />                                    
                                     <SubmitButton text="تکمیل اطلاعات" type="submit" className="btn--green" onClick={this.animationClick} />
                                 </div>
                             </form>
@@ -197,6 +199,7 @@ class Signup extends Component {
         )
     }
 }
+
 
 export const TextInput = ({placeholder,id,labelText,onchange,type,className,icon,value}) => {
     let inputElement = React.createRef;
@@ -208,7 +211,6 @@ export const TextInput = ({placeholder,id,labelText,onchange,type,className,icon
         </div>
     )
 }
-
 export const SubmitButton = ({text,className, onClick,type}) => <button type={type} onClick={(e) => onClick(e)} className={`btn ${className}`}>{text}</button>
 
 

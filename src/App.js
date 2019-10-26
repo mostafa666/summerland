@@ -18,7 +18,7 @@ import Menu from './components/menu'
 import FilterBox from './components/filterBox';
 import Signup from './components/signup';
 import Signin from './components/signin';
-
+import { ToastContainer } from 'react-toastify';
 
 class App extends Component {
     
@@ -26,6 +26,7 @@ class App extends Component {
         return (
             <React.Fragment>
                 <BrowserRouter>
+                <ToastContainer />
                 <Header />
                 <Menu />
                 <UserMenu

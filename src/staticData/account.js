@@ -1,5 +1,3 @@
-import img1 from './../common/images/105800619.jpg'
-import close from './../common/images/cancel.svg'
 export const tabelHeader = () => [
     {
         text:'عکس',
@@ -18,18 +16,3 @@ export const tabelHeader = () => [
         id:4
     }
 ]
-
-export const tableBody = () => (
-    {
-        img:img1,
-        title:"پیراهن مردانه یقه گرد آستین کوتاه",
-        price:"1000",
-        isExists:true,
-        closeIcon:close,
-        color:"#7d1",
-        size:"XL",
-        count:2,
-        id:5,
-        productId:14
-    }
-)
