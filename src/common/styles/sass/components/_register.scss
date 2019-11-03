@@ -3,7 +3,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
     & > img {
         width: 10rem;
         margin-bottom: 2rem;
@@ -13,6 +12,11 @@
             @include accountContainer;
             width: 40rem;
             padding-bottom: 1rem;
+            @include respond(phone) {
+                width: 100%;
+                margin: 2rem;
+                max-width: 40rem;
+            }
         }
     }
     &__header {

@@ -56,13 +56,14 @@ export const addCart = (token,nickname,productId,count,size,color,isColor) => {
                 "size" : size ,
                 "color": color
             }).then(res => {
-                if(res.data) {
+                console.log(typeof res.data[0] == 'string' ,typeof res.data[0])
+                if(typeof res.data[0] == 'string') {
                     toast.error(res.data[0], {
                         position: toast.POSITION.BOTTOM_LEFT
                       })
                 }else {
-                    console.log(res.data)
-                    dispatch(addCarts(res.data));
+                    console.log(res.data[0])
+                    dispatch(addCarts(res.data[0]));
                     toast.success(`این محصصول با سایز ${size} و رنگ ${color} و به تعداد ${count} به سبد خریدتان اضافه شد`,{
                         position: toast.POSITION.BOTTOM_LEFT
                     })
@@ -82,12 +83,14 @@ export const addCart = (token,nickname,productId,count,size,color,isColor) => {
                 "pattern": color
             })
             .then(res => {
-                if(res.data) {
+                console.log(typeof res.data[0] == 'string' ,typeof res.data[0])
+                if(typeof res.data[0] == 'string') {
                     toast.error(res.data[0], {
                         position: toast.POSITION.BOTTOM_LEFT
                       })
                 }else {
-                    dispatch(addCarts(res.data));
+                    console.log(res.data[0])
+                    dispatch(addCarts(res.data[0]));
                     toast.success(`این محصصول با سایز ${size} و رنگ ${color} و به تعداد ${count} به سبد خریدتان اضافه شد`,{
                         position: toast.POSITION.BOTTOM_LEFT
                     })
@@ -119,7 +122,6 @@ export const fetchCarts = (token,nickname) => {
             })
             .then(res => {
                 dispatch(fetchCart(res.data));
-                console.log('res')
             })
             .catch(error => {
                 console.log('error')

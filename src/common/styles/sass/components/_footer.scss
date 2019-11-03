@@ -12,14 +12,26 @@
         background-color: white;
         padding: 1rem;
         &--item {
+            @include respond(phone) {
+                margin-right: 1rem;
+                flex-direction: column;
+            }
             display: flex;
             align-items: center;
             margin-right: 2rem;
             img {
+                @include respond(phone) {
+                    width: auto;
+                    height: 3rem;
+                }
                 width: 5rem;
                 margin-left: 1rem;
             }
             span {
+                @include respond(phone) {
+                    font-size: 1.1rem;
+                }
+                text-align: center;
                 font-size: 1.2rem;
                 color: $color-grey-dark;
             }
@@ -28,13 +40,15 @@
     &__body {
         padding: 2rem;
         display: flex;
+        @include respond(phone) {
+            flex-direction: column;
+        }
         h3 {
             color: $color-grey1;
             font-size: 1.6rem;
             margin-bottom: 1.5rem;
         }
         &--item {
-            margin-left: 2rem;
             li,
             a {
                 margin-bottom: 0.8rem;
@@ -42,6 +56,9 @@
                 list-style: none;
                 color: $color-grey2;
                 font-size: 1.3rem;
+            }
+            &:not(:last-child) {
+                margin-left: 2rem;
             }
         }
     }
@@ -63,3 +80,11 @@
         padding: 1rem;
     }
 }
+
+// @include respond(tab-land) {
+//     height: 52px;
+// }
+// @include respond(tab-port) {
+//     height: 46px;
+// }
+// @include respond(phone) {

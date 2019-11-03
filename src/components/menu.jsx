@@ -56,122 +56,122 @@ class Menu extends Component {
                             <div>
                                 <ul>
                                     <li>
-                                        <Link to="/">مردانه
+                                        <Link to="/products/men">مردانه
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                         </Link>
                                         <ul className="second">
-                                            <li><Link to="">لباس مردانه
+                                            <li><Link to="/products/men/menClothes">لباس مردانه
                                                 <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">پولیور و سوشرت مردانه</Link></li>
-                                                    <li><Link to="">چیراخن آستین کوتاه</Link></li>
-                                                    <li><Link to="">پیراهن آستین بلند</Link></li>
-                                                    <li><Link to="">شلوار مردانه</Link></li>
-                                                    <li><Link to="">کاپشن و پالتو مردانه</Link></li>
-                                                    <li><Link to="">تی شرت و پولوشرت مردانه</Link></li>
-                                                    <li><Link to="">لباس زیر مردانه</Link></li>
-                                                    <li><Link to="">شلوارک مردانه</Link></li>
-                                                    <li><Link to="">لباس ورزشی مردانه</Link></li>
-                                                    <li><Link to="">لباس راحتی مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/MenPullover">پولیور و سوشرت مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/shortleeveehirts">پیراهن آستین کوتاه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/Longleeveehirts">پیراهن آستین بلند</Link></li>
+                                                    <li><Link to="/products/men/menClothes/trousers">شلوار مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/MensCoats">کاپشن و پالتو مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/mensPoloShirts">تی شرت و پولوشرت مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/MensUnderwear">لباس زیر مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/MensShorts">شلوارک مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/MensSportswear">لباس ورزشی مردانه</Link></li>
+                                                    <li><Link to="/products/men/menClothes/MensLingerie">لباس راحتی مردانه</Link></li>
                                                 </ul>
                                             </li>
-                                            <li><Link to="">کیف و کفش مردانه
+                                            <li><Link to="/products/men/MensBagsAndShoes">کیف و کفش مردانه
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">کالج مردانه</Link></li>
-                                                    <li><Link to="">کتونی</Link></li>
-                                                    <li><Link to="">کوله پشتی</Link></li>
-                                                    <li><Link to="">ساک ورزشی</Link></li>
+                                                    <li><Link to="/products/men/MensBagsAndShoes/MensCollege">کالج مردانه</Link></li>
+                                                    <li><Link to="/products/men/MensBagsAndShoes/sneakers">کتونی</Link></li>
+                                                    <li><Link to="/products/men/MensBagsAndShoes/backpack">کوله پشتی</Link></li>
+                                                    <li><Link to="/products/men/MensBagsAndShoes/sportsBag">ساک ورزشی</Link></li>
                                                 </ul>
                                             </li>
-                                            <li><Link to="">اکسسوری
+                                            <li><Link to="/products/men/menAccessory">اکسسوری
                                                 <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">کمربند</Link></li>
-                                                    <li><Link to="">جوراب</Link></li>
-                                                    <li><Link to="">کلاه</Link></li>
+                                                    <li><Link to="/products/men/menAccessory/menBelt">کمربند</Link></li>
+                                                    <li><Link to="/products/men/menAccessory/menSocks">جوراب</Link></li>
+                                                    <li><Link to="/products/men/menAccessory/menHat">کلاه</Link></li>
                                                 </ul>
                                             </li>
-                                            <li><Link to="">حراج
+                                            <li><Link to="/products/men/onSaleMen">حراج
                                                 <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">تک ساز مردانه</Link></li>
+                                                    <li><Link to="/products/men/onSaleMen/mensSingle">تک ساز مردانه</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <Link to="/">زنانه
+                                        <Link to="/products/women">زنانه
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                         </Link>
                                         <ul className="second">
-                                            <li><Link to="">لباس زنانه
+                                            <li><Link to="/products/women/womenClothes">لباس زنانه
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">مانتو</Link></li>
-                                                    <li><Link to="">شلوار</Link></li>
-                                                    <li><Link to="">پیراهن</Link></li>
-                                                    <li><Link to="">سوشرت</Link></li>
-                                                    <li><Link to="">پالتو</Link></li>
-                                                    <li><Link to="">کاپشن</Link></li>
-                                                    <li><Link to="">بارانی</Link></li>
-                                                    <li><Link to="">تیشرت</Link></li>
-                                                    <li><Link to="">تاپ</Link></li>
-                                                    <li><Link to="">بلوزتونیک</Link></li>
-                                                    <li><Link to="">دامن</Link></li>
-                                                    <li><Link to="">شومیز</Link></li>
-                                                    <li><Link to="">شلوارک</Link></li>
-                                                    <li><Link to="">سرهمی</Link></li>
-                                                    <li><Link to="">گلنیک</Link></li>
-                                                    <li><Link to="">لباس ورزشی زنانه</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/Manto">مانتو</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenPants">شلوار</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenShirt">پیراهن</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenSweatshirt">سویشرت</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenCoat">پالتو</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenJacket">کاپشن</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenRainy">بارانی</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenTShirt">تیشرت</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenTop">تاپ</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenBluestonics">بلوزتونیک</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenSkirt">دامن</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenPaperback">شومیز</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenShorts">شلوارک</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenReassembly">سرهمی</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womenGlennick">گلنیک</Link></li>
+                                                    <li><Link to="/products/women/womenClothes/womensSportWear">لباس ورزشی زنانه</Link></li>
                                                 </ul>
                                             </li>
-                                            <li><Link to="">لباس زیر و راحتی زنانه
+                                            <li><Link to="/products/women/womenUnderWear">لباس زیر و راحتی زنانه
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">سوتین</Link></li>
-                                                    <li><Link to="">شرت زنانه</Link></li>
-                                                    <li><Link to="">لباس خواب</Link></li>
-                                                    <li><Link to="">مایو زنانه</Link></li>
-                                                    <li><Link to="">لباس راحتی زنانه</Link></li>
-                                                    <li><Link to="">ست تاپ و دامن</Link></li>
-                                                    <li><Link to="">ست تاپ و شلوارک</Link></li>
+                                                    <li><Link to="/products/women/womenUnderWear/womenBra">سوتین</Link></li>
+                                                    <li><Link to="/products/women/womenUnderWear/womenShits">شرت زنانه</Link></li>
+                                                    <li><Link to="/products/women/womenUnderWear/womenSleapWear">لباس خواب</Link></li>
+                                                    <li><Link to="/products/women/womenUnderWear/WomenSwimsuit">مایو زنانه</Link></li>
+                                                    <li><Link to="/products/women/womenUnderWear/WomensLingerie">لباس راحتی زنانه</Link></li>
+                                                    <li><Link to="/products/women/womenUnderWear/womenSetOfTopsAndSkirts">ست تاپ و دامن</Link></li>
+                                                    <li><Link to="/products/women/womenUnderWear/womenSetTopsAndShorts">ست تاپ و شلوارک</Link></li>
                                                 </ul>
                                             </li>
-                                            <li><Link to="">کیف و کفش زنانه
+                                            <li><Link to="/products/women/bagsAndShoes">کیف و کفش زنانه
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">کفش زنانه</Link></li>
-                                                    <li><Link to="">صندل زنانه</Link></li>
-                                                    <li><Link to="">دمپایی</Link></li>
-                                                    <li><Link to="">کوله پشتی</Link></li>
-                                                    <li><Link to="">ساک دستی</Link></li>
-                                                    <li><Link to="">ساک ورزشی</Link></li>
-                                                    <li><Link to="">کتونی</Link></li>
-                                                    <li><Link to="">کفش ورزشی</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/womenShoes">کفش زنانه</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/WomenSandals">صندل زنانه</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/womenSlippers">دمپایی</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/womenbackpack">کوله پشتی</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/womenHandLuggage">ساک دستی</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/womenSportBag">ساک ورزشی</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/womensneakers">کتونی</Link></li>
+                                                    <li><Link to="/products/women/bagsAndShoes/womenSportShoes">کفش ورزشی</Link></li>
                                                 </ul>
                                             </li>
-                                            <li><Link to="">اکسسوری
+                                            <li><Link to="/products/women/womenAccessory">اکسسوری
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">جوراب</Link></li>
-                                                    <li><Link to="">کلاه</Link></li>
-                                                    <li><Link to="">کمربند</Link></li>
+                                                    <li><Link to="/products/women/womenAccessory/womenSocks">جوراب</Link></li>
+                                                    <li><Link to="/products/women/womenAccessory/womenHat">کلاه</Link></li>
+                                                    <li><Link to="/products/women/womenAccessory/womenBelt">کمربند</Link></li>
                                                 </ul>
                                             </li>
-                                            <li><Link to="">حراج
+                                            <li><Link to="/products/women/womenOnSale">حراج
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="">تک ساز</Link></li>
+                                                    <li><Link to="/products/women/womenOnSale/SingleInstrument">تک ساز</Link></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -181,8 +181,8 @@ class Menu extends Component {
                             </div>
                         </li>
                         <li><Link to="/">صفحه ی اصلی</Link></li>
-                        <li><Link to="aboutus">درباره ی ما</Link></li>
-                        <li><Link to="contactus">تماس با ما</Link></li>
+                        <li><Link to="/aboutus">درباره ی ما</Link></li>
+                        <li><Link to="/contactus">تماس با ما</Link></li>
                     </ul>
                 </nav>
                 <div className="menu__container"></div>

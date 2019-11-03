@@ -4,6 +4,7 @@ import { tabelHeader } from './../../staticData/account';
 import { fetchCarts, removeCarts } from './../../actions/detailsPageActions';
 import Loader from './../loader'
 import { cartLoader } from '../../actions/accountPageAction';
+import convertNumbersPersian from '../../staticData/utilities/convertNumbersPersian';
 // icon
 
 
@@ -57,7 +58,7 @@ class MainCart extends Component {
                                 <button className="btn buyButton">تکمیل سبد خرید</button>
                                 <button className="btn updateButton">بروز رسانی سبد خرید</button>
                                 <button className="btn offButton">اعمال کد تخفیف</button>
-                                <span className="btn totalButton">{`جمع کل مبلغ پرداختی 135000 تومان`}</span>
+                                <span className="btn totalButton">{`جمع کل مبلغ پرداختی ${convertNumbersPersian(135000)} تومان`}</span>
                             </div>
                         )
                     }
@@ -90,7 +91,7 @@ const TableBody = ({ values,removeCart }) => {
                 />
             </td>{' '}
             {/* show link */}
-            <td>{values.price} تومان</td>
+            <td>{convertNumbersPersian(values.price)} تومان</td>
             <td>
                 {values.isExist ? (
                     <span className="exist">موجود</span>
@@ -112,11 +113,11 @@ const TableBody = ({ values,removeCart }) => {
                         </div>
                         <div>
                             <span>سایز: </span>
-                            <span>{values.size}</span>
+                            <span>{convertNumbersPersian(values.size)}</span>
                         </div>
                         <div>
                             <span>تعداد: </span>
-                            <span>{values.count}</span>
+                            <span>{convertNumbersPersian(values.count)}</span>
                         </div>
                     </div>
                 </div>

@@ -34,11 +34,6 @@
         flex:0 1 100%;
     }
 }
-@include respond(phone) {
-    .header__margin {
-        margin-bottom: 55px !important;
-    }
-}
 
 
 

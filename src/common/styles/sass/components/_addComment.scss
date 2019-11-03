@@ -2,6 +2,10 @@
     display: flex;
     justify-content: center;
     &__container {
+        @include respond(phone) {
+            width: 100%;
+            margin: 2rem;
+        }
         width: 50rem;
         background-color: white;
         box-shadow: 0 12px 12px 0 hsla(0, 0%, 71%, 0.1);

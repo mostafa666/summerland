@@ -67,6 +67,9 @@ function Footer(props) {
                             </ul>
                         </div>
                     </div>
+                    <div className="footer__body--item">
+                        <img src={telegram} alt="" style={{width:"120px"}} />
+                    </div>
                 </div>
                 <div className="footer__copyWrite">
                     <p>© 2019 تمامی حقوق متعلق به خرید اینترنتی | فروشگاه آنلاین سامرلند می‌باشد.</p>

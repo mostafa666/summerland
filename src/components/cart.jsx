@@ -30,7 +30,6 @@ class Cart extends Component {
         const style = {
             display: carts.length> 1?'block':'none'
         }
-        console.log(carts);
         return (
             <MenuContainer toggle={this.props.state.global.toggleShowCart} >
                 <h2 className="cart__title">سبد خرید</h2>

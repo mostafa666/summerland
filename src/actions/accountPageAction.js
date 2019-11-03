@@ -56,6 +56,10 @@ export const removeThisWishLists = (id,nickname,token) => {
             "token":token
         }) 
             .then(res => {
+                dispatch(removeThisWishList(id));
+                toast.success('با موفقیت از لیست علاقه مندیها حدف شد', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
             })
             .catch(error => {
                 if(error.response && error.response.status === 401) {

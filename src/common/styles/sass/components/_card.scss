@@ -1,219 +1,309 @@
-.card__product {
+.card {
+  width: 25%;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 14px 28px rgba(122, 122, 122, 0.25),
-    0 10px 10px rgba(122, 122, 122, 0.22);
+  transition: all 0.4s;
+  display: inline-block;
+  border: 1px solid transparent;
   position: relative;
-  margin: 0.9rem;
-  height: 410px;
-  -webkit-box-flex: 1;
-  -ms-flex: 1 0 23%;
-  flex: 1 0 23%;
-  max-width: 23%;
-
-  &.special_offer {
-    border-top: 2px solid rgb(255, 40, 57);
+  z-index: 2;
+  padding-top: 1rem;
+  @include respond(tab-lan) {
+    width: 33.333%;
   }
-
-  &__special_offer {
-    height: 32px;
-    color: rgb(255, 40, 57);
-    font-size: 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+  @include respond(tab-port) {
+    width: 50%;
   }
-
-  &__title {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
-    z-index: 2;
-    text-decoration: none;
-
-    &::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-    }
-
-    // TODO typo
-    font-size: 1.4rem;
-    padding: 14px;
-    color: $color-text-1;
-    font-weight: 400;
+  @include respond(phone) {
+    width: 100%;
   }
-
-  &__img_box {
-    height: 150px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding-top: 10px;
-    height: 200px;
-    position: relative;
-
-    &__img {
-      max-width: 100%;
-      max-height: 100%;
-      -o-object-fit: contain;
-      object-fit: contain;
-      overflow: hidden;
-    }
-  }
-
-  &__shipping_icon {
-    width: 3rem;
-    height: 3rem;
-    background: url(../images/shippment.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
+  &__offer {
+    width: 4.5rem;
     position: absolute;
-    top: 2.5rem;
-    right: 2rem;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.2s linear;
+    top: 0;
+    left: 0;
+    fill: #fb3449;
   }
-
-  &__size {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 8px;
-
-    &--single {
-      border: 1px solid gray;
-      margin: 2px;
-      padding: 5px;
-    }
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f5f5f5;
+    transform: scale(1.01);
+    z-index: 3;
   }
-
-  &__price {
+  &__container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    direction: rtl;
-    text-align: end;
-    margin-top: auto;
-    margin-bottom: 16px;
-
-    // TODO typo
-    font-size: 1.4rem;
-
-    &--del {
-      font-size: 1.5rem;
-      margin-bottom: -10px;
-      margin-right: -10%;
-      color: $color-text-1;
-    }
-
-    &.dis {
-      flex-direction: column;
-
-      & div {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+    flex-direction: column;
+    & > a {
+      text-align: center;
+      & > img {
+        width: 100%;
       }
     }
-
-    &--amount {
-      padding: 4px;
-      font-size: 2.3rem;
-      font-weight: 600;
+    &--content {
+      padding: 2rem;
+      padding-top: 1rem;
+      .cardHeader {
+        margin-bottom: 1rem;
+        a {
+          color: $color-grey1;
+          font-size: 1.2rem;
+          text-decoration: none;
+          &:hover {
+            color: $color-blue;
+          }
+        }
+      }
+      .cardPrice {
+        display: flex;
+        flex-direction: column;
+        min-height: 5rem;
+        & * {
+          direction: ltr;
+        }
+        span {
+          display: inline-block;
+        }
+        .offer {
+          padding: 0 0.5rem;
+          color: white;
+          background-color: #fb3449;
+          font-size: 1.6rem;
+          border-radius: 1.5rem;
+          margin-right: 0.5rem;
+        }
+        .oldPrice {
+          font-size: 1.4rem;
+          color: $color-grey3;
+        }
+        .newPrice {
+          font-size: 2rem;
+          color: #222;
+        }
+        .toman {
+          font-size: 1.6rem;
+          color: #666;
+          margin-right: 0.5rem;
+        }
+      }
     }
-
-    &--currency {
-      font-size: 1rem;
-      font-weight: 300;
-    }
-  }
-
-  &__color {
-    display: flex;
-    position: absolute;
-    margin: 8px;
-
-    &--item {
-      margin: 2px;
-      border-radius: 4px;
-      width: 10px;
-      height: 15px;
-      transform: skewX(-40deg);
-    }
-  }
-
-  &__status {
-    position: absolute;
-    &.lst {
-      color: white;
-      font-weight: bold;
-      font-size: 9px;
-      right: 5px;
-      top: 5px;
-      padding: 4px 3px;
-      background: red;
-      text-align: center;
-      border-radius: 3px;
-    }
-
-    &.unavil {
-      width: 100%;
-      height: 100%;
-      background-color: rgba(128, 128, 128, 0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1.3rem;
-    }
-  }
-
-  &__stroke_line {
-    position: absolute;
-    z-index: 1;
-
-    &._1 {
-      top: 30px;
-      left: 10px;
-    }
-    &._2 {
-      bottom: 10px;
-      right: 10px;
-    }
-
-    &__path {
-      stroke: $color-blue-bright;
-      stroke-width: 0.3;
-      transition: stroke-width 0.4s ease;
-    }
-  }
-  &:hover .stroke__anim-v3 {
-    animation: stroke_anim 4s 0.5s ease-in-out infinite;
-  }
-  &:hover &__stroke_line__path {
-    stroke-width: 1;
-  }
-  &:hover &__shipping_icon {
-    opacity: 1;
   }
 }
+
+// .card__product {
+//   background-color: white;
+//   display: flex;
+//   flex-direction: column;
+//   border-radius: 15px;
+//   overflow: hidden;
+//   box-shadow: 0 14px 28px rgba(122, 122, 122, 0.25),
+//     0 10px 10px rgba(122, 122, 122, 0.22);
+//   position: relative;
+//   margin: 0.9rem;
+//   height: 410px;
+//   -webkit-box-flex: 1;
+//   -ms-flex: 1 0 23%;
+//   flex: 1 0 23%;
+//   max-width: 23%;
+
+//   &.special_offer {
+//     border-top: 2px solid rgb(255, 40, 57);
+//   }
+
+//   &__special_offer {
+//     height: 32px;
+//     color: rgb(255, 40, 57);
+//     font-size: 1.6rem;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     z-index: 1;
+//   }
+
+//   &__title {
+//     text-align: center;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     padding: 8px;
+//     z-index: 2;
+//     text-decoration: none;
+
+//     &::after {
+//       content: "";
+//       position: absolute;
+//       width: 100%;
+//       height: 100%;
+//       cursor: pointer;
+//       top: 0;
+//       left: 0;
+//     }
+
+//     // TODO typo
+//     font-size: 1.4rem;
+//     padding: 14px;
+//     color: $color-text-1;
+//     font-weight: 400;
+//   }
+
+//   &__img_box {
+//     height: 150px;
+//     display: -webkit-box;
+//     display: -ms-flexbox;
+//     display: flex;
+//     -webkit-box-align: center;
+//     -ms-flex-align: center;
+//     align-items: center;
+//     -webkit-box-pack: center;
+//     -ms-flex-pack: center;
+//     justify-content: center;
+//     padding-top: 10px;
+//     height: 200px;
+//     position: relative;
+
+//     &__img {
+//       max-width: 100%;
+//       max-height: 100%;
+//       -o-object-fit: contain;
+//       object-fit: contain;
+//       overflow: hidden;
+//     }
+//   }
+
+//   &__shipping_icon {
+//     width: 3rem;
+//     height: 3rem;
+//     background: url(../images/shippment.svg);
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     position: absolute;
+//     top: 2.5rem;
+//     right: 2rem;
+//     z-index: 1;
+//     opacity: 0;
+//     transition: opacity 0.2s linear;
+//   }
+
+//   &__size {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     align-items: center;
+//     margin: 8px;
+
+//     &--single {
+//       border: 1px solid gray;
+//       margin: 2px;
+//       padding: 5px;
+//     }
+//   }
+
+//   &__price {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     direction: rtl;
+//     text-align: end;
+//     margin-top: auto;
+//     margin-bottom: 16px;
+
+//     // TODO typo
+//     font-size: 1.4rem;
+
+//     &--del {
+//       font-size: 1.5rem;
+//       margin-bottom: -10px;
+//       margin-right: -10%;
+//       color: $color-text-1;
+//     }
+
+//     &.dis {
+//       flex-direction: column;
+
+//       & div {
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: center;
+//         align-items: center;
+//       }
+//     }
+
+//     &--amount {
+//       padding: 4px;
+//       font-size: 2.3rem;
+//       font-weight: 600;
+//     }
+
+//     &--currency {
+//       font-size: 1rem;
+//       font-weight: 300;
+//     }
+//   }
+
+//   &__color {
+//     display: flex;
+//     position: absolute;
+//     margin: 8px;
+
+//     &--item {
+//       margin: 2px;
+//       border-radius: 4px;
+//       width: 10px;
+//       height: 15px;
+//       transform: skewX(-40deg);
+//     }
+//   }
+
+//   &__status {
+//     position: absolute;
+//     &.lst {
+//       color: white;
+//       font-weight: bold;
+//       font-size: 9px;
+//       right: 5px;
+//       top: 5px;
+//       padding: 4px 3px;
+//       background: red;
+//       text-align: center;
+//       border-radius: 3px;
+//     }
+
+//     &.unavil {
+//       width: 100%;
+//       height: 100%;
+//       background-color: rgba(128, 128, 128, 0.1);
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       font-weight: bold;
+//       font-size: 1.3rem;
+//     }
+//   }
+
+//   &__stroke_line {
+//     position: absolute;
+//     z-index: 1;
+
+//     &._1 {
+//       top: 30px;
+//       left: 10px;
+//     }
+//     &._2 {
+//       bottom: 10px;
+//       right: 10px;
+//     }
+
+//     &__path {
+//       stroke: $color-blue-bright;
+//       stroke-width: 0.3;
+//       transition: stroke-width 0.4s ease;
+//     }
+//   }
+//   &:hover .stroke__anim-v3 {
+//     animation: stroke_anim 4s 0.5s ease-in-out infinite;
+//   }
+//   &:hover &__stroke_line__path {
+//     stroke-width: 1;
+//   }
+//   &:hover &__shipping_icon {
+//     opacity: 1;
+//   }
+// }

@@ -20,7 +20,7 @@ class AccountMenu extends Component {
                 target:'profile'
             },
             {
-                text: 'سفارش ها',
+                text: 'سبد خرید',
                 source: orderIcon,
                 id: 2,
                 className: '',

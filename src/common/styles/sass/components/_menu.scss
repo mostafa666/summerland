@@ -55,7 +55,7 @@
         // visibility: hidden;
         background-color: rgba(0, 0, 0, 0.1);
         position: fixed;
-        top: 0;
+        top: -40px;
         right: 0;
         z-index: 10000;
         transition: all 0.3s;
@@ -73,6 +73,9 @@
         & > li:first-child {
             padding-right: 2rem;
             & > svg {
+                @include respond(phone) {
+                    display: none;
+                }
                 fill: $color-grey1;
                 width: 1.9rem;
                 margin-left: 0.5rem;
@@ -97,16 +100,17 @@
                 text-decoration: none;
             }
             &:hover > div {
-                @include respond(phone) {
-                    top: 0;
-                    height: auto;
-                }
+                
                 
                 @include respond(tab-land) {
                     top: 52px;
                 }    
                 @include respond(tab-port) {
                     top: 46px;
+                }
+                @include respond(phone) {
+                    top: 0;
+                    height: auto;
                 }
                 visibility: visible;
                 top: 58px;

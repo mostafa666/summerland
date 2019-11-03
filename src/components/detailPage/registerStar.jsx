@@ -51,13 +51,13 @@ const addSelected = (e,id) => {
         }
     })
     e.target.classList.add('selected');
-    [].forEach.call(e.target.parentNode.childNodes,function(li,index) {
+    [].forEach.call(e.target.parentNode.childNodes,async function(li,index) {
         if(li === e.target) {
             console.log();
             try {
                 const token = localStorage.getItem('token');
                 const nickname = localStorage.getItem('nickname');
-                axios.post(config.api_send_star,{ 
+                await axios.post(config.api_send_star,{ 
                     "id":id , 
                     "star": 5 - index,
                     "token": token,

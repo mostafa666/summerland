@@ -11,6 +11,7 @@ import off from './../../common/images/off.svg'
 import freeDelivery from './../../common/images/freeDelivery.svg'
 import express from './../../common/images/express.svg'
 import { toast } from 'react-toastify';
+import convertNumbersPersian from '../../staticData/utilities/convertNumbersPersian';
 
 function GeneralSpecification({title,price, offer, starAverage,starCount,views,dispatch,productId,productType,serial}) {
     return (
@@ -20,13 +21,13 @@ function GeneralSpecification({title,price, offer, starAverage,starCount,views,d
                     <h3 className="specification__general--title">
                         {title}
                     </h3>
-                    <span className="specification__general--serial">کدمحصول: {serial}</span>
+                    <span className="specification__general--serial">کدمحصول: {convertNumbersPersian(serial)}</span>
                     <div className="specification__general--price--box">
                         <span className="specification__general--newPrice">
-                            {offer} <span> تومان</span>
+                            {convertNumbersPersian(offer)} <span> تومان</span>
                         </span>
                         <span className="specification__general--price">
-                            {price} <span> تومان</span>
+                            {convertNumbersPersian(price)} <span> تومان</span>
                         </span>
                     </div>
                     <h3 className="specification__existGoods--header">کالاهای موجود</h3>
@@ -34,9 +35,9 @@ function GeneralSpecification({title,price, offer, starAverage,starCount,views,d
                         Array.isArray(productType)? productType.map(data => (
                             <ExistGoods
                                 key={data.id}
-                                color={data.colorParent}
+                                color={convertNumbersPersian(data.colorParent)}
                                 hexColor={data.color}
-                                size={data.size}
+                                size={convertNumbersPersian(data.size)}
                                 numbers={data.count}
                                 pattern={data.pattern}
                             />
@@ -46,12 +47,12 @@ function GeneralSpecification({title,price, offer, starAverage,starCount,views,d
                 </div>
                 <div className="specification__left">
                     <div className="top">
-                        <span>{starCount} نفر</span>
+                        <span>{convertNumbersPersian(starCount)} نفر</span>
                         <Stars voteNumber={starAverage} />
                     </div>
                     <div className="bottom">
                         <div className="views">
-                            <span>{views}</span>
+                            <span>{convertNumbersPersian(views)}</span>
                             <svg 
                                 viewBox="0 0 442.04 442.04" >
                                 <g>
@@ -120,36 +121,60 @@ function GeneralSpecification({title,price, offer, starAverage,starCount,views,d
         </div>
     );
 }
-const addWish = (e,dispatch,productId) => {
+const addWish = async (e,dispatch,productId) => {
     const token = localStorage.getItem('token');
     const nickname = localStorage.getItem('nickname');
     if(!token || !nickname) {
         dispatch(toggleSignin());
     }else {
         if(!e.target.classList.contains('activeHeart')) {
+            // add wishlist
+            try {
+                await axios.post(config.api_add_WishList, {
+                    "token":token,
+                    "nickname":nickname, 
+                    "productId": productId
+                })
+                toast.success('با موفقیت به لیست علاقه مندیها اضافه شد', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
             e.target.classList.add('activeHeart');
             e.target.parentNode.classList.add('activesvgHeart');
-            // add wishlist
-            axios.post(config.api_add_WishList, {
-                "token":token,
-                "nickname":nickname, 
-                "productId": productId
-            })
-            toast.success('با موفقیت به لیست علاقه مندیها اضافه شد', {
+            }catch(error) {
+                if(error.response && error.response.status === (401 || 404 || 400)) {
+                    toast.error('شما دسترسی به این قسمت را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خودرا چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
+            }
+        }else { 
+            try {
+                await axios.post(config.api_remove_WishList, {  
+                    "token":token, 
+                    "nickname":nickname,
+                    "productId" : productId
+                })
+                toast.success('با موفقیت از لیست علاقه مندیها حدف شد', {
                     position: toast.POSITION.BOTTOM_LEFT
                   })
-        }else { 
-            // remove wishlist
-            e.target.classList.remove('activeHeart');
-            e.target.parentNode.classList.remove('activesvgHeart');
-            axios.post(config.api_remove_WishList, {  
-                "token":token, 
-                "nickname":nickname,
-                "productId" : productId
-            })
-            toast.success('با موفقیت از لیست علاقه مندیها حدف شد', {
-                position: toast.POSITION.BOTTOM_LEFT
-              })
+                  // remove wishlist
+                e.target.classList.remove('activeHeart');
+                e.target.parentNode.classList.remove('activesvgHeart');
+            }catch(error) {
+                if(error.response && error.response.status === (401 || 404 || 400)) {
+                    toast.error('شما دسترسی به این قسمت را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خودرا چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
+            }
         }
     }
     
@@ -166,7 +191,7 @@ const ExistGoods = ({ color, hexColor, size, numbers,pattern }) => {
         text = `موجود`;
         textClassName = 'specification__existGoods--numbers1';
     } else {
-        text = ` ${numbers} عدد`;
+        text = ` ${convertNumbersPersian(numbers)} عدد`;
         textClassName = 'specification__existGoods--numbers2';
     }
     return (

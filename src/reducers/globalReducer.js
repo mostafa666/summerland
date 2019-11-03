@@ -1,4 +1,4 @@
-import { TOGGLESIGNIN, SHOWLOADERINDETAILS, TOGGLESHOWCART, USERTOGGLEBOX, TOGGLEMOBILEMENU } from "../actions/types";
+import { TOGGLESIGNIN, SHOWLOADERINDETAILS, TOGGLESHOWCART, USERTOGGLEBOX, TOGGLEMOBILEMENU, SETSEARCHVALUE, FETCHSEARCHDATA } from "../actions/types";
 import { TOGGLELOADERCARTMENU, SETSCREENSIZE } from './../actions/types';
 
 const initialState = {
@@ -8,7 +8,9 @@ const initialState = {
     toggleLoaderCartMenu: false,
     userToggleBox:false,
     toggleMobileMenu:false,
-    screenSize: 0
+    screenSize: 0,
+    searchValue:'',
+    searchData:''
 }
 
 export default (state=initialState, action) => {
@@ -52,6 +54,16 @@ export default (state=initialState, action) => {
             return {
                 ...state,
                 screenSize:action.size
+            }
+        case SETSEARCHVALUE:
+            return {
+                ...state,
+                searchValue: action.value
+            }
+        case FETCHSEARCHDATA:
+            return {
+                ...state,
+                searchData:action.value
             }
 
         default: 

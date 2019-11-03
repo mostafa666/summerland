@@ -11,6 +11,7 @@ import {
 
 
 import { addCart } from './../../actions/detailsPageActions';
+import convertNumbersPersian from '../../staticData/utilities/convertNumbersPersian';
 
 class OrderSpecification extends Component {
     componentDidMount() {
@@ -48,18 +49,14 @@ class OrderSpecification extends Component {
     };
     handleAddCart = async e => {
         e.preventDefault();
-        console.log(e.target);
+        let newSize;
         let isColor = false;
         const {id, dispatch} = this.props;
         const token = localStorage.getItem('token');
         const nickname = localStorage.getItem('nickname');
         const defaultsize = e.target.setSize.childNodes[0].value;
-        // const defaultColor = e.target.colors;
-        const {size} = this.props.state.detalPage.cart;
-        if(!size) {
-            dispatch(selectedSize(defaultsize));
-        }
-        const {size:newSize,color,count} = this.props.state.detalPage.cart;
+        const {color} = this.props.state.detalPage.cart;
+        
         if(!color) {
             dispatch(addErrorInCart(true,'لطفا سایز مورد نطر را انتخاب کنید'));
             return;
@@ -67,9 +64,21 @@ class OrderSpecification extends Component {
         if(color) {
             dispatch(addErrorInCart(false,'لطفا سایز مورد نطر را انتخاب کنید'));
         }
+
+        const {size,count} = this.props.state.detalPage.cart;
+        
+        
+        if(!size) {
+            dispatch(selectedSize(defaultsize));
+            newSize = defaultsize;
+        }else {
+            newSize = size;
+        }
+
         if(!color.includes('/')) isColor = true;
         // add in cart
         // send to backend
+        console.log(this.props.state.detalPage.cart,newSize)
         await dispatch(addCart(token,nickname,id,count,newSize,color,isColor));
     };
     animationButton = e => {
@@ -175,7 +184,7 @@ const SetNumbers = ({ numbers, handlePlus, handleMines }) => (
         <button type="button" className="plus" onClick={() => handlePlus(numbers)}>
             +
         </button>
-        <span className="numbers">{numbers}</span>
+        <span className="numbers">{convertNumbersPersian(numbers)}</span>
         <button type="button" className="mines" onClick={() => handleMines(numbers)}>
             -
         </button>

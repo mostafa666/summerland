@@ -30,7 +30,8 @@ class DetailPage extends Component {
         dispatch(resetDetailsPageReducer());
         // send request &&  save in store
         // increace prodcut view
-        await Promise.all([dispatch(getDetailsDatas(18)), dispatch(fetchComments(18)),dispatch(increaseView(18))]);
+        dispatch(toggleLoaderDetailspage(true));
+        await Promise.all([dispatch(getDetailsDatas(26)), dispatch(fetchComments(26)),dispatch(increaseView(26))]);
         dispatch(toggleLoaderDetailspage(false));
         
     }

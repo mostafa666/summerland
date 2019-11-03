@@ -1,44 +1,100 @@
-import { TOGGLESIGNIN, SHOWLOADERINDETAILS, TOGGLESHOWCART, TOGGLELOADERCARTMENU, USERTOGGLEBOX, TOGGLEMOBILEMENU, SETSCREENSIZE } from "./types"
-
+import {
+  TOGGLESIGNIN,
+  SHOWLOADERINDETAILS,
+  TOGGLESHOWCART,
+  TOGGLELOADERCARTMENU,
+  USERTOGGLEBOX,
+  TOGGLEMOBILEMENU,
+  SETSCREENSIZE,
+  SETSEARCHVALUE,
+  FETCHSEARCHDATA
+} from "./types";
+import config from "./../config.json";
+import axios from "axios";
 export const toggleSignin = () => {
-    return {
-        type:TOGGLESIGNIN
-    }
-}
+  return {
+    type: TOGGLESIGNIN
+  };
+};
 
-export const toggleLoaderDetailspage = (toggle) => {
-    return {
-        type:SHOWLOADERINDETAILS,
-        toggle
-    }
-}
+export const toggleLoaderDetailspage = toggle => {
+  return {
+    type: SHOWLOADERINDETAILS,
+    toggle
+  };
+};
 export const toggleShowCart = () => {
-    return {
-        type:TOGGLESHOWCART
-    }
-}
+  return {
+    type: TOGGLESHOWCART
+  };
+};
 
-export const toggleLoaderCartMenu = (toggle) => {
-    return {
-        type:TOGGLELOADERCARTMENU,
-        toggle
-    }
-}
+export const toggleLoaderCartMenu = toggle => {
+  return {
+    type: TOGGLELOADERCARTMENU,
+    toggle
+  };
+};
 export const toggleUserBox = () => {
-    return {
-        type:USERTOGGLEBOX
-    }
-}
+  return {
+    type: USERTOGGLEBOX
+  };
+};
 // togg;e mobile menu
 export const toggleMobileMenu = () => {
-    return {
-        type:TOGGLEMOBILEMENU
-    }
-}
+  return {
+    type: TOGGLEMOBILEMENU
+  };
+};
 
-export const setScreenSize = (size) => {
-    return {
-        type:SETSCREENSIZE,
-        size
-    }
-}
+export const setScreenSize = size => {
+  return {
+    type: SETSCREENSIZE,
+    size
+  };
+};
+
+export const setSearchValue = value => {
+  return {
+    type: SETSEARCHVALUE,
+    value
+  };
+};
+
+export const fetchSearchData = value => {
+  return {
+    type: FETCHSEARCHDATA,
+    value
+  };
+};
+export const fetchSearchDatas = (value) => {
+  return dispatch => {
+    return axios
+      .post(config.api_get_search_data, {
+        "title": value
+      })
+      .then(res => {
+        console.log(res.data);
+        dispatch(fetchSearchData(res.data));
+      })
+      .catch(error => {
+        // if(error.response && error.response.status === 403) {
+        //     toast.error('این ایمیل قبلا ثبت نشده است.', {
+        //         position: toast.POSITION.BOTTOM_LEFT
+        //       })
+        // }else if(error.response && error.response.status === 400) {
+        //     toast.error('نام کاربری یا رمز عبور مورد تایید نیست', {
+        //         position: toast.POSITION.BOTTOM_LEFT
+        //       })
+        // }else if(error.response && error.response.status === 401) {
+        //     toast.error('نام کاربری یا رمز عبور اشتباه است', {
+        //         position: toast.POSITION.BOTTOM_LEFT
+        //       })
+        // }else {
+        //     toast.error('لطفا اینترنت خود را چک کنید', {
+        //         position: toast.POSITION.BOTTOM_LEFT
+        //       })
+        // }
+      });
+  };
+};

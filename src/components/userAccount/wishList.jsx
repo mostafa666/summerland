@@ -5,6 +5,7 @@ import { SubmitButton } from '../signup';
 import { Image } from './../signin';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { removeThisWishLists } from './../../actions/accountPageAction';
+import convertNumbersPersian from '../../staticData/utilities/convertNumbersPersian';
 
 class WishList extends Component {
     removeWishList = async (id) => {
@@ -18,14 +19,14 @@ class WishList extends Component {
 
     };
 
-    addToCart = (e, id) => {
-        // add the data with axios in the server
-        // set the color to blue
-        // change the text
-    };
-    removeFromCart = (e, id) => {
+    // addToCart = (e, id) => {
+    //     // add the data with axios in the server
+    //     // set the color to blue
+    //     // change the text
+    // };
+    // removeFromCart = (e, id) => {
 
-    }
+    // }
     render() {
         const { title, size, id, link, imageSource,price,colors,isInCart } = this.props;
         return (
@@ -43,20 +44,21 @@ class WishList extends Component {
                 <div className="wishList__left">
                     <TitleText text={title} />
                     <div>
-                        <span className="wishList__size">سایز: </span>
+                        <span className="wishList__size">سایزهای موجود: </span>
                         <select>
                             <Size sizes={size} />
                         </select>
                     </div>
                     <div className="wishList__size--container">
-                        <span className="wishList__size">رنگ: </span>
+                        <span className="wishList__size">رنگ های موجود: </span>
                         <div>
                             <Color colors={colors} />
                         </div>
                     </div>
-                    <Price price={price} />
+                    <Price price={convertNumbersPersian(price)} />
                 </div>
-                {
+                <Link to="/" className="wishList__addButton">مشاهده ی محصول</Link>
+                {/* {
                     isInCart? (
                         <SubmitButton
                             text="حدف ار سبد خرید"
@@ -72,7 +74,7 @@ class WishList extends Component {
                         type="button"
                     />
                     )
-                }
+                } */}
                 <Image
                     source={cancelIcon}
                     alt="ایکون حدف از علاقه مندی ها"
@@ -87,7 +89,7 @@ class WishList extends Component {
 export const TitleText = ({ text }) => <h3>{text}</h3>;
 
 
-export const Size = ({ sizes }) => sizes.map(size => <option key={size.id}>{size.size}</option>); // change to size
+export const Size = ({ sizes }) => sizes.map(size => <option key={size.id}>{convertNumbersPersian(size.size)}</option>); // change to size
 
 
 export const Color = ({ colors }) => {

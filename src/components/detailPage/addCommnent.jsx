@@ -14,14 +14,14 @@ class AddComment extends Component {
         // is there token
     }
     handleTitle = () => {};
-    handlesubmit = e => {
+    handlesubmit = async e => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         const nickname = localStorage.getItem('nickname');
         const title = e.target.childNodes[0].childNodes[0].value;
         const comment = e.target.comment.value;
         try {
-            axios.post(config.api_send_comment, {
+            await axios.post(config.api_send_comment, {
                 token: token,
                 nickname: nickname,
                 productId: 18,

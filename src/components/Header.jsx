@@ -4,34 +4,52 @@ import logo from './../common/images/logo.jpeg'
 import image from './../common/images/4785514.jpg'
 import search from './../common/images/search.svg'
 import { Link } from 'react-router-dom/cjs/react-router-dom';
-import { toggleSignin, toggleUserBox, toggleShowCart, toggleMobileMenu } from './../actions/globalAction';
+import { toggleSignin, toggleUserBox, toggleShowCart, toggleMobileMenu, setSearchValue, fetchSearchDatas } from './../actions/globalAction';
+import convertNumbersPersian from '../staticData/utilities/convertNumbersPersian';
 class Header extends Component {
     header = React.createRef();
-    
+    searchData = async (e) => {
+        const {dispatch} = this.props;
+        const {value} = e.target;
+        dispatch(setSearchValue(value));
+        // await console.log(e.target)
+        await dispatch(fetchSearchDatas(value)); // value={this.props.state.global.searchValue}
+        
+    }
+    handleSearch = async (e) => {
+        e.preventDefault();
+        const {dispatch} = this.props;
+        const {value} = e.target.searchInput;
+        dispatch(setSearchValue(value));
+        // await console.log(e.target)
+        await dispatch(fetchSearchDatas(value)); // value={this.props.state.global.searchValue}
+    }
     render () {
         return (
             <React.Fragment>
                 <header className="header">
                     <div className="header__top">
                         <div className="header__right">
-                            <button onClick={() => this.props.dispatch(toggleMobileMenu())} className="header__right--toggleMenu">
-                            <svg viewBox="0 0 384.97 384.97" >
-                                <g>
+                            <div className="header__right--logoContainer">
+                                <button onClick={() => this.props.dispatch(toggleMobileMenu())} className="header__right--toggleMenu">
+                                <svg viewBox="0 0 384.97 384.97" >
                                     <g>
-                                        <path d="M12.03,120.303h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03
-                                            c-6.641,0-12.03,5.39-12.03,12.03C0,114.913,5.39,120.303,12.03,120.303z"/>
-                                        <path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03
-                                            S379.58,180.455,372.939,180.455z"/>
-                                        <path d="M372.939,264.667H132.333c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h240.606
-                                            c6.641,0,12.03-5.39,12.03-12.03C384.97,270.056,379.58,264.667,372.939,264.667z"/>
-                                    </g><g></g><g></g><g></g><g></g><g></g><g></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                                </svg>
-                            </button>
-                            <img className="header__right--logo" src={logo} alt="لوگوی سامرلند" title="لوگوی سامرلند" />
-                            <form className="header__right--search">
+                                        <g>
+                                            <path d="M12.03,120.303h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03
+                                                c-6.641,0-12.03,5.39-12.03,12.03C0,114.913,5.39,120.303,12.03,120.303z"/>
+                                            <path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03
+                                                S379.58,180.455,372.939,180.455z"/>
+                                            <path d="M372.939,264.667H132.333c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h240.606
+                                                c6.641,0,12.03-5.39,12.03-12.03C384.97,270.056,379.58,264.667,372.939,264.667z"/>
+                                        </g><g></g><g></g><g></g><g></g><g></g><g></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                    </svg>
+                                </button>
+                                <img className="header__right--logo" src={logo} alt="لوگوی سامرلند" title="سامرلند" />
+                            </div>
+                            <form className="header__right--search" onSubmit={(e) => this.handleSearch(e)}>
                                 <img src={search} alt="آیکن جست و جو"/>
-                                <input type="search" placeholder="جست و جو در مدیسه..." />
-                                <ShowResult />
+                                <input name="searchInput" type="search"  onChange={(e) => this.searchData(e)} placeholder="جست و جو در سامرلند..." />
+                                <ShowResult data={this.props.state.global.searchData} />
                             </form>
                         </div>
                         <div className="header__left">
@@ -52,11 +70,30 @@ class Header extends Component {
         )
     }
 }
-const ShowResult =() => {
+const ShowResult =({data}) => {
     return (
         <div className="showResult">
             <ul>
-                <li>
+                {
+                    Array.isArray(data)? data.map(data=> {
+                        const {categories} = data;
+                        let url = categories.reduce((total,category,index) => {
+                            if(categories.length - 1 === index) return `${total}/${category.title}`
+                            return `${total}/${category.category}`
+                        },'')
+                        console.log(url)
+                        return (
+                            <li key={data.id}>
+                                <Link to={url}>
+                                    <img src={data.image} alt={data.title}/>
+                                    <p>{data.title}</p>
+                                </Link>
+                            </li>
+                        )
+                    }):null
+                }
+                
+                {/* <li>
                     <img src={image} alt={'title'}/>
                     <p>کت مردانه با لیبل سبز رنگ الماسی و گرد</p>
                 </li>
@@ -67,11 +104,7 @@ const ShowResult =() => {
                 <li>
                     <img src={image} alt={'title'}/>
                     <p>کت مردانه با لیبل سبز رنگ الماسی و گرد</p>
-                </li>
-                <li>
-                    <img src={image} alt={'title'}/>
-                    <p>کت مردانه با لیبل سبز رنگ الماسی و گرد</p>
-                </li>
+                </li> */}
             </ul>
         </div>
     )
