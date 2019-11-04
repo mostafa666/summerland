@@ -1,0 +1,13 @@
+.banner__link {
+  display: block;
+  margin: auto;
+  @include contentBox_s1;
+  @include flex_c_c;
+  overflow: hidden;
+  max-width: 95%;
+  margin-top: 5rem;
+
+  & img {
+    display: block;
+  }
+}

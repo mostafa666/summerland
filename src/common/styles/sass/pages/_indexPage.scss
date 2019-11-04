@@ -1,3 +1,131 @@
 .cartContainer {
-    margin-top: 8rem;
+  margin-top: 8rem;
+}
+
+.index__layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px;
+  margin-top: 60px;
+  overflow: hidden;
+  width: 100%;
+  //min-width: 1009px;
+  max-width: 1676px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include rwd(670) {
+    padding: 4px;
+  }
+
+  @include rwd(470) {
+    padding: 2px;
+  }
+
+  &__landing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+
+    &-s1 {
+      display: flex;
+      flex-direction: column;
+      width: 82%;
+
+      @include rwd(824) {
+        width: 100%;
+      }
+    }
+
+    &-s2 {
+      width: 16%;
+      @include flex_c_c;
+      align-items: flex-start;
+
+      @include rwd(824) {
+        display: none;
+      }
+    }
+  }
+
+  &__offers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 520px;
+    align-items: center;
+    justify-content: space-around;
+
+    @include rwd(1290) {
+      height: 470px;
+    }
+
+    @include rwd(900) {
+      height: 450px;
+    }
+
+    &-s1 {
+      width: 16%;
+      @include flex_c_c;
+      height: 100%;
+
+      @include rwd(1240) {
+        width: 19%;
+      }
+      @include rwd(1024) {
+        width: 21%;
+      }
+      @include rwd(880) {
+        width: 24%;
+      }
+      @include rwd(735) {
+        width: 28%;
+      }
+      @include rwd(450) {
+        display: none;
+      }
+    }
+
+    &-s2 {
+      width: 83%;
+      margin-left: -10px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      @include rwd(1240) {
+        width: 80%;
+      }
+      @include rwd(1024) {
+        width: 78%;
+      }
+      @include rwd(880) {
+        width: 75%;
+      }
+      @include rwd(735) {
+        width: 71%;
+      }
+      @include rwd(450) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__categories {
+    @include flex_c_c;
+    width: 100%;
+  }
+
+  &__banner {
+    @include flex_c_c;
+    width: 100%;
+  }
+
+  &__product_slider {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+  }
 }
