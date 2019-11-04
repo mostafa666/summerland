@@ -66,6 +66,7 @@ class ProductsPage extends React.Component {
     let colorParent = null; //red, blue, pink, white
     let minPrice = null; // number
     let maxPrice = null; // number
+    let price = null; // firstPrice, secondPrice, thirdPrice
     let size = null;
     let collection = null; //spring, summer, fall, winter
     let offset = 0; // number
@@ -110,14 +111,19 @@ class ProductsPage extends React.Component {
       size = searchObg.size;
     }
 
-    if (searchObg.minPrice) {
-      if (!isNaN(Number(searchObg.minPrice))) {
-        minPrice = searchObg.minPrice;
-      }
-    }
-    if (searchObg.maxPrice) {
-      if (!isNaN(Number(searchObg.maxPrice))) {
-        maxPrice = searchObg.maxPrice;
+    if (searchObg.price) {
+      if (price === "firstPrice") {
+        minPrice = null;
+        maxPrice = 200000;
+      }else if(price === "secondPrice") {
+        minPrice = 200000;
+        maxPrice = 500000;
+      }else if(price === "thirdPrice") {
+        minPrice = 500000;
+        maxPrice = null;
+      }else {
+        minPrice = null;
+        maxPrice = null;
       }
     }
     if (searchObg.offset) {
@@ -150,7 +156,6 @@ class ProductsPage extends React.Component {
       // this.props.dispatch(productLoader(true));
       // scroll to top
       scroll.scrollToTop();
-      console.log("aaa");
       return true;
     }
     return true;
@@ -164,11 +169,10 @@ class ProductsPage extends React.Component {
     history.push(setLinkUrl(pathname, search, { size: filter.size }));
   };
   onchangePrice = (filter, location, history) => {
-    const { pathname, search } = location;
-    // history.push(setLinkUrl(pathname, search, {
-    //   minPrice: filter.minPrice,
-    //   maxPrice:filter.maxPrice
-    //  }));
+      const { pathname, search } = location;
+      history.push(setLinkUrl(pathname, search, {
+      price: filter.price
+     }));
   };
   onchangeCollection = (filter, location, history) => {
     const { pathname, search } = location;

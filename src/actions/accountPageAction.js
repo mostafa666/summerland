@@ -49,6 +49,7 @@ export const removeThisWishList = (id) => {
     };
 };
 export const removeThisWishLists = (id,nickname,token) => {
+    console.log(id)
     return dispatch => {
         return axios.post(config.api_remove_WishList,{
             "productId":id,

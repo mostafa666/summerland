@@ -160,10 +160,15 @@ export default (state=initialState, action) => {
                     nickname:''
                 },
                 cart: {
-                    size:'',
+                    size:'', 
                     color:'',
                     count:1
-                }
+                },
+                errorInAddCart: {
+                    text:'',
+                    toggleShow:false
+                },
+                carts:[]
             }
         case GETDETAILSDATA:
             return {

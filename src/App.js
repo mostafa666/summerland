@@ -18,7 +18,7 @@ import FilterBox from "./components/filterBox";
 import Signup from "./components/signup";
 import Signin from "./components/signin";
 import { ToastContainer } from "react-toastify";
-import ContactUs from './components/contactUs';
+import ContactUs from "./components/contactUs";
 
 class App extends Component {
   render() {
@@ -33,8 +33,8 @@ class App extends Component {
           <Switch>
             <Route path="/account" component={UserAccountPage} />
             <Route path="/register" component={Register} />
-            <Route path="/details" component={DetailPage} />
-            <Route path="/addComment" component={AddComment} />
+            <Route path="/details/:id" component={DetailPage} />
+            <Route path="/addComment/:id" component={AddComment} />
             <Route path="/products/:grouping1/:grouping2/:grouping3" component={ProductsPage} />
             <Route path="/products/:grouping1/:grouping2" component={ProductsPage} />
             <Route path="/products/:grouping1" component={ProductsPage} />

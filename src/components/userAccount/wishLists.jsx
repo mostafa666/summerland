@@ -41,7 +41,7 @@ class WishLists extends Component {
                                         <WishList
                                             title={wishList.title}
                                             size={wishList.productSizes}
-                                            id={wishList.id}
+                                            id={wishList.productId}
                                             link={wishList.link}
                                             imageSource={wishList.image}
                                             price={wishList.price}

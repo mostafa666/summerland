@@ -6,7 +6,6 @@ import GeneralSpecification from './../detailPage/generalSpecification';
 import SliderFade from './../slider';
 import OrderSpecification from './orderSpecification';
 import Comments from './comments';
-import UserMenu from './../userMenu';
 import { connect } from 'react-redux';
 import {
     resetDetailsPageReducer,
@@ -16,7 +15,6 @@ import {
 } from '../../actions/detailsPageActions';
 import { animateScroll as scroll } from 'react-scroll';
 import Loader from '../loader';
-import Footer from './../footer';
 import { toggleLoaderDetailspage } from '../../actions/globalAction';
 import { SubmitButton } from '../signup';
 import { toggleSignin } from './../../actions/globalAction';
@@ -25,13 +23,14 @@ class DetailPage extends Component {
     slider = React.createRef();
     specification = React.createRef();
     async componentDidMount() {
+        const { id } = this.props.match.params;
         const { dispatch } = this.props;
         // reset store
         dispatch(resetDetailsPageReducer());
         // send request &&  save in store
         // increace prodcut view
         dispatch(toggleLoaderDetailspage(true));
-        await Promise.all([dispatch(getDetailsDatas(26)), dispatch(fetchComments(26)),dispatch(increaseView(26))]);
+        await Promise.all([dispatch(getDetailsDatas(id)), dispatch(fetchComments(id)),dispatch(increaseView(id))]);
         dispatch(toggleLoaderDetailspage(false));
         
     }
@@ -40,7 +39,7 @@ class DetailPage extends Component {
         const token = localStorage.getItem('token');
         if(token) {
             this.props.history.push({
-                pathname: '/addComment'
+                pathname: `/addComment/${this.props.match.params.id}`
             });
             scroll.scrollToTop();
         }else {

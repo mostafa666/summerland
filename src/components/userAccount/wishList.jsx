@@ -9,12 +9,13 @@ import convertNumbersPersian from '../../staticData/utilities/convertNumbersPers
 
 class WishList extends Component {
     removeWishList = async (id) => {
+        console.log(id)
         // copy from object
         const {dispatch} = this.props;
         const token = localStorage.getItem('token');
         const nickname = localStorage.getItem('nickname');
         // remove from store
-        await dispatch(removeThisWishLists(11,nickname,token));
+        await dispatch(removeThisWishLists(id,nickname,token));
         // send with axios => try (catch ==> add the data in the store)
 
     };

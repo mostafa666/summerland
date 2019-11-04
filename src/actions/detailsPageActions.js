@@ -201,8 +201,8 @@ export const getDetailsDatas = productId => {
                 productId: `${productId}`
             })
             .then(res => {
+                console.log(res.data)
                 dispatch(getDetailsData(res.data));
-                dispatch(increaseView(5));
             })
             .catch(error => {
                 throw error;
@@ -217,7 +217,7 @@ export const increaseView = productId => {
                 "productId": `${productId}`
             })
             .then(res => {
-                console.log(res);
+                
             })
             .catch(error => {
                 throw(error)
