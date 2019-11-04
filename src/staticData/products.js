@@ -228,8 +228,7 @@ export const filterPrice = [
     text: "کمتر از 200 هزار تومان",
     name: "name12",
     filter: {
-      minPrice: null,
-      maxPrice: 200000
+      price: "firstPrice"
     },
     value: "firstPrice"
   },
@@ -238,8 +237,7 @@ export const filterPrice = [
     text: "بین 200هزار تا 500هزارتومان",
     name: "name12",
     filter: {
-      minPrice: 200000,
-      maxPrice: 500000
+      price: "secondPrice"
     },
     value: "secondPrice"
   },
@@ -248,8 +246,7 @@ export const filterPrice = [
     text: "بیشتر از 500 هزار تومان",
     name: "name12",
     filter: {
-      minPrice: 500000,
-      maxPrice: null
+      price: "thirdPrice"
     },
     value: "thirdPrice"
   }
@@ -258,7 +255,7 @@ export const filterCollection = [
   {
     id: "check3111",
     text: "بهاره",
-    name: "name12",
+    name: "name1234",
     filter: {
       collection: "spring"
     },
@@ -267,7 +264,7 @@ export const filterCollection = [
   {
     id: "check3211",
     text: "تابستانه",
-    name: "name12",
+    name: "name1234",
     filter: {
       collection: "summer"
     },
@@ -276,7 +273,7 @@ export const filterCollection = [
   {
     id: "check3311",
     text: "پاییزه",
-    name: "name12",
+    name: "name1234",
     filter: {
       collection: "fall"
     },
@@ -285,7 +282,7 @@ export const filterCollection = [
   {
     id: "check33411",
     text: "زمستانه",
-    name: "name12",
+    name: "name1234",
     filter: {
       collection: "winter"
     },

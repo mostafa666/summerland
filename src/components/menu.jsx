@@ -80,10 +80,10 @@ class Menu extends Component {
                                             <SvgIcon className="menu__arrow--bottom" viewBox="0 0 129 129" d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" /> 
                                             </Link>
                                                 <ul className="third">
-                                                    <li><Link to="/products/men/MensBagsAndShoes/MensCollege">کالج مردانه</Link></li>
-                                                    <li><Link to="/products/men/MensBagsAndShoes/sneakers">کتونی</Link></li>
-                                                    <li><Link to="/products/men/MensBagsAndShoes/backpack">کوله پشتی</Link></li>
-                                                    <li><Link to="/products/men/MensBagsAndShoes/sportsBag">ساک ورزشی</Link></li>
+                                                    <li><Link to="/products/men/mensBagsAndShoes/mensCollege">کالج مردانه</Link></li>
+                                                    <li><Link to="/products/men/mensBagsAndShoes/sneakers">کتونی</Link></li>
+                                                    <li><Link to="/products/men/mensBagsAndShoes/backpack">کوله پشتی</Link></li>
+                                                    <li><Link to="/products/men/mensBagsAndShoes/sportsBag">ساک ورزشی</Link></li>
                                                 </ul>
                                             </li>
                                             <li><Link to="/products/men/menAccessory">اکسسوری

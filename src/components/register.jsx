@@ -101,8 +101,8 @@ class Register extends Component {
         }
         return true;
     }
-    toggleRemember = () => {
-            console.log('aaa')
+    toggleRemember = (filter, location, history) => {
+        console.log('aaa')
     }
     render() {
         const data = [
@@ -112,6 +112,7 @@ class Register extends Component {
                 name:"rememberMe"
             }
         ]
+        const {history, location} = this.props;
         return (
             <div className="register">
                 <ToastContainer />
@@ -146,7 +147,7 @@ class Register extends Component {
                                 className=""
                                 icon={lockIcon}
                             />       
-                            <CheckBox data={data} onchange={this.toggleRemember} />
+                            <CheckBox history={history} location={location} data={data} onchange={this.toggleRemember} />
                             <SubmitButton text="ثبت نام" type="submit" className="btn--blue" onClick={this.animationClick} />
                             <span className="register__registered">قبلاً ثبت نام کرده‌ام <Link to="/signin">ورود</Link></span>
                             {

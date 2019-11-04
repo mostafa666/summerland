@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setLinkUrl } from "../staticData/utilities/setLink";
+import queryString from "query-string";
 
 class FilterBox extends Component {
   render() {
@@ -19,27 +20,32 @@ class FilterBox extends Component {
 }
 
 export const CheckBox = ({ data, onchange, location, history }) => {
-  console.log(data);
+  let { search } = location;
+  let searchObg = queryString.parse(search);
+  let searchValues = Object.values(searchObg);
   return (
     <div>
-      {data.map(data => (
-        <div className="checkbox" key={data.id}>
-          <input
-            onChange={() => onchange(data.filter, location, history)}
-            type="radio"
-            id={data.id}
-            className="checkbox__input"
-            name={data.name}
-            checked={true}
-          />
-          <label htmlFor={data.id} className="checkbox__container">
-            <div className="checkbox__label">
-              <div className="effect" />
-            </div>
-            <span className="checkbox__text">{data.text}</span>
-          </label>
-        </div>
-      ))}
+      {data.map(data => {
+        const checked = searchValues.find(search => search === data.value);
+        return (
+          <div className="checkbox" key={data.id}>
+            <input
+              onChange={() => onchange(data.filter, location, history)}
+              type="radio"
+              id={data.id}
+              className="checkbox__input"
+              name={data.name}
+              checked={checked}
+            />
+            <label htmlFor={data.id} className="checkbox__container">
+              <div className="checkbox__label">
+                <div className="effect" />
+              </div>
+              <span className="checkbox__text">{data.text}</span>
+            </label>
+          </div>
+        );
+      })}
     </div>
   );
 };

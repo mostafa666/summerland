@@ -44,8 +44,6 @@ export const filterProducts = (sortValue, colorParent, minPrice, maxPrice, size,
         sort: sortValue
       })
       .then(res => {
-        console.log(sortValue);
-        console.log(res.data);
         dispatch(fetchProduct(res.data));
       })
       .catch(error => {
