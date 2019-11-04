@@ -3,7 +3,7 @@ import FilterBox from "../filterBox";
 import { filterColor, filterPrice, filterSize, filterCollection } from "../../staticData/products";
 import Card from "./card";
 // import cloth from "./../../common/images/cloth.jpeg";
-import { fetchProducts, productLoader, sorter, setFilter } from "../../actions/productsAction";
+import { fetchProducts, productLoader, sorter, setFilter, toggleFilterBoxs } from "../../actions/productsAction";
 import { connect } from "react-redux";
 import Loader from "./../loader";
 import { filterProducts } from "./../../actions/productsAction";
@@ -14,22 +14,53 @@ import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import convertNumbersPersian from "../../staticData/utilities/convertNumbersPersian";
 import { animateScroll as scroll } from 'react-scroll';
+import { setUrl } from './../../actions/globalAction';
+import closeIcon from './../../common/images/cancel.svg'
 class ProductsPage extends React.Component {
-  componentWillMount() {
+  componentDidUpdate(prevProps, prevState) {
+    console.log("componentDidUpdate")
+    const {dispatch,state} = this.props;
+    const {search,pathname} = state.global;
+    const  {
+      offset,
+      collection,
+      minPrice,
+      maxPrice,
+      colorParent,
+      size,
+      category,
+      sort
+    } = state.products.filter;
+      /**
+      * this is the initial render
+      * without a previous prop change
+      */
+    if(prevProps == undefined) {
+        return false
+    }
+
+    /**
+      * new Project in town ?
+      */
+    if (search != this.props.location.search) {
+      dispatch(productLoader(true));
+      dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
+      dispatch(productLoader(false));
+      dispatch(setUrl(this.props.location.pathname,this.props.location.search));
+      // alert()
+    }
+
+  }
+   componentWillMount() {
     console.log("componentWillmount");
     this.unlisten = this.props.history.listen((location, action) => {
       this.props.dispatch(productLoader(false));
     });
-  }
-  componentWillUnmount() {
-    this.unlisten();
-  }
-  async componentDidMount() {
-    console.log("componentDidMount");
     const { dispatch, state } = this.props;
-    let search = this.props.location.search;
+    let {search, pathname} = this.props.location;
     let searchObg = queryString.parse(search);
     let { params } = this.props.match;
+    dispatch(setUrl(pathname,search));
     // /////////////////////////////////////////////// filter and sort default values
     let sort = null; //cheap-expensive-views-offer
     let colorParent = null; //red, blue, pink, white
@@ -98,7 +129,7 @@ class ProductsPage extends React.Component {
     dispatch(setFilter(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
 
     dispatch(productLoader(true));
-    await dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
+     dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
     dispatch(productLoader(false));
 
     // console.log(userId.grouping2);
@@ -106,6 +137,13 @@ class ProductsPage extends React.Component {
     // if (state.products.data.length > 0) return;
     // await dispatch(fetchProducts());
     // console.log(this.props.state.products.data);
+  }
+  componentWillUnmount() {
+    this.unlisten();
+  }
+  componentDidMount() {
+    console.log("componentDidMount");
+    
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.location !== this.props.location) {
@@ -149,13 +187,27 @@ class ProductsPage extends React.Component {
     return element;
   };
   render() {
+    console.log('renderd')
     const { dispatch, state, location, history } = this.props;
-    const { productsLoader, data, activeSorter } = this.props.state.products;
+    const { productsLoader, data, activeSorter,toggleFilterBox } = this.props.state.products;
+    const style = {
+      transform: toggleFilterBox? 'translateX(0)': 'translateX(100%)'
+    }
+    const fStyle = () => {
+      if (window.innerWidth < 900) {
+        return style;
+      }else {
+        return {
+          transform: 'translateX(0)'
+        }
+      }
+    }
     return (
       <div className="products__container">
         <div className="products">
-          <div className="products__right">
+          <div className="products__right" style={fStyle()}>
             <div className="products__right__filterBox">
+              <img onClick={() => dispatch(toggleFilterBoxs())} src={closeIcon} alt="آیکن بستن"/>
               <FilterBox
                 history={history}
                 location={location}
@@ -198,20 +250,23 @@ class ProductsPage extends React.Component {
 const Sorter = ({ activeSorter, dispatch, state }) => {
   const { pathname, search } = useLocation();
   return (
-    <ul className="sorter">
-      <li className={activeSorter === "offer" ? "activeSorter" : ""}>
-        <Link to={setLinkUrl(pathname, search, { sort: "offer" })}>جدیدترین</Link>
-      </li>
-      <li className={activeSorter === "views" ? "activeSorter" : ""}>
-        <Link to={setLinkUrl(pathname, search, { sort: "views" })}>پربازدیدترین</Link>
-      </li>
-      <li className={activeSorter === "cheap" ? "activeSorter" : ""}>
-        <Link to={setLinkUrl(pathname, search, { sort: "cheap" })}>ارزانترین</Link>
-      </li>
-      <li className={activeSorter === "expensive" ? "activeSorter" : ""}>
-        <Link to={setLinkUrl(pathname, search, { sort: "expensive" })}>گرانترین</Link>
-      </li>
-    </ul>
+      <React.Fragment>
+        <ul className="sorter">
+        <li className={activeSorter === "offer" ? "activeSorter" : ""}>
+          <Link to={setLinkUrl(pathname, search, { sort: "offer" })}>جدیدترین</Link>
+        </li>
+        <li className={activeSorter === "views" ? "activeSorter" : ""}>
+          <Link to={setLinkUrl(pathname, search, { sort: "views" })}>پربازدیدترین</Link>
+        </li>
+        <li className={activeSorter === "cheap" ? "activeSorter" : ""}>
+          <Link to={setLinkUrl(pathname, search, { sort: "cheap" })}>ارزانترین</Link>
+        </li>
+        <li className={activeSorter === "expensive" ? "activeSorter" : ""}>
+          <Link to={setLinkUrl(pathname, search, { sort: "expensive" })}>گرانترین</Link>
+        </li>
+      </ul>
+      <button onClick={() => dispatch(toggleFilterBoxs())}>فیلتر</button>
+    </React.Fragment>
   );
 };
 

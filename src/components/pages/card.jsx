@@ -8,7 +8,7 @@ function Card({ data }) {
     display: data.percentOffer == 100 ? "none" : "inline-block"
   };
   return (
-    <div className="card">
+    <div className="card" title={data.title}>
       <svg style={style} className="card__offer" viewBox="0 0 440.994 440.994">
         <g>
           <g>

@@ -19,6 +19,7 @@ class FilterBox extends Component {
 }
 
 export const CheckBox = ({ data, onchange, location, history }) => {
+  console.log(data);
   return (
     <div>
       {data.map(data => (
@@ -29,6 +30,7 @@ export const CheckBox = ({ data, onchange, location, history }) => {
             id={data.id}
             className="checkbox__input"
             name={data.name}
+            checked={true}
           />
           <label htmlFor={data.id} className="checkbox__container">
             <div className="checkbox__label">

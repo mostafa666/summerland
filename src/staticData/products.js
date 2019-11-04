@@ -143,7 +143,8 @@ export const filterSize = [
     name: "name123",
     filter: {
       size: "S"
-    }
+    },
+    value: "S"
   },
   {
     id: "check5",
@@ -151,7 +152,8 @@ export const filterSize = [
     name: "name123",
     filter: {
       size: "M"
-    }
+    },
+    value: "M"
   },
   {
     id: "check1",
@@ -159,7 +161,8 @@ export const filterSize = [
     name: "name123",
     filter: {
       size: "L"
-    }
+    },
+    value: "L"
   },
   {
     id: "check2",
@@ -167,7 +170,8 @@ export const filterSize = [
     name: "name123",
     filter: {
       size: "XL"
-    }
+    },
+    value: "XL"
   },
   {
     id: "check3",
@@ -175,7 +179,8 @@ export const filterSize = [
     name: "name123",
     filter: {
       size: "XXL"
-    }
+    },
+    value: "XXL"
   }
 ];
 
@@ -186,7 +191,8 @@ export const filterColor = [
     name: "name1",
     filter: {
       colorParent: "red"
-    }
+    },
+    value: "red"
   },
   {
     id: "check22",
@@ -194,7 +200,8 @@ export const filterColor = [
     name: "name1",
     filter: {
       colorParent: "blue"
-    }
+    },
+    value: "blue"
   },
   {
     id: "check23",
@@ -202,7 +209,8 @@ export const filterColor = [
     name: "name1",
     filter: {
       colorParent: "pink"
-    }
+    },
+    value: "pink"
   },
   {
     id: "check24",
@@ -210,7 +218,8 @@ export const filterColor = [
     name: "name1",
     filter: {
       colorParent: "white"
-    }
+    },
+    value: "white"
   }
 ];
 export const filterPrice = [
@@ -221,7 +230,8 @@ export const filterPrice = [
     filter: {
       minPrice: null,
       maxPrice: 200000
-    }
+    },
+    value: "firstPrice"
   },
   {
     id: "check32",
@@ -230,7 +240,8 @@ export const filterPrice = [
     filter: {
       minPrice: 200000,
       maxPrice: 500000
-    }
+    },
+    value: "secondPrice"
   },
   {
     id: "check33",
@@ -239,7 +250,8 @@ export const filterPrice = [
     filter: {
       minPrice: 500000,
       maxPrice: null
-    }
+    },
+    value: "thirdPrice"
   }
 ];
 export const filterCollection = [
@@ -249,7 +261,8 @@ export const filterCollection = [
     name: "name12",
     filter: {
       collection: "spring"
-    }
+    },
+    value: "spring"
   },
   {
     id: "check3211",
@@ -257,7 +270,8 @@ export const filterCollection = [
     name: "name12",
     filter: {
       collection: "summer"
-    }
+    },
+    value: "summer"
   },
   {
     id: "check3311",
@@ -265,7 +279,8 @@ export const filterCollection = [
     name: "name12",
     filter: {
       collection: "fall"
-    }
+    },
+    value: "fall"
   },
   {
     id: "check33411",
@@ -273,6 +288,7 @@ export const filterCollection = [
     name: "name12",
     filter: {
       collection: "winter"
-    }
+    },
+    value: "winter"
   }
 ];

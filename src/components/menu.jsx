@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // icons
-import surface from './../common/images/surface.jpg';
+import surface from './../common/images/menuImage.jpg';
 import logo from './../common/images/logo.jpeg';
 import close from './../common/images/cancel.svg';
 import { Link } from 'react-router-dom/cjs/react-router-dom';

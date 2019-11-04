@@ -10,11 +10,9 @@
   @include respond(tab-lan) {
     width: 33.333%;
   }
-  @include respond(tab-port) {
-    width: 50%;
-  }
+
   @include respond(phone) {
-    width: 100%;
+    width: 50%;
   }
   &__offer {
     width: 4.5rem;

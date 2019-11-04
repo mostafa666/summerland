@@ -1,4 +1,4 @@
-import { FETCHPRODUCTS, SETSORTER, SETFILTERS } from "../actions/types";
+import { FETCHPRODUCTS, SETSORTER, SETFILTERS, TOGGLEFILTERBOX } from "../actions/types";
 import { PRODUCTSLOADER } from "./../actions/types";
 
 const initialState = {
@@ -14,7 +14,8 @@ const initialState = {
     sort: "offer" //cheap-expensive-views-offer
   },
   productsLoader: false,
-  activeSorter: "offer"
+  activeSorter: "offer",
+  toggleFilterBox: false
 };
 
 export default (state = initialState, action) => {
@@ -52,6 +53,12 @@ export default (state = initialState, action) => {
           ...state.filter,
           sort: action.sortvalue
         }
+      };
+    case TOGGLEFILTERBOX:
+      const copy = state.toggleFilterBox;
+      return {
+        ...state,
+        toggleFilterBox: !copy
       };
     default:
       return state;

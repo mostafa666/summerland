@@ -77,6 +77,7 @@ const ShowResult =({data}) => {
                 {
                     Array.isArray(data)? data.map(data=> {
                         const {categories} = data;
+                        if(categories === false) return '';
                         let url = categories.reduce((total,category,index) => {
                             if(categories.length - 1 === index) return `${total}/${category.title}`
                             return `${total}/${category.category}`

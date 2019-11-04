@@ -7,7 +7,8 @@ import {
   TOGGLEMOBILEMENU,
   SETSCREENSIZE,
   SETSEARCHVALUE,
-  FETCHSEARCHDATA
+  FETCHSEARCHDATA,
+  SETURL
 } from "./types";
 import config from "./../config.json";
 import axios from "axios";
@@ -67,14 +68,13 @@ export const fetchSearchData = value => {
     value
   };
 };
-export const fetchSearchDatas = (value) => {
+export const fetchSearchDatas = value => {
   return dispatch => {
     return axios
       .post(config.api_get_search_data, {
-        "title": value
+        title: value
       })
       .then(res => {
-        console.log(res.data);
         dispatch(fetchSearchData(res.data));
       })
       .catch(error => {
@@ -96,5 +96,13 @@ export const fetchSearchDatas = (value) => {
         //       })
         // }
       });
+  };
+};
+
+export const setUrl = (pathname, search) => {
+  return {
+    type: SETURL,
+    pathname,
+    search
   };
 };
