@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import Card from "./Card";
+import Card from "./pages/card";
 
 export default function ProductSlider({ products, title }) {
   const settings = {
@@ -52,8 +52,8 @@ export default function ProductSlider({ products, title }) {
       </div>
       <div className="pad_right_med">
         <Slider {...settings}>
-          {products.map((product, i) => {
-            return <Card props={{ product }} key={i} />;
+          {products.map(product => {
+            return <Card props={product} key={product.productId} />;
           })}
         </Slider>
       </div>

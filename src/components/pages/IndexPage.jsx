@@ -12,7 +12,7 @@ import Banner from "../Banner";
 import ProductSlider from "../ProductSlider";
 
 // static data
-import products from "../../staticData/products";
+import { index } from "../../staticData/products";
 import carouselData from "../../staticData/carouselData";
 import categoriesData from "../../staticData/categoriesData";
 import { indexBanner_1, indexBanner_2 } from "../../staticData/banner";
@@ -38,7 +38,7 @@ export default function IndexPage() {
           <IndexCard discount={30} img={cardImg_1} link="/link" />
         </div>
         <div className="index__layout__offers-s2">
-          <IndexDiscountSlider data={products} />
+          <IndexDiscountSlider data={index.lastProducts} />
         </div>
       </div>
 
@@ -46,17 +46,17 @@ export default function IndexPage() {
         <IndexCategories data={categoriesData} />
       </div>
 
-      <div className="index__layout__product_slider">
+      {/* <div className="index__layout__product_slider">
         <ProductSlider products={products} title="آخرین محصولات" />
-      </div>
+      </div> */}
 
       <div className="index__layout__banner">
         <Banner banner={indexBanner_1} />
       </div>
 
-      <div className="index__layout__product_slider">
+      {/* <div className="index__layout__product_slider">
         <ProductSlider products={products} title="پربازدیدترین ها" />>
-      </div>
+      </div> */}
     </div>
   );
 }

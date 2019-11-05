@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import convertNumbersPersian from "../../staticData/utilities/convertNumbersPersian";
 
 function Card({ data }) {
+  console.log(data);
   const style = {
     display: data.percentOffer == 100 ? "none" : "inline-block"
   };
@@ -69,12 +70,16 @@ function Card({ data }) {
         </div>
         <div className="cardPrice">
           <div style={style}>
-            <span className="offer">٪ {convertNumbersPersian(data.percentOffer)}</span>
+            <span className="offer">
+              ٪ {convertNumbersPersian(data.percentOffer)}
+            </span>
             <del className="oldPrice">{convertNumbersPersian(data.offer)}</del>
           </div>
           <div>
             <span className="toman">تومان</span>
-            <span className="newPrice">{convertNumbersPersian(data.price)}</span>
+            <span className="newPrice">
+              {convertNumbersPersian(data.price)}
+            </span>
           </div>
         </div>
       </div>

@@ -1,8 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
-import Card from "../Card";
+import Card from "../pages/card";
 
 export default function IndexDiscountSlider({ data }) {
+  console.log(data);
   const settings = {
     dots: true,
     infinite: true,
@@ -57,8 +58,8 @@ export default function IndexDiscountSlider({ data }) {
       </div>
       <div className="index__discount_slider slider_ltr">
         <Slider {...settings}>
-          {data.map((product, i) => {
-            return <Card props={{ product }} key={i} />;
+          {data.map(product => {
+            return <Card data={product} key={product.productId} />;
           })}
         </Slider>
       </div>

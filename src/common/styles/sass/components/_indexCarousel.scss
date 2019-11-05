@@ -5,6 +5,7 @@
 
   @include rwd(480) {
     height: 280px;
+    border-radius: 10px;
   }
 
   & .slick-slider {

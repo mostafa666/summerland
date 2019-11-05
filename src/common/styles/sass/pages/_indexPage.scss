@@ -54,16 +54,16 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 520px;
+    height: 530px;
     align-items: center;
     justify-content: space-around;
 
     @include rwd(1290) {
-      height: 470px;
+      height: 500px;
     }
 
     @include rwd(900) {
-      height: 450px;
+      height: 430px;
     }
 
     &-s1 {

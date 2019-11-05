@@ -13,6 +13,7 @@ import UserAccountPage from "./components/userAccount/userAccountPage";
 import UserMenu from "./components/userMenu";
 import Cart from "./components/cart";
 import Menu from "./components/menu";
+import IndexPage from "./components/pages/IndexPage";
 
 import FilterBox from "./components/filterBox";
 import Signup from "./components/signup";
@@ -35,10 +36,17 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/details/:id" component={DetailPage} />
             <Route path="/addComment/:id" component={AddComment} />
-            <Route path="/products/:grouping1/:grouping2/:grouping3" component={ProductsPage} />
-            <Route path="/products/:grouping1/:grouping2" component={ProductsPage} />
+            <Route
+              path="/products/:grouping1/:grouping2/:grouping3"
+              component={ProductsPage}
+            />
+            <Route
+              path="/products/:grouping1/:grouping2"
+              component={ProductsPage}
+            />
             <Route path="/products/:grouping1" component={ProductsPage} />
             <Route path="/contactUs" component={ContactUs} />
+            <Route path="/" component={IndexPage} />
           </Switch>
           <Footer />
         </BrowserRouter>
