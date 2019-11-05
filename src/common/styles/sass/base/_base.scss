@@ -1,58 +1,78 @@
 @font-face {
-    font-family: 'iransans';
-    src: url('./../fonts/IRANYekan.ttf');
+  font-family: "iransans";
+  src: url("./../fonts/IRANYekan.ttf");
 }
 @font-face {
-    font-family: 'roboto';
-    src: url('./../fonts/Roboto-Light.ttf');
+  font-family: "roboto";
+  src: url("./../fonts/Roboto-Light.ttf");
 }
 @font-face {
-    font-family: 'robotoBold';
-    src: url('./../fonts/Roboto-Bold.ttf');
+  font-family: "robotoBold";
+  src: url("./../fonts/Roboto-Bold.ttf");
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    direction: rtl;
-    box-sizing: border-box;
-    font-family: 'iransans';
+  padding: 0;
+  margin: 0;
+  direction: rtl;
+  box-sizing: border-box;
+  font-family: "iransans";
 }
 
 html {
-    font-size: 10px;
-    background-color: rgb(245, 245, 245);
-    @include respond(tab-land) {
-        font-size: 9px;
-    }
-    @include respond(tab-port) {
-        font-size: 8px;
-    }
-    @include respond(phone) {
-        font-size: 8px;
-    }
+  font-size: 10px;
+  background-color: rgb(245, 245, 245);
+  @include respond(tab-land) {
+    font-size: 9px;
+  }
+  @include respond(tab-port) {
+    font-size: 8px;
+  }
+  @include respond(phone) {
+    font-size: 8px;
+  }
 
-    @include respond(big-desktop) {
-        font-size: 12px;
-    }
+  @include respond(big-desktop) {
+    font-size: 12px;
+  }
 }
 
 .rc-pagination-item-link {
+  direction: ltr;
+}
+.rc-pagination-jump-next {
+  direction: ltr;
+}
+.rc-pagination-jump-prev {
+  direction: ltr;
+}
+.slider_ltr {
+  direction: ltr;
+  & * {
     direction: ltr;
-  }
-  .rc-pagination-jump-next {
-    direction: ltr;
-  }
-  .rc-pagination-jump-prev {
-    direction: ltr;
-  }
-  .slider_ltr {
-    direction: ltr;
-    & * {
-      direction: ltr;
-    }
   }
 
-  .Toastify {
-      font-size: 1.4rem;
+  & img {
+    width: 100%;
+    height: auto;
   }
+}
+
+.Toastify {
+  font-size: 1.4rem;
+}
+
+.fade_slider {
+  & .slick-dots {
+    position: initial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+
+    & li {
+      width: 70px;
+      height: 70px;
+    }
+  }
+}

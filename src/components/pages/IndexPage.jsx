@@ -25,7 +25,7 @@ export default function IndexPage() {
     <div className="index__layout">
       <div className="index__layout__landing">
         <div className="index__layout__landing-s1">
-          <IndexCarousel data={carouselData} />
+          <IndexCarousel data={index.slider} />
           <IndexInfoIconText />
         </div>
         <div className="index__layout__landing-s2">
@@ -47,7 +47,7 @@ export default function IndexPage() {
       </div>
 
       {/* <div className="index__layout__product_slider">
-        <ProductSlider products={products} title="آخرین محصولات" />
+        <ProductSlider products={index.lastProducts} title="آخرین محصولات" />
       </div> */}
 
       <div className="index__layout__banner">
@@ -55,7 +55,7 @@ export default function IndexPage() {
       </div>
 
       {/* <div className="index__layout__product_slider">
-        <ProductSlider products={products} title="پربازدیدترین ها" />>
+        <ProductSlider products={index.mostViewProducts} title="پربازدیدترین ها" />>
       </div> */}
     </div>
   );
