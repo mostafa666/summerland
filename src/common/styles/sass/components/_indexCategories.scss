@@ -50,10 +50,11 @@
 
     @include rwd(480) {
       grid-template-rows: repeat(9, 77.5px);
+      width: 95%;
     }
 
     gap: 1.6rem;
-    width: 95%;
+    width: 99%;
     margin: auto;
 
     @include rwd(824) {
