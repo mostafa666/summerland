@@ -20,6 +20,7 @@ import Signup from "./components/signup";
 import Signin from "./components/signin";
 import { ToastContainer } from "react-toastify";
 import ContactUs from "./components/contactUs";
+import NotFounding from "./components/pages/notFound";
 
 class App extends Component {
   render() {
@@ -36,17 +37,12 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/details/:id" component={DetailPage} />
             <Route path="/addComment/:id" component={AddComment} />
-            <Route
-              path="/products/:grouping1/:grouping2/:grouping3"
-              component={ProductsPage}
-            />
-            <Route
-              path="/products/:grouping1/:grouping2"
-              component={ProductsPage}
-            />
+            <Route path="/products/:grouping1/:grouping2/:grouping3" component={ProductsPage} />
+            <Route path="/products/:grouping1/:grouping2" component={ProductsPage} />
             <Route path="/products/:grouping1" component={ProductsPage} />
             <Route path="/contactUs" component={ContactUs} />
-            <Route path="/" component={IndexPage} />
+            <Route path="/" exact component={IndexPage} />
+            <Route path="/notFounding" component={NotFounding} />
           </Switch>
           <Footer />
         </BrowserRouter>

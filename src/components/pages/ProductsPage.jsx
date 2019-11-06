@@ -43,11 +43,18 @@ class ProductsPage extends React.Component {
       * new Project in town ?
       */
     if (search != this.props.location.search) {
+      console.log(offset,
+      collection,
+      minPrice,
+      maxPrice,
+      colorParent,
+      size,
+      category,
+      sort)
       dispatch(productLoader(true));
       dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
       dispatch(productLoader(false));
       dispatch(setUrl(this.props.location.pathname,this.props.location.search));
-      // alert()
     }
 
   }
