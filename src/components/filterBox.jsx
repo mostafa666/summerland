@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setLinkUrl } from "../staticData/utilities/setLink";
 import queryString from "query-string";
 
 class FilterBox extends Component {

@@ -18,19 +18,8 @@ import { setUrl } from './../../actions/globalAction';
 import closeIcon from './../../common/images/cancel.svg'
 class ProductsPage extends React.Component {
   componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate")
     const {dispatch,state} = this.props;
     const {search,pathname} = state.global;
-    const  {
-      offset,
-      collection,
-      minPrice,
-      maxPrice,
-      colorParent,
-      size,
-      category,
-      sort
-    } = state.products.filter;
       /**
       * this is the initial render
       * without a previous prop change
@@ -42,15 +31,19 @@ class ProductsPage extends React.Component {
     /**
       * new Project in town ?
       */
-    if (search != this.props.location.search) {
-      console.log(offset,
-      collection,
+    if (search != this.props.location.search || pathname != this.props.location.pathname) {
+      // /////////////////////////////////////////// set filters value of url
+    let filters = this.setFiltersProducts()
+    const {sort,
+      colorParent,
       minPrice,
       maxPrice,
-      colorParent,
+      price,
       size,
-      category,
-      sort)
+      collection,
+      offset,
+      category
+    } = filters;
       dispatch(productLoader(true));
       dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
       dispatch(productLoader(false));
@@ -59,27 +52,46 @@ class ProductsPage extends React.Component {
 
   }
    componentWillMount() {
-    console.log("componentWillmount");
     this.unlisten = this.props.history.listen((location, action) => {
       this.props.dispatch(productLoader(false));
     });
     const { dispatch, state } = this.props;
-    let {search, pathname} = this.props.location;
-    let searchObg = queryString.parse(search);
-    let { params } = this.props.match;
-    dispatch(setUrl(pathname,search));
-    // /////////////////////////////////////////////// filter and sort default values
-    let sort = null; //cheap-expensive-views-offer
-    let colorParent = null; //red, blue, pink, white
-    let minPrice = null; // number
-    let maxPrice = null; // number
-    let price = null; // firstPrice, secondPrice, thirdPrice
-    let size = null;
-    let collection = null; //spring, summer, fall, winter
-    let offset = 0; // number
-    let category = null;
-
     // /////////////////////////////////////////// set filters value of url
+    let filters = this.setFiltersProducts()
+    const {sort,
+      colorParent,
+      minPrice,
+      maxPrice,
+      price,
+      size,
+      collection,
+      offset,
+      category
+    } = filters;
+    // //////////////////////////////////////////  set values in store
+    dispatch(setFilter(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
+    dispatch(productLoader(true));
+    dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
+    dispatch(productLoader(false));
+  }
+
+  setFiltersProducts = () => {
+      const {dispatch} = this.props;
+      let {search, pathname} = this.props.location;
+      let searchObg = queryString.parse(search);
+      let { params } = this.props.match;
+      dispatch(setUrl(pathname,search));
+      // /////////////////////////////////////////////// filter and sort default values
+      let sort = null; //cheap-expensive-views-offer
+      let colorParent = null; //red, blue, pink, white
+      let minPrice = null; // number
+      let maxPrice = null; // number
+      let price = null; // firstPrice, secondPrice, thirdPrice
+      let size = null;
+      let collection = null; //spring, summer, fall, winter
+      let offset = 0; // number
+      let category = null;
+
     if (Object.keys(params).length > 0) {
       category = Object.values(params)[Object.values(params).length - 1];
     }
@@ -117,15 +129,15 @@ class ProductsPage extends React.Component {
     if (searchObg.size) {
       size = searchObg.size;
     }
-
+    console.log(minPrice,maxPrice,searchObg.price);
     if (searchObg.price) {
-      if (price === "firstPrice") {
+      if (searchObg.price == "firstPrice") {
         minPrice = null;
         maxPrice = 200000;
-      }else if(price === "secondPrice") {
+      }else if(searchObg.price == "secondPrice") {
         minPrice = 200000;
         maxPrice = 500000;
-      }else if(price === "thirdPrice") {
+      }else if(searchObg.price == "thirdPrice") {
         minPrice = 500000;
         maxPrice = null;
       }else {
@@ -138,25 +150,21 @@ class ProductsPage extends React.Component {
         offset = searchObg.offset;
       }
     }
-    // //////////////////////////////////////////  set values in store
-    dispatch(setFilter(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
-
-    dispatch(productLoader(true));
-     dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
-    dispatch(productLoader(false));
-
-    // console.log(userId.grouping2);
-    // console.log(userId);
-    // if (state.products.data.length > 0) return;
-    // await dispatch(fetchProducts());
-    // console.log(this.props.state.products.data);
+    return {
+      sort,
+      colorParent,
+      minPrice,
+      maxPrice,
+      price,
+      size,
+      collection,
+      offset,
+      category
+    }
+    
   }
   componentWillUnmount() {
     this.unlisten();
-  }
-  componentDidMount() {
-    console.log("componentDidMount");
-    
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.location !== this.props.location) {
@@ -198,7 +206,6 @@ class ProductsPage extends React.Component {
     return element;
   };
   render() {
-    console.log('renderd')
     const { dispatch, state, location, history } = this.props;
     const { productsLoader, data, activeSorter,toggleFilterBox } = this.props.state.products;
     const style = {
@@ -263,8 +270,8 @@ const Sorter = ({ activeSorter, dispatch, state }) => {
   return (
       <React.Fragment>
         <ul className="sorter">
-        <li className={activeSorter === "offer" ? "activeSorter" : ""}>
-          <Link to={setLinkUrl(pathname, search, { sort: "offer" })}>جدیدترین</Link>
+        <li className={activeSorter === null ? "activeSorter" : ""}>
+          <Link to={setLinkUrl(pathname, search, { sort: null })}>جدیدترین</Link>
         </li>
         <li className={activeSorter === "views" ? "activeSorter" : ""}>
           <Link to={setLinkUrl(pathname, search, { sort: "views" })}>پربازدیدترین</Link>

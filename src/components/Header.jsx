@@ -79,10 +79,9 @@ const ShowResult =({data}) => {
                         const {categories} = data;
                         if(categories === false) return '';
                         let url = categories.reduce((total,category,index) => {
-                            if(categories.length - 1 === index) return `${total}/${category.title}`
+                            if(categories.length - 1 === index) return `${total}/${category.product}`
                             return `${total}/${category.category}`
                         },'')
-                        console.log(url)
                         return (
                             <li key={data.id}>
                                 <Link to={url}>

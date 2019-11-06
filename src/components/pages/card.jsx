@@ -1,13 +1,13 @@
 import React from "react";
-import image from "./../../common/images/105800619.jpg";
 import { Link } from "react-router-dom";
 import convertNumbersPersian from "../../staticData/utilities/convertNumbersPersian";
+import { setLink } from "../../staticData/utilities/setLink";
 
 function Card({ data }) {
-  console.log(data);
   const style = {
-    display: data.percentOffer == 100 ? "none" : "inline-block"
+    display: data.percentOffer == 0 ? "none" : "inline-block"
   };
+
   return (
     <div className="card" title={data.title}>
       <svg style={style} className="card__offer" viewBox="0 0 440.994 440.994">
@@ -60,26 +60,22 @@ function Card({ data }) {
         <g />
       </svg>
       <div className="card__container">
-        <Link to="/">
+        <Link to={setLink(data)}>
           <img src={data.imageGallery} alt="image1" />
         </Link>
       </div>
       <div className="card__container--content">
         <div className="cardHeader">
-          <Link to="/">{data.title}</Link>
+          <Link to={setLink(data)}>{data.title}</Link>
         </div>
         <div className="cardPrice">
           <div style={style}>
-            <span className="offer">
-              ٪ {convertNumbersPersian(data.percentOffer)}
-            </span>
+            <span className="offer">٪ {convertNumbersPersian(data.percentOffer)}</span>
             <del className="oldPrice">{convertNumbersPersian(data.offer)}</del>
           </div>
           <div>
             <span className="toman">تومان</span>
-            <span className="newPrice">
-              {convertNumbersPersian(data.price)}
-            </span>
+            <span className="newPrice">{convertNumbersPersian(data.price)}</span>
           </div>
         </div>
       </div>

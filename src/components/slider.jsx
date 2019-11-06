@@ -8,6 +8,8 @@ import "./../../node_modules/slick-carousel/slick/slick-theme.scss";
 export default class SliderFade extends Component {
   slider = React.createRef();
   render() {
+    const { images } = this.props;
+    if (!images) return null;
     const settings = {
       dots: true,
       fade: true,
@@ -25,12 +27,11 @@ export default class SliderFade extends Component {
     return (
       <div className="slider_ltr fade_slider" ref={this.slider}>
         <Slider {...settings}>
-          <div>
-            <img src={image1} />
-          </div>
-          <div>
-            <img src={image2} />
-          </div>
+          {images.map(image => (
+            <div key={image.id}>
+              <img src={image.url} alt="عکس لباس" />
+            </div>
+          ))}
         </Slider>
       </div>
     );

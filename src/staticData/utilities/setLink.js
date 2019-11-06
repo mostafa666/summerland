@@ -34,3 +34,27 @@ function makeurl(obj) {
   }
   return s;
 }
+
+export const setLink = data => {
+  // const { categories } = data;
+  // if (categories && Array.isArray(categories)) {
+  //   let url = categories.reduce((total, category, index) => {
+  //     console.log(total);
+  //     if (category.category) return `${total}/${category.category}`;
+  //     else return `${total}/${category.product}`;
+  //   }, "/details");
+  //   return url;
+  // } else {
+  //   return "/";
+  // }
+  const { categories } = data;
+  if (categories && Array.isArray(categories)) {
+    let url = categories.reduce((total, category, index) => {
+      if (category.product) return `${total}/${category.product}`;
+      else return `${total}`;
+    }, "/details");
+    return url;
+  } else {
+    return "/notFounding";
+  }
+};

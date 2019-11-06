@@ -7,12 +7,7 @@ import SliderFade from "./../slider";
 import OrderSpecification from "./orderSpecification";
 import Comments from "./comments";
 import { connect } from "react-redux";
-import {
-  resetDetailsPageReducer,
-  getDetailsDatas,
-  fetchComments,
-  increaseView
-} from "../../actions/detailsPageActions";
+import { resetDetailsPageReducer, getDetailsDatas, fetchComments, increaseView } from "../../actions/detailsPageActions";
 import { animateScroll as scroll } from "react-scroll";
 import Loader from "../loader";
 import { toggleLoaderDetailspage } from "../../actions/globalAction";
@@ -24,18 +19,18 @@ class DetailPage extends Component {
   specification = React.createRef();
   async componentDidMount() {
     const { id } = this.props.match.params;
-    const { dispatch } = this.props;
-    // reset store
-    dispatch(resetDetailsPageReducer());
-    // send request &&  save in store
-    // increace prodcut view
-    dispatch(toggleLoaderDetailspage(true));
-    await Promise.all([
-      dispatch(getDetailsDatas(id)),
-      dispatch(fetchComments(id)),
-      dispatch(increaseView(id))
-    ]);
-    dispatch(toggleLoaderDetailspage(false));
+    const { dispatch, history } = this.props;
+    if (+id) {
+      // reset store
+      dispatch(resetDetailsPageReducer());
+      // send request &&  save in store
+      // increace prodcut view
+      dispatch(toggleLoaderDetailspage(true));
+      await Promise.all([dispatch(getDetailsDatas(id)), dispatch(fetchComments(id)), dispatch(increaseView(id))]);
+      dispatch(toggleLoaderDetailspage(false));
+    } else {
+      history.push("/notFounding");
+    }
   }
 
   goAddComment = () => {
@@ -52,13 +47,15 @@ class DetailPage extends Component {
 
   render() {
     const { data } = this.props.state.detalPage;
+    console.log(data);
+    if (!data) return null;
     return (
       <div className="detailsPage">
         {/* <Loader toggle={this.props.state.global.toggleLoaderDetails} /> */}
         <div className="detailsPage__top">
           <div className="detailsPage__slider" ref={this.slider}>
             <div className="detailsPage__slider--container">
-              <SliderFade />
+              <SliderFade images={data.image} />
             </div>
           </div>
           <div className="detailsPage__specification" ref={this.specification}>
@@ -84,12 +81,7 @@ class DetailPage extends Component {
           </div>
         </div>
         <div className="detailsPage__comments">
-          <SubmitButton
-            text="افزودن نظر"
-            onClick={e => this.goAddComment(e)}
-            className="btn--blue"
-            type="button"
-          />
+          <SubmitButton text="افزودن نظر" onClick={e => this.goAddComment(e)} className="btn--blue" type="button" />
           <Accordeon id="comments" title="نظرات">
             <Comments id={data.id} />
           </Accordeon>
