@@ -21,7 +21,10 @@ export default function IndexCarousel({ data }) {
         {data.map((item, i) => {
           return (
             <div key={i}>
-              <img src={item.imgSrc} alt="slider" />
+              <picture>
+                <source media="(max-width:480px)" srcSet={item.mobile} />
+                <img src={item.desktop} alt="slider" />
+              </picture>
             </div>
           );
         })}
