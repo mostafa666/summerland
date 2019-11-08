@@ -1,0 +1,74 @@
+/* ----------------------------------- panel details  -------------------------------------- */
+
+local : http://localhost/projects/woocommerce/api/v1/register
+
+login panel : http://melkon.ir/panel/wp-admin/ 
+username = aummerland & password = aummerland
+
+database : http://171.22.26.67:2222/CMD_SHOW_DOMAIN?domain=melkon.ir  
+username = lkonir & password = mLlmHcUNs8EQV9
+
+
+/* ----------------------------------- product details  -------------------------------------- */
+
+header -> عنوان محصول -> metapost
+about -> توضیحات محصول -> metapost
+price -> قیمت محصول -> metapost
+offer -> تخفیف محصول -> metapost
+percentOffer -> درصد تخفیف محصول -> metapost
+serial -> شماره سریال محصول -> metapost
+starAverage -> میانگین امتیاز محصول -> metapost
+starSum -> مجموع امتیازات محصول -> metapost
+starCount -> تعداد امتیازات محصول -> metapost
+publishTime -> زمان انتشار محصول -> metapost
+views -> تعدلد بازدید محصول -> metapost
+
+details -> جزئیات محصول -> metapost
+imageGallery -> تصاویر محصول -> metapost
+sellCount -> تعداد فروش محصول -> metapost
+allProductCount -> تعداد محصول برای رنگ -> metapost
+productType -> جزئیات انواع محصول  -> metapost -> شامل : style , colorParent , size , count
+
+/* ----------------------------------- user profile details  -------------------------------------- */
+
+first_name -> نام کوچک کاربر -> metauser
+last_name -> نام خانوادگی کاربر -> metauser
+phone -> شماره تماس کاربر -> metauser
+postCode -> شماره پست کاربر -> metauser
+address -> آدرس کاربر -> metauser
+api_token -> توکن لاگین کابر -> metauser
+wishList -> لیست علاقه مندی های کاربر  -> metauser
+inCart -> سبد خرید کاربر  -> metauser
+user_email ->ایمیل کاربر -> users
+user_nicename , user_login ->   نام کاربری   -> users
+
+
+
+/* ----------------------------------- product comments  -------------------------------------- */
+
+nickname -> نام کاربری -> comments
+productId -> ای دی محصول -> comments
+content -> متن نظر -> comments
+title -> هدر نظر -> metacomments
+date -> تاریخ دادن نظر -> comments
+
+
+/* ----------------------------------- discount  -------------------------------------- */
+
+name -> نام کد تخفیف
+percent -> درصد تخفیف
+day -> تعداد روز تخفیف
+discountStart -> زمان شروع
+discountEnd -> زمان اتمام
+
+
+/* ----------------------------------- contact us form  -------------------------------------- */
+
+name 
+phone
+email
+title 
+content
+
+
+

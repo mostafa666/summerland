@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { tabelHeader } from './../../staticData/account';
 import { fetchCarts, removeCarts } from './../../actions/detailsPageActions';
 import Loader from './../loader'
-import { cartLoader } from '../../actions/accountPageAction';
+import { cartLoader, updateCarts } from '../../actions/accountPageAction';
 import convertNumbersPersian from '../../staticData/utilities/convertNumbersPersian';
+import { offInputToggle } from '../../actions/globalAction';
 // icon
 
 
@@ -15,21 +16,30 @@ class MainCart extends Component {
         this.props.dispatch(cartLoader(true));
         await this.props.dispatch(fetchCarts(token,nickname));
         this.props.dispatch(cartLoader(false));
-        console.log(this.props.state)
+        console.log(this.props.state.detalPage.cats)
     }
     removeCart = async (e,id,productId) => {
-        console.log(e.target);
-        // e.isPropagationStopped = true;
-        // 
         const token = localStorage.getItem('token');
         const nickname = localStorage.getItem('nickname');
         this.props.dispatch(cartLoader(true));
         await this.props.dispatch(removeCarts(token,nickname,productId,id));
         this.props.dispatch(cartLoader(false));
     }
+    buyOrder = () => {
+
+    }
+    updateOrder = (discount) => {
+        const token = localStorage.getItem('token');
+        const nickname = localStorage.getItem('nickname');
+        this.props.dispatch(updateCarts(discount,nickname,token))
+    }
+    offOrder = () => {
+        this.props.dispatch(offInputToggle())
+    }
     render() {
+        const offInput = <input type="text" id="offInput" placeholder="کد تخفیف" />
         const {carts} = this.props.state.detalPage;
-        console.log(carts);
+        const totalPrice = (carts && carts.length > 0) ? carts[carts.length-1].cartPrice: '';
         return (
             <div className="mainCart__container">
                 <h2>تمامی سفارش ها</h2>
@@ -40,7 +50,6 @@ class MainCart extends Component {
                         <tbody>
                             {
                                 carts.map((cart,index) => {
-                                    console.log(carts.length-1 , index)
                                     if(carts.length-1 === index) {
                                         return null;
                                     }else {
@@ -55,10 +64,11 @@ class MainCart extends Component {
                     {
                         carts.length === 1? <p className="notFounding">موردی یافت نشد!</p>:(
                             <div>
-                                <button className="btn buyButton">تکمیل سبد خرید</button>
-                                <button className="btn updateButton">بروز رسانی سبد خرید</button>
-                                <button className="btn offButton">اعمال کد تخفیف</button>
-                                <span className="btn totalButton">{`جمع کل مبلغ پرداختی ${convertNumbersPersian(135000)} تومان`}</span>
+                                <button onClick={() => this.buyOrder()} className="btn buyButton">تکمیل سبد خرید</button>
+                                <button onClick={() => this.updateOrder('discount')} className="btn updateButton">بروز رسانی سبد خرید</button>
+                                <button onClick={() => this.offOrder()} className="btn offButton">اعمال کد تخفیف</button>
+                                { this.props.state.global.offInputToggle? offInput: null }
+                                <span className="btn totalButton">{`جمع کل مبلغ پرداختی ${convertNumbersPersian(totalPrice)} تومان`}</span>
                             </div>
                         )
                     }

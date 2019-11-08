@@ -75,6 +75,7 @@ export const SETSCREENSIZE = "SETSCREENSIZE";
 export const SETSEARCHVALUE = "SETSEARCHVALUE";
 export const FETCHSEARCHDATA = "FETCHSEARCHDATA";
 export const SETURL = "SETURL";
+export const OFFINPUTTOGGLE = "OFFINPUTTOGGLE";
 
 // products action
 export const FETCHPRODUCTS = "FETCHPRODUCTS";

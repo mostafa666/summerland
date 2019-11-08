@@ -1,93 +1,94 @@
 .accountMenu {
-    @include accountContainer;
-    position: sticky;
-    top: 135px;
+  @include accountContainer;
+  position: sticky;
+  top: 135px;
+  @include respond(phone) {
+    border: none;
+    padding: 1rem 0;
+    border-radius: 0;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    box-shadow: -10px 0 10px rgba($color-grey1, 0.4);
+    z-index: 11111111111;
+  }
+  & h3 {
+    color: $color-grey1;
+    font-size: 1.5rem;
+    font-weight: 100;
+    padding: 2rem;
+    border-bottom: 1px solid #f5f5f5;
     @include respond(phone) {
-        border: none;
-        border-radius: 0;
-        position: absolute;
-        top: auto;
-        bottom: 0;
-        box-shadow: -10px 0 10px rgba($color-grey1, 0.4);
-        z-index: 11111111111;
+      display: none;
     }
-    & h3 {
+  }
+  &__active {
+    @include respond(phone) {
+      border-right: none !important;
+    }
+    border-right: 2px solid $color-error2 !important;
+    // background-color: rgba(240, 130, 130, 0.048);
+    box-shadow: inset 0 0 5px rgba($color-grey1, 0.1);
+    &:last-child {
+      border-bottom-right-radius: 8px;
+    }
+    a {
+      color: $color-error2 !important;
+    }
+    img {
+      @include respond(phone) {
+        transform: translateY(-3px) scale(1.8);
+      }
+    }
+  }
+
+  &__list {
+    list-style: none;
+    @include respond(phone) {
+      display: flex;
+    }
+
+    & li {
+      @include respond(phone) {
+        border-right: none;
+        width: 25%;
+      }
+      border-right: 2px solid transparent;
+      transition: all 0.3s;
+      &:hover {
+        border-right: 2px solid $color-error2;
+        @include respond(phone) {
+          border-right: none !important;
+        }
+      }
+      &:hover a {
+        color: $color-error2;
+      }
+      & a {
+        @include respond(phone) {
+          flex-direction: column;
+          padding: 0.7rem 0;
+          align-items: center;
+          justify-content: center;
+        }
         color: $color-grey1;
-        font-size: 1.5rem;
-        font-weight: 100;
-        padding: 2rem;
-        border-bottom: 1px solid #f5f5f5;
-        @include respond(phone) {
-            display: none;
+        font-size: 1.3rem;
+        text-decoration: none;
+        display: flex;
+        height: 100%;
+        padding: 1.5rem 2rem 1.5rem 0;
+        letter-spacing: -0.3px;
+        word-spacing: -1px;
+        & img {
+          width: 1.7rem;
+          margin-left: 0.5rem;
         }
+      }
     }
-    &__active {
-        @include respond(phone) {
-            border-right: none !important;
-        }
-        border-right: 2px solid $color-error2 !important;
-        // background-color: rgba(240, 130, 130, 0.048);
-        box-shadow: inset 0 0 5px rgba($color-grey1, 0.1);
-        &:last-child {
-            border-bottom-right-radius: 8px;
-        }
-        a {
-            color: $color-error2 !important;
-        }
-        img {
-            @include respond(phone) {
-                transform: translateY(-3px) scale(1.5);
-            }
-        }
-    }
-
-    &__list {
-        list-style: none;
-        @include respond(phone) {
-            display: flex;
-        }
-
-        & li {
-            @include respond(phone) {
-                border-right: none;
-                width: 25%;
-            }
-            border-right: 2px solid transparent;
-            transition: all 0.3s;
-            &:hover {
-                border-right: 2px solid $color-error2;
-                @include respond(phone) {
-                    border-right: none !important;
-                }
-            }
-            &:hover a {
-                color: $color-error2;
-            }
-            & a {
-                @include respond(phone) {
-                    flex-direction: column;
-                    padding: 0.7rem 0;
-                    align-items: center;
-                    justify-content: center;
-                }
-                color: $color-grey1;
-                font-size: 1.3rem;
-                text-decoration: none;
-                display: flex;
-                height: 100%;
-                padding: 1.5rem 2rem 1.5rem 0;
-                letter-spacing: -0.3px;
-                word-spacing: -1px;
-                & img {
-                    width: 1.7rem;
-                    margin-left: 0.5rem;
-                }
-            }
-        }
-    }
-    @include respond(phone) {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-    }
+  }
+  @include respond(phone) {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
 }

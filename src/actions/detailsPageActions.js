@@ -56,7 +56,6 @@ export const addCart = (token,nickname,productId,count,size,color,isColor) => {
                 "size" : size ,
                 "color": color
             }).then(res => {
-                console.log(typeof res.data[0] == 'string' ,typeof res.data[0])
                 if(typeof res.data[0] == 'string') {
                     toast.error(res.data[0], {
                         position: toast.POSITION.BOTTOM_LEFT
@@ -110,7 +109,7 @@ export const fetchCart = carts => {
     return {
         type: FETCHCARTS,
         carts
-    };
+    }; 
 };
 
 export const fetchCarts = (token,nickname) => {
@@ -260,3 +259,4 @@ export const fetchComments = productId => {
             });
     };
 };
+

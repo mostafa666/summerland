@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FETCHWISHLIST, TOGGLESPPINER, VALIDATIONEMAILREGISTER, VALIDATIONPASSREGISTER, VALIDATIONCONFIRMREGISTER, SAVEPROFILE, VALIDATIONEMAILSIGNIN, VALIDATIONPASSWORDSIGNIN, SIGNEDINMENU, GETOLDPASS, GETEMAIL, GETCONFIRMPASS, GETCONFIRMPASSWORD, REMOVEWISHLIST, SIGNUPLOADER, CARTLOADER } from './types';
 import config from './../config.json';
 import { toast } from 'react-toastify';
+import { fetchCart } from './detailsPageActions';
 
 // load the wishList posts
 export const fetchWishList = data => {
@@ -198,5 +199,40 @@ export const cartLoader = (toggle) => {
     };
 };
 
+// update carts
 
 
+export const updateCarts = (discount,nickname,token) => {
+    return dispatch => {
+        return axios.post(config.api_update_cart,{ 
+            "token":token ,  
+            "nickname":nickname , 
+            "discount" : discount
+        }) 
+            .then(res => {
+                dispatch(fetchCart(res.data));
+                toast.success('سبد خرید شما بروز شد', {
+                    position: toast.POSITION.BOTTOM_LEFT
+                  })
+            })
+            .catch(error => {
+                if(error.response && error.response.status === 401) {
+                    toast.error('شما دسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 400) {
+                    toast.error('شما دسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else if(error.response && error.response.status === 404) {
+                    toast.error('شما دسترسی به این صفحه را ندارید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }else {
+                    toast.error('لطفا اینترنت خود را چک کنید', {
+                        position: toast.POSITION.BOTTOM_LEFT
+                      })
+                }
+            });
+    };
+};

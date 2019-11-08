@@ -8,7 +8,8 @@ import "./../../node_modules/slick-carousel/slick/slick-theme.scss";
 export default class SliderFade extends Component {
   slider = React.createRef();
   render() {
-    const { images } = this.props;
+    const { images, title } = this.props;
+    console.log(images);
     if (!images) return null;
     const settings = {
       dots: true,
@@ -19,7 +20,7 @@ export default class SliderFade extends Component {
       customPaging: function(i) {
         return (
           <a>
-            <img src={image1} />
+            <img src={images[i].url} alt={title} />
           </a>
         );
       }
@@ -29,7 +30,7 @@ export default class SliderFade extends Component {
         <Slider {...settings}>
           {images.map(image => (
             <div key={image.id}>
-              <img src={image.url} alt="عکس لباس" />
+              <img src={image.url} alt={title} />
             </div>
           ))}
         </Slider>

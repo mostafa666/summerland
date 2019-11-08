@@ -4,7 +4,7 @@ import { PRODUCTSLOADER } from "./../actions/types";
 const initialState = {
   data: [],
   filter: {
-    offset: 0,
+    offset: 1,
     collection: null, // spring-summer-fall-winter
     minPrice: null,
     maxPrice: null,

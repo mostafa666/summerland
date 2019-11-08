@@ -8,7 +8,8 @@ import {
   SETSCREENSIZE,
   SETSEARCHVALUE,
   FETCHSEARCHDATA,
-  SETURL
+  SETURL,
+  OFFINPUTTOGGLE
 } from "./types";
 import config from "./../config.json";
 import axios from "axios";
@@ -63,7 +64,7 @@ export const setSearchValue = value => {
 };
 
 export const fetchSearchData = value => {
-  return {
+  return {  
     type: FETCHSEARCHDATA,
     value
   };
@@ -106,3 +107,11 @@ export const setUrl = (pathname, search) => {
     search
   };
 };
+
+
+export const offInputToggle = () => {
+  return {
+    type: OFFINPUTTOGGLE
+  };
+};
+

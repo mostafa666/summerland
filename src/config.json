@@ -17,5 +17,7 @@
   "api_remove_cart": "http://melkon.ir/panel/api/v1/removeUserCartShop",
   "api_get_products": "http://melkon.ir/panel/api/v1/getAllProducts",
   "api_filter_products": "http://melkon.ir/panel/api/v1/getProductFilter",
-  "api_get_search_data": "http://melkon.ir/panel/api/v1/search"
+  "api_get_search_data": "http://melkon.ir/panel/api/v1/search",
+  "api_send_contact": "http://melkon.ir/panel/api/v1/contact",
+  "api_update_cart": "http://melkon.ir/panel/api/v1/updateUserCartShop"
 }

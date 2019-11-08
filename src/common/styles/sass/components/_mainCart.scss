@@ -11,6 +11,17 @@
             margin-bottom: 1.3rem;
         }
     }
+    #offInput {
+        border: 1px solid $color-grey4;
+        margin-top: 2rem;
+        margin-right: 2rem;
+        color: $color-grey1;
+        padding: 0.7rem 1.5rem;
+        border-radius: 1rem;
+        &:focus{
+            outline: none;
+        }
+    }
     @include accountContainer;
     border: none;
     padding-bottom: 3rem;

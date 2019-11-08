@@ -17,7 +17,7 @@ import { animateScroll as scroll } from 'react-scroll';
 import { setUrl } from './../../actions/globalAction';
 import closeIcon from './../../common/images/cancel.svg'
 class ProductsPage extends React.Component {
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     const {dispatch,state} = this.props;
     const {search,pathname} = state.global;
       /**
@@ -45,16 +45,16 @@ class ProductsPage extends React.Component {
       category
     } = filters;
       dispatch(productLoader(true));
-      dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
+      await dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
       dispatch(productLoader(false));
       dispatch(setUrl(this.props.location.pathname,this.props.location.search));
     }
 
   }
-   componentWillMount() {
-    this.unlisten = this.props.history.listen((location, action) => {
-      this.props.dispatch(productLoader(false));
-    });
+   async componentWillMount() {
+    // this.unlisten = this.props.history.listen((location, action) => {
+    //   this.props.dispatch(productLoader(false));
+    // });
     const { dispatch, state } = this.props;
     // /////////////////////////////////////////// set filters value of url
     let filters = this.setFiltersProducts()
@@ -71,7 +71,7 @@ class ProductsPage extends React.Component {
     // //////////////////////////////////////////  set values in store
     dispatch(setFilter(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
     dispatch(productLoader(true));
-    dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
+    await dispatch(filterProducts(sort, colorParent, minPrice, maxPrice, size, collection, offset, category));
     dispatch(productLoader(false));
   }
 
@@ -89,7 +89,7 @@ class ProductsPage extends React.Component {
       let price = null; // firstPrice, secondPrice, thirdPrice
       let size = null;
       let collection = null; //spring, summer, fall, winter
-      let offset = 0; // number
+      let offset = 1; // number
       let category = null;
 
     if (Object.keys(params).length > 0) {
@@ -150,6 +150,7 @@ class ProductsPage extends React.Component {
         offset = searchObg.offset;
       }
     }
+    offset = (offset - 1) * 18;
     return {
       sort,
       colorParent,
@@ -164,7 +165,7 @@ class ProductsPage extends React.Component {
     
   }
   componentWillUnmount() {
-    this.unlisten();
+    // this.unlisten();
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.location !== this.props.location) {
@@ -196,7 +197,6 @@ class ProductsPage extends React.Component {
   handlepage = page => {
     const { location, history } = this.props;
     const { pathname, search } = location;
-
     history.push(setLinkUrl(pathname, search, { offset: page }));
   };
   itemRender = (current, type, element) => {
@@ -206,8 +206,10 @@ class ProductsPage extends React.Component {
     return element;
   };
   render() {
+    let current = 1;
     const { dispatch, state, location, history } = this.props;
-    const { productsLoader, data, activeSorter,toggleFilterBox } = this.props.state.products;
+    const { productsLoader, data, activeSorter,toggleFilterBox,filter } = this.props.state.products;
+    console.log(filter.offset)
     const style = {
       transform: toggleFilterBox? 'translateX(0)': 'translateX(100%)'
     }
@@ -219,6 +221,11 @@ class ProductsPage extends React.Component {
           transform: 'translateX(0)'
         }
       }
+    }
+    const { search } = location;
+    let objSearch = queryString.parse(search);
+    if(objSearch.offset) {
+      current = +objSearch.offset;
     }
     return (
       <div className="products__container">
@@ -253,8 +260,8 @@ class ProductsPage extends React.Component {
               showTitle={false}
               itemRender={this.itemRender}
               onChange={this.handlepage}
-              current={Number(state.products.filter.offset)}
-              total={235}
+              current={current}
+              total={35}
               style={{ flexDirection: "row-reverse", display: "flex", justifyContent: "center", margin: "30px" }}
             />
           </div>{" "}

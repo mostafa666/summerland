@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "./../Header";
 import Accordeon from "./../accordeon";
 import TecnicalSpecification from "./../detailPage/tecnicalSpecification";
 import GeneralSpecification from "./../detailPage/generalSpecification";
@@ -51,11 +50,11 @@ class DetailPage extends Component {
     if (!data) return null;
     return (
       <div className="detailsPage">
-        {/* <Loader toggle={this.props.state.global.toggleLoaderDetails} /> */}
+        <Loader toggle={this.props.state.global.toggleLoaderDetails} />
         <div className="detailsPage__top">
           <div className="detailsPage__slider" ref={this.slider}>
             <div className="detailsPage__slider--container">
-              <SliderFade images={data.image} />
+              <SliderFade images={data.image} title={data.title} />
             </div>
           </div>
           <div className="detailsPage__specification" ref={this.specification}>

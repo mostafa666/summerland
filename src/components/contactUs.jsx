@@ -3,10 +3,46 @@ import { connect } from "react-redux";
 // image
 import contactUsImage from "./../common/images/contactUs.jpg";
 import mailIcon from "./../common/images/mail.svg";
-import userIcon from "./../common/images/user.png";
-
+import userIcon from "./../common/images/avatar2.svg";
+import phoneIcon from "./../common/images/phone-call.svg";
+import axios from "axios";
+import config from "./../config.json";
 import { TextInput } from "./signup";
+import { toast } from "react-toastify";
 class ContactUs extends Component {
+  handleMessage = async e => {
+    e.preventDefault();
+    const message = e.target.message;
+    const email = message.parentNode.previousSibling.childNodes[0];
+    const phone = message.parentNode.previousSibling.previousSibling.childNodes[0];
+    const name = message.parentNode.previousSibling.previousSibling.previousSibling.childNodes[0];
+    try {
+      const response = await axios.post(config.api_send_contact, {
+        title: "",
+        content: message,
+        phone: phone,
+        name: name,
+        email: email
+      });
+      toast.success("پیام شما با موفقیت فرستاده شد", {
+        position: toast.POSITION.BOTTOM_LEFT
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        toast.error("ایمیل وارد شده معتبر نمیباشد", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      } else if (error.response && error.response.status === 400) {
+        toast.error("لطفا ورودی های خود ر جک کنید", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      } else {
+        toast.error("خطایی رخ داده است", {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
+      }
+    }
+  };
   render() {
     return (
       <div className="contactUs">
@@ -27,21 +63,30 @@ class ContactUs extends Component {
           </div>
         </div>
         <div className="contactUs__form--container">
-          <form className="contactUs__form">
+          <form className="contactUs__form" onSubmit={e => this.handleMessage(e)}>
             <h4>ارسال پیام</h4>
             <TextInput
               icon={userIcon}
               placeholder={"نام و نام خانوادگی خود را وارد نمایید..."}
-              id={"inputs[6].id"}
+              id={"inputsId"}
               labelText={"نام و نام خانوادگی"}
               onchange={() => console.log()}
               type={"text"}
               className={""}
             />
             <TextInput
+              icon={phoneIcon}
+              placeholder={"شماره تماس خود را وارد نمایید..."}
+              id={"inpuId"}
+              labelText={"شماره تماس"}
+              onchange={() => console.log()}
+              type={"phone"}
+              className={""}
+            />
+            <TextInput
               icon={mailIcon}
               placeholder={"ایمیل خود را وارد نمایید..."}
-              id={"inputs[6].id"}
+              id={"input3Id"}
               labelText={"ایمیل"}
               onchange={() => console.log()}
               type={"text"}
@@ -57,6 +102,9 @@ class ContactUs extends Component {
               />
               <label htmlFor="messageSection">پیام</label>
             </div>
+            <button type="submit" className="btn btn--green">
+              ثبت پیام
+            </button>
           </form>
         </div>
       </div>

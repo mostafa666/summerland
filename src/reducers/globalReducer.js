@@ -6,7 +6,8 @@ import {
   TOGGLEMOBILEMENU,
   SETSEARCHVALUE,
   FETCHSEARCHDATA,
-  SETURL
+  SETURL,
+  OFFINPUTTOGGLE
 } from "../actions/types";
 import { TOGGLELOADERCARTMENU, SETSCREENSIZE } from "./../actions/types";
 
@@ -21,7 +22,8 @@ const initialState = {
   searchValue: "",
   searchData: "",
   search: "",
-  pathname: ""
+  pathname: "",
+  offInputToggle: false
 };
 
 export default (state = initialState, action) => {
@@ -82,6 +84,11 @@ export default (state = initialState, action) => {
         search: action.search,
         pathname: action.pathname
       };
+    case OFFINPUTTOGGLE:
+      let copyOff = state.offInputToggle;
+      return {
+        offInputToggle: !copyOff
+      }
     default:
       return state;
   }

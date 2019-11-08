@@ -1,0 +1,688 @@
+/* ----------------------------------- 1-register user  -------------------------------------- */  
+/* ------------------------------------------------------------------------------------------- */  
+
+
+
+route -> http://melkon.ir/panel/api/v1/register
+mehtos -> post 
+sample send json-> { "email":"email@yahoo.com","password" : "5151551", "confirm" : "5151551" }
+succesfull -> get token
+error handling ->
+400 : نام کاربری یا رمز عبور وارد نشده یا رمز ها هم خوانی ندارند
+403 : ایمیل قبلا ثبت شده است
+
+
+
+/* ----------------------------------- 2-login user  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+
+route -> http://melkon.ir/panel/api/v1/login
+mehtos -> post 
+sample send json-> { "email":"email@yahoo.com","password" : "5151551" }
+succesfull -> get token
+error handling ->
+400 :  ایمیل یا رمز عبور وارد نشده اند
+403 : ایمیل یا نام کاربری وجود ندارد
+401 : رمز اشتباه 
+
+
+
+/* ----------------------------------- 3-resetPassword user  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/resetPassword
+mehtos -> post 
+sample send json-> { "email":"email@yahoo.com","oldpassword" : 66165551, "password" : 22,  "confirm" : 22}
+succesfull -> get token
+error handling ->
+400 : ایمیل یا رمز عبور وارد نشده اند یا رمز عبور ها همخوانی ندارند
+403 : ایمیل یا نام کاربری وجود ندارد
+401 : رمز اشتباه است
+
+
+/* ----------------------------------- 4-get User Profile  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+
+route -> http://melkon.ir/panel/api/v1/getUserProfile
+mehtos -> post 
+sample send json->  {  "nickname" : "nick" , "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" }
+succesfull -> get json like { "email": "email@yahoo.com", "address": "user address ","postCode": "1511511", "phone": "1151", "firstname": "fg","lastname": "lp"}
+error handling ->              
+400 : توکن یا نام کاربری وارد نشده است
+401 : ناصحیح بودن توکن	
+404 : این کاربر موجود نیست		  
+
+
+
+/* ----------------------------------- 5-send User Profile   -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+
+route -> http://melkon.ir/panel/api/v1/sendUserProfile
+mehtos -> post
+sample send json->  
+{ "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" ,"nickname":"nick" , "address": "dff","postCode": "5252","phone": "55","firstname": "2525","lastname": "52525"}
+succesfull -> nothing
+error handling ->  
+400 : توکن یا نام کاربری وارد نشده است
+401 : ناصحیح بودن توکن	
+404 : این کاربر موجود نیست	
+403 : اطلاعات وارد شده نا صحیح است مثلا شماره تلفن عدد نمیباشد
+
+
+/* ----------------------------------- 6-get User wishList   -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getUserWishList
+mehtos -> post 
+sample send json->  {  "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" , "nickname":"nick" }
+succesfull -> 
+[
+    {
+        "id": 1,
+        "productId": 108,
+        "image": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg",
+        "title": "",
+        "isInCart": true,
+        "productColors": [
+            {
+                "id": 0,
+                "color": "#666666"
+            },
+            {
+                "id": 1,
+                "pattern": "http://localhost/projects/woocommerce/wp-content/uploads/2019/09/plus.jpg"
+            }
+        ],
+        "productSizes": [
+            {
+                "id": 0,
+                "size": "50"
+            },
+            {
+                "id": 1,
+                "size": "X"
+            }
+        ],
+		categories": [
+            {
+                "id": 0,
+                "category": "women"
+            },
+			{
+				"id": 1,
+				"category": "womensocks"
+			},
+			{
+				"id": 2,
+				"product": 28
+			}
+			
+        ],
+        "price": "10000"
+    }
+]
+
+error handling ->  
+400 : توکن یا نام کاربری وارد نشده است
+401 : ناصحیح بودن توکن	
+404 : این کاربر موجود نیست	
+
+
+/* ----------------------------------- 7-send User wishList   -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/sendUserWishList
+mehtos -> post 
+sample send json->  {  "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" , "nickname":"nick" , "productId" : 33  }
+succesfull ->  nothing
+error handling ->  
+400 : توکن یا نام کاربری یا ای دی محصول وارد نشده است
+401 : ناصحیح بودن توکن	
+404 : این کاربر موجود نیست	
+403 : محصول هنوز پابلیک نشده است
+
+
+/* ----------------------------------- 8-remove User wishList   -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/removeUserWishList
+mehtos -> post 
+sample send json->  {  "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" , nickname":"nick", "productId" : 6 }
+succesfull ->  nothing
+error handling ->  
+400 : توکن یا نام کاربری یا ای دی محصول وارد نشده است
+401 : ناصحیح بودن توکن	
+404 : این کاربر موجود نیست
+
+
+/* ----------------------------------- 9-increace prodcut view   -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/sendProductView
+mehtos -> post 
+sample send json->  { "productId":26 }
+succesfull ->  nothing
+error handling ->  
+400 :  ای دی محصول تا صحیح است
+403 : محصول هنوز پابلیک نشده است
+
+
+/* ----------------------------------- 10-send Product Star  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/sendProductStar
+mehtos -> post 
+sample send json-> 
+ {  "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" , "nickname":"nick" , "productId" : 108 , "star":1}
+succesfull ->  nothing
+error handling ->  
+400 : توکن یا نام کاربری یا ای دی محصول وارد نشده است یا امتیاز بین 1 تا 5 نیست
+401 : ناصحیح بودن توکن	
+
+
+/* ----------------------------------- 11-send User Cart Shop  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/sendUserCartShop
+mehtos -> post 
+sample send json-> 
+
+ { "token":"" ,  "nickname":"admin", "productId" : 122 , "count" : 1 , "size" : "xx" ,  "color": "#000000"}
+ or
+ { "token":"" ,  "nickname":"admin", "productId" : 122 , "count" : 1 , "size" : "xx" ,   "pattern": "http://uploads/2019/10/al5471_3.jpg"}
+ 
+
+succesfull ->  
+
+[
+    {
+        "productId": 119,
+        "count": 1,
+        "size": 50,
+        "pattern": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_2.jpg",
+        "title": "عنوان محصول عنوان محصول عنوان محصول",
+        "image": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg",
+        "categories": [
+            {
+                "id": 0,
+                "category": "women"
+            },
+            {
+                "id": 1,
+                "category": "scarf"
+            },
+            {
+                "id": 2,
+                "category": "flower"
+            },
+            {
+                "id": 3,
+                "title": "عنوان_محصول_عنوان_محصول_عنوان_محصول"
+            }
+        ],
+        "price": "250",
+        "offer": "100"
+    }
+]
+
+error handling -> 
+400 : نام کاربری یا توکن وارد نشده است 
+401 : ناصحیح بودن توکن
+404 :  محصول با ای دی داده شده و یا متناسب با رنگ و سایز داده شده یافت نشده است
+
+
+
+/* ----------------------------------- 12-get User Cart Shop  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getUserCartShop
+mehtos -> post 
+sample send json->  { "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" ,  "nickname":"jonznick" }
+succesfull ->
+ [
+    {
+        "id": 0,
+        "productId": 122,
+        "count": 5,
+        "size": "M",
+        "pattern": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_3.jpg",
+        "isExist": false 
+    },
+    {
+        "id": 1,
+        "productId": 121,
+        "count": 5,
+        "color": "#000000",
+        "size": "10",
+        "isExist": true
+    }
+	{
+        "cartCount": 2,
+        "cartPrice": 20
+    }
+]
+error handling -> 
+400 : نام کاربری یا توکن وارد نشده است 
+401 : ناصحیح بودن توکن
+404 : این کاربر وجود ندارد
+
+
+/* ----------------------------------- 13- remove User Cart Shop -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/removeUserCartShop
+mehtos -> post 
+sample send json->  { "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" ,  nickname":"jonznick", "productId" : 6 , "id" : 1 }
+succesfull ->  nothing
+error handling -> 
+400 : توکن یا نام کاربری یا ای دی محصول وارد نشده است
+401 : ناصحیح بودن توکن	
+404 : این کاربر موجود نیست
+
+/* ----------------------------------- 14- update User Cart Shop -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/updateUserCartShop
+mehtos -> post 
+sample send json->  { "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" ,  "nickname":"jonznick" , "discount" : "TAKHFIF" }
+succesfull ->  nothing
+error handling -> 
+400 : نام کاربری یا توکن وارد نشده است 
+401 : ناصحیح بودن توکن
+404 : این کاربر وجود ندارد
+
+
+/* ----------------------------------- 15-send Comment Product  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/sendCommentProduct
+mehtos -> post 
+sample send json->  {  "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" , "nickname":"jonznick", "productId" : 33 , "title":"sample" , "content":"sample"}
+succesfull ->  nothing
+error handling ->  
+400 : ای دی محصول نا صحیح
+401 : ناصحیح بودن توکن	
+
+
+/* ----------------------------------- 16-get Comment Product  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getCommentProduct
+mehtos -> post 
+sample send json->  { "productId" : 33 }
+succesfull -> 
+[
+    {
+        "id": 0,
+        "nickname": "mahdi",
+        "content": "sample",
+        "date": "1571569980",
+        "title": "sample"
+    },
+    {
+        "id": 1,
+        "nickname": "mahdi",
+        "content": "sample",
+        "date": "1571569979",
+        "title": "sample"
+    }
+]
+ 
+error handling ->  
+400 : ای دی محصول نا صحیح
+ 
+
+
+/* ----------------------------------- 17-get single product -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getSingleProduct
+mehtos -> post 
+sample send json->  {"token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" ,  nickname":"jonznick", "productId" : 33  }
+succesfull -> 
+{
+    "id": 108,
+    "title": "dvsdv",
+    "image": [
+        {
+            "id": 0,
+            "url": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg"
+        },
+        {
+            "id": 1,
+            "url": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_4.jpg"
+        }
+    ],
+    "price": "10000",
+    "offer": "9000",
+    "percentOffer": "10",
+    "serial": "151515",
+    "starAverage": "26.8",
+    "starSum": "375",
+    "starCount": "14",
+    "sellCount": "15",
+    "allProductCount": "130",
+    "publishTime": "1570427977",
+    "views": "10",
+    "details": [
+        {
+            "id": 0,
+            "header": "1",
+            "content": "2"
+        },
+        {
+            "id": 1,
+            "header": "3",
+            "content": "4"
+        }
+    ],
+    "productType": [
+        {
+            "id": 0,
+            "color": "#6337d5",
+            "colorParent": "صورتی",
+            "size": "60",
+            "count": "50"
+        }
+        {
+            "id": 1,
+            "pattern": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_3.jpg",
+            "colorParent": "سفید",
+            "size": "10",
+            "count": "10"
+        }
+    ],
+    "productColors": [
+        {
+            "id": 0,
+            "color": "#6337d5"
+        },
+        {
+            "id": 3,
+            "pattern": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_4.jpg"
+        }
+    ],
+    "productSizes": [
+        {
+            "id": 0,
+            "size": "60"
+        },
+        {
+            "id": 1,
+            "size": "XXL"
+        }
+    ],
+    "categories": [
+        {
+            "id": 0,
+            "category": "women"
+        },
+        {
+            "id": 1,
+            "category": "trousers"
+        },
+		{
+            "id": 2,
+            "product": 11
+        }
+    ],
+    "isWishList": false or true
+}
+
+
+error handling ->  
+400 : ای دی محصول نا صحیح
+
+
+
+/* ----------------------------------- 18-get all product -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getAllProducts
+mehtos -> post 
+sample send json->  { "offset" : 0 , "sort" :  " cheap - expensive - views - offer "  }
+succesfull -> posts
+
+
+/* ----------------------------------- 19- products filter -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getProductFilter
+mehtos -> post 
+sample send json->  
+
+{ "offset" : 0 , "collection":"spring-summer-fall-winter" , "minPrice":100 , "maxPrice":150 ,
+ "colorParent":"white" , "size" : "1-l-xxl,..." , "category" : "" , "sort" :  "cheap-expensive-views-offer" }
+ 
+ 
+succesfull -> posts
+
+
+/* ----------------------------------- 20- search   -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/search
+mehtos -> Post 
+sample send json->  {  "title" : "محصول نمونه"  }
+succesfull -> 
+[
+    {
+        "productId": 119,
+        "title": "عنوان محصول",
+		"image": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg",
+        "categories": [
+            
+                {
+                    "id": 0,
+                    "category": "women"
+                },
+                {
+                    "id": 1,
+                    "category": "scarf"
+                },
+                {
+                    "id": 2,
+                    "category": "flower"
+                },
+                {
+                    "id": 3,
+                    "product": 11
+                }
+            
+        ]
+    },
+    {
+        "productId": 110,
+        "title": "عنوان محصول  555555",
+		"image": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg",
+        "categories": [
+            
+                {
+                    "id": 0,
+                    "category": "women"
+                },
+                {
+                    "id": 1,
+                    "category": "scarf"
+                },
+                {
+                    "id": 2,
+                    "category": "flower"
+                },
+                {
+                    "id": 3,
+                    "product": 11
+                }
+            
+        ]
+    },
+]
+
+
+
+/* ----------------------------------- 21-record Order -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+
+route -> http://melkon.ir/panel/api/v1/recordOrder
+mehtos -> post 
+sample send json->  { "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" ,  "nickname":"jonznick" , "discount" : "TAKHFIF" }
+succesfull ->  nothing
+error handling -> 
+400 : نام کاربری یا توکن وارد نشده است 
+401 : ناصحیح بودن توکن
+404 : این کاربر وجود ندارد
+
+
+/* ----------------------------------- 22-get theme options (footer and header)  -------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getThemeOptions
+mehtos -> Post 
+sample send json->   
+succesfull -> 
+{
+    "options": {
+        "email": "admin2@yahoo.com",
+        "phone": "0937517076",
+        "favicon_url": "http://localhost/projects/woocommerce/wp-content/uploads/2019/09/favicon.png",
+        "logo_url": "http://localhost/projects/woocommerce/wp-content/uploads/2019/09/logo.png",
+        "description": "یک فروشگاه اینترنتی برای زنان و مردان",
+        "address": "میدان انقلاب - جنب خیابان امیری - 10"
+    }
+}
+
+
+
+/* ----------------------------------- 23- get Index option  -------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/getIndexOptions
+mehtos -> Post 
+sample send json->   
+succesfull -> 
+{
+    "slider": [
+        {
+            "id": 0,
+            "desktop": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_4.jpg",
+            "mobile": "",
+            "link": "dvdv"
+        },
+        {
+            "id": 1,
+            "desktop": "",
+            "mobile": "",
+            "link": "http://summerlandshopping.com"
+        }
+    ],
+    "banner": {
+        "image": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_4.jpg",
+        "url": "http://localhost/projects/woocommerce/wp-admin/admin.php?page=shop_option_panel"
+    },
+    "lastProducts": [
+        {
+            "productId": 120,
+            "title": "me1",
+            "price": "150000",
+            "offer": "120000",
+            "percentOffer": "20",
+            "imageGallery": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg",
+            "categories": false
+        }
+    ],
+    "mostViewProducts": [
+        {
+            "productId": 111,
+            "title": "me",
+            "price": "100",
+            "offer": "85",
+            "percentOffer": "85",
+            "imageGallery": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg",
+            "categories": false
+        },
+        {
+            "productId": 110,
+            "title": "محصول نمونه",
+            "price": "1000",
+            "offer": "900",
+            "percentOffer": "90",
+            "imageGallery": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_3.jpg",
+            "categories": false
+        }
+    ],
+    "mostOfferProducts": [
+        {
+            "productId": 110,
+            "title": "محصول نمونه",
+            "price": "1000",
+            "offer": "900",
+            "percentOffer": "90",
+            "imageGallery": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_3.jpg",
+            "categories": false
+        },
+        {
+            "productId": 111,
+            "title": "me",
+            "price": "100",
+            "offer": "85",
+            "percentOffer": "85",
+            "imageGallery": "http://localhost/projects/woocommerce/wp-content/uploads/2019/10/al5471_1.jpg",
+            "categories": false
+        }
+    ]
+}
+
+
+/* ----------------------------------- 24-contact us form  -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+route -> http://melkon.ir/panel/api/v1/contact
+mehtos -> post 
+sample send json->  {   "title" : ""  , "content" : "" , "phone" : "" , "name" : "" , "email" : "" }
+error handling ->  
+400 : دسیتا ناقص فرستاده شده
+401 : ایمیل ناصحیح	
+
+
+
+/* ----------------------------------- 25-pay Order -------------------------------------- */
+/* ------------------------------------------------------------------------------------------- */
+
+
+
+route -> http://melkon.ir/panel/api/v1/payOrder
+mehtos -> post 
+sample send json->  { "token":"FZGuaDxdz8YP5rwKFkQyYlRKL4vbxE" ,  "nickname":"jonznick" , "discount" : "TAKHFIF" }
+succesfull ->  nothing
+error handling -> 
+400 : نام کاربری یا توکن وارد نشده است 
+401 : ناصحیح بودن توکن
+404 : این کاربر وجود ندارد
+
